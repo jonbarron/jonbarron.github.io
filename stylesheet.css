@@ -140,3 +140,27 @@ span.highlight {
     display: inline-block;
     border-radius: 10px;
 }
+
+.job-market {
+  background: #eef4ff;
+  border-left: 4px solid #1772d0;
+  padding: 10px 14px;
+  margin: 14px 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.news-list {
+  margin-top: 8px;
+  padding-left: 1.2em;
+  line-height: 1.6em;
+}
+
+.news-list li {
+  margin: 6px 0;
+}
+
+.news-year {
+  font-weight: 700;
+  margin-right: 6px;
+}
