@@ -1,1 +1,3 @@
-This is the source code to Jon Barron's public academic website: https://jonbarron.info/. Feel free to clone this code for your own personal use.
+# Academic Portfolio
+
+Personal academic portfolio page. Based on [Jon Barron's website template](https://github.com/jonbarron/jonbarron_website).

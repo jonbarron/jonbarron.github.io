@@ -63,6 +63,78 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+/* Language toggle */
+body.lang-ja .en { display: none; }
+body.lang-en .ja { display: none; }
+
+.lang-switch {
+  text-align: right;
+  padding: 12px 20px 0;
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 14px;
+  user-select: none;
+}
+
+.lang-switch a {
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 4px;
+  color: #888;
+  transition: all 0.15s;
+}
+
+.lang-switch a:hover {
+  color: #333;
+}
+
+.lang-switch a.active {
+  color: #333;
+  font-weight: 600;
+  background-color: #f0f0f0;
+}
+
+.lang-switch .sep {
+  color: #ccc;
+  margin: 0 2px;
+}
+
+/* Name subtitle (secondary language) */
+.name-sub {
+  font-size: 15px;
+  color: #666;
+  margin: 0 0 8px 0;
+}
+
+/* Education */
+.edu-year {
+  font-size: 13.5px;
+  color: #888;
+}
+
+.edu-thesis {
+  font-size: 13px;
+  color: #777;
+  font-style: italic;
+}
+
+/* Project tags */
+.project-tags span {
+  display: inline-block;
+  font-size: 11.5px;
+  background-color: #f0f4f8;
+  color: #4a6fa5;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-right: 4px;
+  margin-top: 4px;
+}
+
+/* Patent / Publication item */
+.pub-item {
+  border-left: 3px solid #e8e8e8;
+}
+
 a {
   color: #1772d0;
   text-decoration: none;
@@ -80,24 +152,24 @@ th,
 tr,
 p,
 a {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-family: 'Lato', 'Noto Sans JP', Verdana, Helvetica, sans-serif;
   font-size: 14px;
 }
 
 strong {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-family: 'Lato', 'Noto Sans JP', Verdana, Helvetica, sans-serif;
   font-size: 14px;
 }
 
 h2 {
   margin: 0;
   font-weight: normal;
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-family: 'Lato', 'Noto Sans JP', Verdana, Helvetica, sans-serif;
   font-size: 22px;
 }
 
 .papertitle {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-family: 'Lato', 'Noto Sans JP', Verdana, Helvetica, sans-serif;
   font-size: 14px;
   font-weight: 700;
 }
@@ -105,7 +177,7 @@ h2 {
 .name {
   padding-top: 20px;
   margin: 0;
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-family: 'Lato', 'Noto Sans JP', Verdana, Helvetica, sans-serif;
   font-size: 32px;
 }
 
