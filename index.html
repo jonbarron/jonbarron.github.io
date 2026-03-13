@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -14,13 +14,13 @@
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
   </head>
 
-  <body class="lang-en">
+  <body class="lang-ja">
 
     <!-- Language Toggle -->
     <div class="lang-switch">
-      <a id="btn-en" class="active" onclick="switchLang('en')">English</a>
+      <a id="btn-en" onclick="switchLang('en')">English</a>
       <span class="sep">|</span>
-      <a id="btn-ja" onclick="switchLang('ja')">日本語</a>
+      <a id="btn-ja" class="active" onclick="switchLang('ja')">日本語</a>
     </div>
 
     <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
@@ -52,7 +52,7 @@
                   <span class="ja">
                     <strong>セブンシックス株式会社</strong> にてプロダクトマネージャーとして勤務しています。
                     <strong>埼玉大学大学院</strong>にて修士（工学）を取得。
-                    アクティブスキャンによる3D測定システムの企画・開発をしています。新規事業としてニューラルネットワークおよびその派生技術に関心を持っています。
+                    アクティブスキャンによる3D測定システムの企画・開発をしています。新規事業として、深層学習を用いた3D表現技術の事業展開に取り組んでいます。
                   </span>
                 </p>
 
@@ -82,27 +82,6 @@
                   <span class="ja">研究関心</span>
                 </h2>
                 <p>
-                  <!-- TODO: Describe your research interests -->
-                  <span class="en">
-                    Through years of work with <strong>active 3D scanning technologies</strong>—including
-                    laser interferometry, millimeter-wave radar, light-section profilometry, and structured
-                    light—I repeatedly encountered the limitations of noise on specular surfaces and the
-                    inability to reproduce material appearance. Discovering
-                    <strong>3D Gaussian Splatting (3DGS)</strong> was a turning point: reconstructing a
-                    golf club head revealed a level of photorealism and real-time rendering speed I had
-                    never seen before. My goal is to bridge hardware expertise in optics, lasers, cameras,
-                    and actuators with software knowledge in image processing and 3D analysis, advancing
-                    3D reconstruction toward more practical and compelling real-world applications.
-                  </span>
-                  <span class="ja">
-                    レーザー干渉計・ミリ波レーダー・光切断法・構造化照明といったアクティブ3Dスキャン技術に
-                    長年携わる中で、鏡面サンプルへのノイズや質感再現の限界という課題に直面し続けてきました。
-                    そこで <strong>3D Gaussian Splatting (3DGS)</strong> を発見し、その圧倒的な質感表現とレンダリング速度を目の当たりにし深層学習に興味を持ちました。
-                    これまで培ったセンシングやアクチュエーターなどのハードウェア技術と、
-                    2D・3Dのソフトウェア技術を組み合わせ、深層学習による3D表現を様々なシーンに実装していきたいです。
-                  </span>
-                </p>
-                <p>
                   <span class="en">
                     More specifically, my near-term research focus is on applying NeRF and 3DGS to
                     e-commerce, enabling customers to experience photorealistic material appearance
@@ -119,6 +98,27 @@
                   </span>
                 </p>
                 <p>
+                  <!-- TODO: Describe your research interests -->
+                  <span class="en">
+                    Through years of work with <strong>active 3D scanning technologies</strong>—including
+                    laser interferometry, millimeter-wave radar, light-section profilometry, and structured
+                    light—I repeatedly encountered the limitations of noise on specular surfaces and the
+                    inability to reproduce material appearance. Discovering
+                    <strong>3D Gaussian Splatting (3DGS)</strong> was a turning point: reconstructing a
+                    golf club head revealed a level of photorealism and real-time rendering speed I had
+                    never seen before. My goal is to bridge hardware expertise in optics, lasers, cameras,
+                    and actuators with software knowledge in image processing and 3D analysis, advancing
+                    3D reconstruction toward more practical and compelling real-world applications.
+                  </span>
+                  <span class="ja">
+                    レーザー干渉計・ミリ波レーダー・光切断法・構造化照明といったアクティブ3Dスキャン技術に
+                    携わる中で、鏡面サンプルのノイズや質感再現の限界という課題に直面し続けてきました。
+                    そこで 3D Gaussian Splatting (3DGS) を発見し、その圧倒的な質感表現とレンダリング速度を体感して深層学習に興味を持ちました。
+                    これまで培ってきたセンシングやアクチュエーターなどのハードウェア技術と
+                    2D・3Dのソフトウェア技術を組み合わせ、深層学習による3D表現を様々なシーンに展開したいです。
+                  </span>
+                </p>
+                <p>
                   <span class="en">
                     Looking further ahead, I am drawn to a deeper question: can we quantify human
                     sensory perception itself? The "feel" of a golf club impact, for instance, has
@@ -130,11 +130,11 @@
                     data are fused to model and ultimately design for human perception.
                   </span>
                   <span class="ja">
-                    将来的には、マルチモーダルセンシングと深層学習を用いて人の感性のモデル化したいと考えています。
-                    ゴルフクラブの打感はその典型例で、過去の感性工学研究では設計パラメータと
+                    将来的には、マルチモーダルセンシングと深層学習を用いて人の感性のモデル化に取り組みたいと考えています。
+                    ゴルフクラブの打感はその典型例で、2000年代初頭には設計パラメータと
                     官能評価の対応をニューラルネットで学習する試みがありましたが、
-                    現代の最新鋭のセンシング技術との組み合わせはほぼ未開拓となっています。
-                    アイアンが芯を食った時の打感は最高です。その感覚をモデル化できれば様々なサービスへの応用が期待できます。
+                    現代の高度化した深層学習とセンシング技術の組み合わせによる研究はほぼ未開拓となっています。
+                    アイアンが芯を食った時の打感は最高です。そのような感覚をモデル化できれば様々なサービスへの応用が期待できます。
                     そのような研究から、少しでも世界を面白くできたら良いなと思います。
                   </span>
                 </p>
