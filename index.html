@@ -1,3 +1,6 @@
+---
+layout: null
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +17,14 @@
   <meta property="og:type" content="profile">
   <meta property="og:image" content="https://sdiaeyu6n.github.io/images/image.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2212%22 fill=%22%23204f84%22/%3E%3Ctext x=%2232%22 y=%2241%22 text-anchor=%22middle%22 font-family=%22Georgia,serif%22 font-size=%2226%22 font-weight=%22700%22 fill=%22white%22%3ESC%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%23f7f8fa%22/%3E%3Crect x=%2216%22 y=%2221%22 width=%2232%22 height=%2226%22 rx=%228%22 fill=%22%23202124%22/%3E%3Cpath d=%22M32 21V13%22 stroke=%22%23202124%22 stroke-width=%224%22 stroke-linecap=%22round%22/%3E%3Ccircle cx=%2232%22 cy=%2211%22 r=%224%22 fill=%22%231a73e8%22/%3E%3Ccircle cx=%2226%22 cy=%2233%22 r=%223%22 fill=%22%23ffffff%22/%3E%3Ccircle cx=%2238%22 cy=%2233%22 r=%223%22 fill=%22%23ffffff%22/%3E%3Cpath d=%22M26 40H38%22 stroke=%22%238ab4f8%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3C/svg%3E">
+  <script>
+    (function () {
+      var savedTheme = window.localStorage.getItem("theme");
+      var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", savedTheme || (prefersDark ? "dark" : "light"));
+    })();
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -47,6 +57,24 @@
   <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a class="site-title" href="/">Sieun Choi</a>
+      <div class="nav-links">
+        <a href="#publications">Publications</a>
+        <a href="#preprints">Preprints</a>
+        <a href="#research-experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">
+          <span class="theme-toggle-track" aria-hidden="true">
+            <span class="theme-toggle-icon theme-toggle-sun"></span>
+            <span class="theme-toggle-icon theme-toggle-moon"></span>
+            <span class="theme-toggle-thumb"></span>
+          </span>
+        </button>
+      </div>
+    </nav>
+  </header>
   <main class="container">
     <section class="hero">
       <div class="hero-text">
@@ -58,13 +86,13 @@
           in generative and foundation models for real-world interactive systems.
         </p>
         <div class="interests">
-          <span>Generative AI</span>
           <span>Multimodal Learning</span>
           <span>AI Safety & Reliability</span>
           <span>Embodied AI & Human-Robot Interaction</span>
+          <span>Medical AI</span>
         </div>
         <div class="quick-links" aria-label="Academic links">
-          <a class="button" href="data/SieunChoi-CV.pdf" target="_blank" rel="noopener">CV</a>
+          <a class="button" href="data/Sieun_Choi_CV.pdf" target="_blank" rel="noopener">CV</a>
           <a class="button" href="https://scholar.google.com/citations?user=7Nv0vMYAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
           <a class="button" href="https://github.com/sdiaeyu6n" target="_blank" rel="noopener">GitHub</a>
           <a class="button" href="https://www.linkedin.com/in/sieunchoi/" target="_blank" rel="noopener">LinkedIn</a>
@@ -84,11 +112,12 @@
     <section class="section" id="news">
       <h2>News</h2>
       <ul class="news-list">
-        <li><span class="news-date">2026</span><span><a href="#pub-sea">SEA</a> was accepted to CVPR 2026.</span></li>
+        <li><span class="news-date">2026</span><span><a href="#pub-sea">SEA</a> was accepted to CVPR 2026 and ICML 2026 Workshop on Human-AI Co-Creativity.</span></li>
         <li><span class="news-date">2026</span><span><a href="#pub-before-we-trust-them">Before We Trust Them</a> was accepted to AAAI 2026 Summer Symposium Series.</span></li>
         <li><span class="news-date">2026</span><span><a href="#pub-ercp">Machine Learning Prediction of Common Bile Duct Stones</a> was published in Scientific Reports.</span></li>
         <li><span class="news-date">2026</span><span><a href="#pub-exposing-blindspots">Exposing Blindspots</a> was accepted to IASEAI 2026 Main Conference.</span></li>
-        <li><span class="news-date">2025-2026</span><span>Worked as a visiting researcher at the BIG Lab, Carnegie Mellon University Robotics Institute, fully funded by MSIT of Korea under the Global Research Support Program in the Digital Field (RS-2024-00426860).</span></li>
+        <li><span class="news-date">2026</span><span>Served as a student volunteer at ICML 2026 (Seoul, South Korea).</span></li>
+        <li><span class="news-date">2025-2026</span><span>Worked as a visiting researcher at <a href="https://cmubig.github.io/" target="_blank" rel="noopener">BIG Lab</a> (Supervisor: <a href="https://www.cs.cmu.edu/~jeanoh/" target="_blank" rel="noopener">Jean Oh</a>) in the <a href="https://www.ri.cmu.edu/" target="_blank" rel="noopener">Robotics Institute</a> at <a href="https://www.cmu.edu/" target="_blank" rel="noopener">Carnegie Mellon University</a>, fully funded by MSIT of Korea under the Global Research Support Program in the Digital Field (RS-2024-00426860).</span></li>
         <li><span class="news-date">2025</span><span>Attended CES 2025 as a recipient of the ICT Challenge 2024 Minister’s Award.</span></li>
         <li class="news-extra is-hidden"><span class="news-date">2024</span><span>Received the Minister’s Award at ICT Challenge 2024.</span></li>
         <li class="news-extra is-hidden"><span class="news-date">2024</span><span>Served as a student volunteer at IJCAI 2024 (Jeju, South Korea).</span></li>
@@ -104,7 +133,7 @@
         <li id="pub-sea">
           <div class="pub-title">SEA: Evaluating Sketch Abstraction Efficiency via Element-level Commonsense Visual Question Answering</div>
           <div class="pub-authors">J. Park, <strong>S. Choi</strong>, J. Seo, M. Sohn, Y. Kim, and J. Kim.</div>
-          <div class="pub-venue"><em>CVPR 2026</em> (Accepted).</div>
+          <div class="pub-venue"><em>CVPR 2026</em>.</div>
           <div class="pub-links">
             <a href="https://arxiv.org/abs/2603.28363" target="_blank" rel="noopener">Paper</a>
           </div>
@@ -151,7 +180,7 @@
           <img class="pub-logo" src="images/cmu-lettermark-r.png" alt="CMU logo">
           <div class="pub-title">Exposing Blindspots: Cultural Bias Evaluation in Generative Image Models <span class="label-first">First Author</span></div>
           <div class="pub-authors">H. Seo*, <strong>S. Choi*</strong>, M. Hong*, Y. Zhou, J. Kim, L. Ismaila, N. Etori, M. Agarwal, Z. Liu, J. Kim, and J. Oh.</div>
-          <div class="pub-venue"><em>IASEAI 2026 Main Conference</em> (Accepted).</div>
+          <div class="pub-venue"><em>IASEAI 2026</em>.</div>
           <div class="pub-links">
             <a href="https://seochan99.github.io/ECB/" target="_blank" rel="noopener">Project Page</a> /
             <a href="https://arxiv.org/abs/2510.20042" target="_blank" rel="noopener">Paper</a>
@@ -174,7 +203,7 @@
           <img class="pub-logo" src="images/cmu-lettermark-r.png" alt="CMU logo">
           <div class="pub-title">Before We Trust Them: Decision-Making Failures in Navigation of Foundation Models</div>
           <div class="pub-authors">J. Han*, J. Seo*, J. Min*, <strong>S. Choi</strong>, H. Seo, J. Kim, and J. Oh.</div>
-          <div class="pub-venue"><em>AAAI 2026 Summer Symposium Series</em> (Accepted).</div>
+          <div class="pub-venue"><em>AAAI 2026 Summer Symposium Series</em>.</div>
           <div class="pub-links">
             <a href="https://cmubig.github.io/before-we-trust-them/" target="_blank" rel="noopener">Project Page</a> /
             <a href="https://arxiv.org/abs/2601.05529" target="_blank" rel="noopener">Paper</a>
@@ -223,8 +252,8 @@
       <ul class="pub-list">
         <li id="pub-bbr-net">
           <div class="pub-title">BBR-Net: Boundary-Balanced Replay for Continual Medical Image Segmentation</div>
-          <div class="pub-authors">Zahid Ullah, <strong>Sieun Choi</strong>, and Jihie Kim.</div>
-          <div class="pub-venue"><em>arXiv preprint</em>, 2026 (Under Review).</div>
+          <div class="pub-authors">Z. Ullah, <strong>S. Choi</strong>, and J. Kim.</div>
+          <div class="pub-venue"><em>arXiv preprint</em>, 2026.</div>
           <div class="pub-links">
             <a href="https://arxiv.org/abs/2606.14731" target="_blank" rel="noopener">Paper</a>
           </div>
@@ -270,7 +299,7 @@
         <li id="pub-cardiac">
           <div class="pub-title">Contour-Guided Query-Based Feature Fusion for Boundary-Aware and Generalizable Cardiac Ultrasound Segmentation</div>
           <div class="pub-authors">Z. Ullah, <strong>S. Choi</strong>, and J. Kim.</div>
-          <div class="pub-venue"><em>arXiv preprint</em>, 2026 (Under Review).</div>
+          <div class="pub-venue"><em>arXiv preprint</em>, 2026.</div>
           <div class="pub-links">
             <a href="https://arxiv.org/abs/2603.28110" target="_blank" rel="noopener">Paper</a>
           </div>
@@ -291,7 +320,7 @@
         <li id="pub-stablesketcher">
           <div class="pub-title">StableSketcher: Enhancing Diffusion Model for Pixel-based Sketch Generation via Visual Question Answering Feedback</div>
           <div class="pub-authors">J. Park, <strong>S. Choi</strong>, J. Seo, and J. Kim.</div>
-          <div class="pub-venue"><em>arXiv preprint</em>, 2025 (Under Review).</div>
+          <div class="pub-venue"><em>arXiv preprint</em>, 2025.</div>
           <div class="pub-links">
             <a href="https://zihos.github.io/StableSketcher/" target="_blank" rel="noopener">Project Page</a> /
             <a href="https://arxiv.org/abs/2510.20093" target="_blank" rel="noopener">Paper</a> /
@@ -324,7 +353,7 @@
           <img class="experience-brand-logo" src="images/cmu-logo.png" alt="Carnegie Mellon University logo">
           <h3>Visiting Research Scholar</h3>
           <p class="experience-org"><a href="https://cmubig.github.io/" target="_blank" rel="noopener">Bot Intelligence Group</a>, Robotics Institute, Carnegie Mellon University</p>
-          <p class="experience-supervisor">Supervisor: Jean Oh</p>
+          <p class="experience-supervisor">Supervisor: <a href="https://www.cs.cmu.edu/~jeanoh/" target="_blank" rel="noopener">Jean Oh</a></p>
           <p class="experience-meta"><span>Pittsburgh, PA, USA</span><span>Aug 2025 - Feb 2026</span></p>
         </article>
 
@@ -332,13 +361,13 @@
           <img class="experience-brand-logo" src="images/dgu-logo.png" alt="Dongguk University logo">
           <h3>M.S./Ph.D. Student</h3>
           <p class="experience-org"><a href="https://www.ml.dongguk.edu/home" target="_blank" rel="noopener">Machine Learning Lab</a>, Dongguk University</p>
-          <p class="experience-supervisor">Supervisor: Jihie Kim</p>
+          <p class="experience-supervisor">Supervisor: <a href="https://sites.google.com/view/jihiekim/" target="_blank" rel="noopener">Jihie Kim</a></p>
           <p class="experience-meta"><span>Seoul, South Korea</span><span>Mar 2024 - Present</span></p>
         </article>
 
         <article class="experience-card">
           <img class="experience-brand-logo" src="images/cipherome.png" alt="Cipherome logo">
-          <h3>Intern</h3>
+          <h3>Student Intern</h3>
           <p class="experience-org"><a href="https://www.cipherome.com/" target="_blank" rel="noopener">Cipherome Inc.</a>, Technology Team</p>
           <p class="experience-meta"><span>San Jose, CA, USA</span><span>Mar 2023 - Feb 2024</span></p>
         </article>
@@ -347,7 +376,7 @@
           <img class="experience-brand-logo" src="images/dgu-logo.png" alt="Dongguk University logo">
           <h3>Undergraduate Researcher</h3>
           <p class="experience-org">AI Lab, Dongguk University</p>
-          <p class="experience-supervisor">Supervisor: Gijoo Yang</p>
+          <p class="experience-supervisor">Supervisor: <a href="https://ice.dongguk.edu/professor/list?professor_haggwa_type=PROFH_042" target="_blank" rel="noopener">Gijoo Yang</a></p>
           <p class="experience-meta"><span>Seoul, South Korea</span><span>Feb 2022 - Dec 2022</span></p>
         </article>
 
@@ -355,7 +384,7 @@
           <img class="experience-brand-logo" src="images/PU-H-Full-RGB.png" alt="Purdue University logo">
           <h3>Visiting Scholar</h3>
           <p class="experience-org">M2M Lab, Purdue University</p>
-          <p class="experience-supervisor">Supervisor: Eric T. Matson</p>
+          <p class="experience-supervisor">Supervisor: <a href="https://polytechnic.purdue.edu/profile/ematson" target="_blank" rel="noopener">Eric T. Matson</a></p>
           <p class="experience-meta"><span>West Lafayette, IN, USA</span><span>Oct 2021 - Dec 2021</span></p>
         </article>
       </div>
@@ -401,6 +430,7 @@
         <h2>Intellectual Property</h2>
         <h3 class="subsection-title">Patent</h3>
         <ul class="item-list">
+          <li>Method for Evaluating Sketch Abstraction Efficiency Using Element-Level Commonsense-Based Visual Question Answering. Korean Patent Application No. 10-2026-0097953 (filed May 29, 2026).</li>
           <li>Method and System for Sketch Image Generation. Korean Patent Application No. 10-2025-0108830 (filed Aug 7, 2025).</li>
         </ul>
         <h3 class="subsection-title">Software</h3>
@@ -428,15 +458,43 @@
     <section class="section" id="services">
       <h2>Services</h2>
       <ul class="item-list">
-        <li>Student Volunteer, IJCAI 2024 Volunteer Program, Jeju, South Korea (2024).</li>
+        <li>Student Volunteer, ICML 2026 Volunteer Program, Seoul, South Korea.</li>
+        <li>Student Volunteer, IJCAI 2024 Volunteer Program, Jeju, South Korea.</li>
       </ul>
     </section>
     <footer class="seo-footer" aria-hidden="true">
       Sieun Choi · Choi Sieun · 최시은 · Sieun Choi Dongguk University · Sieun Choi AI
     </footer>
+    <footer class="site-footer">
+      <span>Sieun Choi / 최시은</span>
+      <span>© 2026 Sieun Choi. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="noopener">Jekyll</a>.</span>
+    </footer>
   </main>
   <script>
     (function () {
+      var themeToggle = document.getElementById("theme-toggle");
+      var savedTheme = window.localStorage.getItem("theme");
+      var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var activeTheme = savedTheme || (prefersDark ? "dark" : "light");
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        if (!themeToggle) return;
+        var isDark = theme === "dark";
+        themeToggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+        themeToggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+      }
+
+      applyTheme(activeTheme);
+
+      if (themeToggle) {
+        themeToggle.addEventListener("click", function () {
+          var nextTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+          window.localStorage.setItem("theme", nextTheme);
+          applyTheme(nextTheme);
+        });
+      }
+
       var copyBtn = document.getElementById("copy-email-btn");
       var emailText = document.getElementById("email-text");
       var status = document.getElementById("copy-email-status");
