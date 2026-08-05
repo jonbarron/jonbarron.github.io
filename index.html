@@ -80,17 +80,17 @@ layout: null
       <div class="hero-text">
         <h1>Sieun Choi</h1>
         <p class="role">M.S./Ph.D. Student in Artificial Intelligence, Dongguk University</p>
-        <p class="summary">
-          I build and evaluate trustworthy multimodal AI systems at the intersection of vision, language, and embodied interaction.
-          I aim to advance from AI model evaluation toward human-centered interactive and robotic systems, with a focus on reliable decision making
-          in generative and foundation models for real-world interactive systems.
-        </p>
         <div class="interests">
           <span>Multimodal Learning</span>
           <span>AI Safety & Reliability</span>
           <span>Embodied AI & Human-Robot Interaction</span>
           <span>Medical AI</span>
         </div>
+        <p class="summary">
+          I build and evaluate trustworthy multimodal AI systems at the intersection of vision, language, and embodied interaction.
+          I aim to advance from AI model evaluation toward human-centered interactive and robotic systems, with a focus on reliable decision making
+          in generative and foundation models for real-world interactive systems.
+        </p>
         <div class="quick-links" aria-label="Academic links">
           <a class="button" href="data/Sieun_Choi_CV.pdf" target="_blank" rel="noopener">CV</a>
           <a class="button" href="https://scholar.google.com/citations?user=7Nv0vMYAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
@@ -98,14 +98,21 @@ layout: null
           <a class="button" href="https://www.linkedin.com/in/sieunchoi/" target="_blank" rel="noopener">LinkedIn</a>
           <a class="button" href="mailto:sieunchoi@dgu.ac.kr">Email</a>
         </div>
+      </div>
+      <div class="profile-wrap">
+        <button type="button" class="profile-photo-button" id="profile-photo-toggle" aria-label="Show Ppomi photo">
+          <img class="profile-photo" id="profile-photo" src="images/Sieun_Choi_Profile.jpg" data-profile-src="images/Sieun_Choi_Profile.jpg" data-pet-src="images/Ppomi.jpg" alt="Portrait of Sieun Choi">
+          <span class="sparkle sparkle-one" aria-hidden="true"></span>
+          <span class="sparkle sparkle-two" aria-hidden="true"></span>
+          <span class="sparkle sparkle-three" aria-hidden="true"></span>
+          <span class="sparkle sparkle-four" aria-hidden="true"></span>
+          <span class="profile-bubble" id="profile-bubble" aria-hidden="true">I go by Sienna :)</span>
+        </button>
         <p class="email-inline">
           <span id="email-text">sieunchoi@dgu.ac.kr</span>
           <button type="button" class="copy-button" id="copy-email-btn" aria-label="Copy email address">Copy</button>
           <span class="copy-status" id="copy-email-status" aria-live="polite"></span>
         </p>
-      </div>
-      <div class="profile-wrap">
-        <img class="profile-photo" src="images/image.jpg" alt="Portrait of Sieun Choi">
       </div>
     </section>
 
@@ -410,15 +417,14 @@ layout: null
     <section class="split-grid">
       <section class="section" id="teaching-experience">
         <h2>Teaching Experience</h2>
-        <h3 class="subsection-title">Teaching Assistant, Dongguk University</h3>
+        <h3 class="subsection-title">Teaching Assistant at Dongguk University</h3>
         <ul class="item-list">
-          <li><strong>Spring 2026:</strong> Introduction to Programming (RGC1092)</li>
-          <li><strong>Spring 2026:</strong> Convergence Capstone Design (SCS4031)</li>
+          <li><strong>Spring 2026:</strong> Introduction to Programming (RGC1092); Convergence Capstone Design (SCS4031)</li>
           <li><strong>Spring 2025:</strong> Computer System (SCS2011); Computer Network and Security (SCS4032); Data Science Capstone Design (DSC4007)</li>
           <li><strong>Fall 2024:</strong> Computer System (SCS2011); Data Science Capstone Design (DSC4007)</li>
           <li><strong>Spring 2024:</strong> Computer Network and Security (SCS4032); Data Science Capstone Design (DSC4007)</li>
         </ul>
-        <h3 class="subsection-title">Teaching Materials Author, Dongguk University</h3>
+        <h3 class="subsection-title">Teaching Materials Author at Dongguk University</h3>
         <ul class="item-list">
           <li>Open Source Software Project (SCS4045) (Docker & Git)</li>
           <li>Data Science Capstone Design (DSC4007) (Slack & Git)</li>
@@ -492,6 +498,31 @@ layout: null
           var nextTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
           window.localStorage.setItem("theme", nextTheme);
           applyTheme(nextTheme);
+        });
+      }
+
+      var profileToggle = document.getElementById("profile-photo-toggle");
+      var profilePhoto = document.getElementById("profile-photo");
+      var profileBubble = document.getElementById("profile-bubble");
+      if (profileToggle && profilePhoto && profileBubble) {
+        profileToggle.addEventListener("click", function () {
+          var showingPet = profilePhoto.getAttribute("src") === profilePhoto.dataset.petSrc;
+          profileToggle.classList.remove("is-transforming");
+          profileToggle.classList.remove("is-bubble-popping");
+          profileToggle.classList.add("is-bubble-popping");
+          void profileToggle.offsetWidth;
+          profileToggle.classList.add("is-transforming");
+          window.setTimeout(function () {
+            profilePhoto.setAttribute("src", showingPet ? profilePhoto.dataset.profileSrc : profilePhoto.dataset.petSrc);
+            profilePhoto.setAttribute("alt", showingPet ? "Portrait of Sieun Choi" : "Photo of Ppomi");
+            profileToggle.setAttribute("aria-label", showingPet ? "Show Ppomi photo" : "Show Sieun Choi profile photo");
+            profileToggle.classList.toggle("is-pet", !showingPet);
+            profileBubble.textContent = showingPet ? "I go by Sienna :)" : "Hi, I'm Ppomi";
+          }, 260);
+          window.setTimeout(function () {
+            profileToggle.classList.remove("is-transforming");
+            profileToggle.classList.remove("is-bubble-popping");
+          }, 760);
         });
       }
 

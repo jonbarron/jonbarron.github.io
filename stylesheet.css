@@ -248,14 +248,249 @@ p {
 
 .profile-wrap {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.profile-photo-button {
+  position: relative;
+  display: block;
+  border: 0;
+  background: transparent;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%23202124' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M10 24 24 10'/%3E%3Cpath d='M22 8l2-4 2 4 4 2-4 2-2 4-2-4-4-2z' fill='%23fbbc04' stroke='%23202124'/%3E%3C/g%3E%3C/svg%3E") 8 24, pointer;
+  padding: 0;
+}
+
+.profile-photo-button:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 3px;
+  border-radius: 7px;
 }
 
 .profile-photo {
   width: 210px;
-  height: 250px;
+  height: 210px;
   object-fit: cover;
   border-radius: 5px;
+  display: block;
+  transform-origin: center;
+  transition: opacity 0.22s ease, transform 0.32s ease, box-shadow 0.32s ease, filter 0.32s ease;
+  will-change: transform;
+}
+
+.profile-photo-button::before,
+.profile-photo-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 5px;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.profile-photo-button::before {
+  background: linear-gradient(115deg, transparent 18%, rgba(255, 255, 255, 0.86) 45%, rgba(138, 180, 248, 0.62) 52%, transparent 76%);
+  transform: translateX(-130%);
+}
+
+.profile-bubble::before {
+  clip-path: polygon(50% 0%, 61% 36%, 98% 35%, 68% 57%, 79% 92%, 50% 70%, 21% 92%, 32% 57%, 2% 35%, 39% 36%);
+}
+
+.profile-photo-button:hover .profile-photo {
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+}
+
+.profile-photo-button.is-transforming .profile-photo {
+  animation: photo-transform 0.76s ease both;
+}
+
+.profile-photo-button.is-transforming::before {
+  animation: shimmer-sweep 0.76s ease both;
+}
+
+.sparkle {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: #fff7c2;
+  clip-path: polygon(50% 0%, 61% 36%, 98% 35%, 68% 57%, 79% 92%, 50% 70%, 21% 92%, 32% 57%, 2% 35%, 39% 36%);
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.5) rotate(0deg);
+}
+
+.sparkle-one {
+  left: 23%;
+  top: 26%;
+}
+
+.sparkle-two {
+  right: 18%;
+  top: 21%;
+  width: 12px;
+  height: 12px;
+  background: #fbbc04;
+}
+
+.sparkle-three {
+  right: 28%;
+  bottom: 20%;
+  width: 14px;
+  height: 14px;
+  background: #8ab4f8;
+}
+
+.sparkle-four {
+  left: 34%;
+  bottom: 27%;
+  width: 10px;
+  height: 10px;
+  background: #ffffff;
+}
+
+.profile-photo-button.is-transforming .sparkle {
+  animation: sparkle-pop 0.76s ease both;
+}
+
+.profile-photo-button.is-transforming .sparkle-two {
+  animation-delay: 0.06s;
+}
+
+.profile-photo-button.is-transforming .sparkle-three {
+  animation-delay: 0.12s;
+}
+
+.profile-photo-button.is-transforming .sparkle-four {
+  animation-delay: 0.18s;
+}
+
+.profile-bubble {
+  position: absolute;
+  right: -5.15rem;
+  top: 1rem;
+  max-width: 165px;
+  border: 1px solid var(--line);
+  border-radius: 18px 18px 18px 7px;
+  background: var(--button-bg);
+  color: var(--button-text);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+  font-size: 0.84rem;
+  font-weight: 600;
+  line-height: 1.2;
+  opacity: 1;
+  padding: 0.54rem 0.72rem;
+  pointer-events: none;
+  transform: translate(0, 0) scale(1);
+  transform-origin: left center;
+  animation: bubble-in 0.36s cubic-bezier(0.2, 0.9, 0.25, 1.25) 0.28s both;
+}
+
+.profile-bubble::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 17px;
+  width: 15px;
+  height: 15px;
+  background: var(--button-bg);
+  clip-path: polygon(100% 0, 0 48%, 100% 100%);
+}
+
+.profile-bubble::after {
+  content: "";
+  position: absolute;
+  right: 14px;
+  top: -7px;
+  width: 11px;
+  height: 11px;
+  background: #fbbc04;
+  clip-path: polygon(50% 0%, 61% 36%, 98% 35%, 68% 57%, 79% 92%, 50% 70%, 21% 92%, 32% 57%, 2% 35%, 39% 36%);
+}
+
+.profile-photo-button.is-pet .profile-bubble {
+  animation: bubble-in 0.36s cubic-bezier(0.2, 0.9, 0.25, 1.25) 0.12s both;
+}
+
+.profile-photo-button.is-bubble-popping .profile-bubble {
+  animation: bubble-pop 0.34s ease both;
+}
+
+@keyframes photo-transform {
+  0% {
+    filter: brightness(1);
+    opacity: 1;
+    transform: scale(1);
+  }
+  38% {
+    filter: brightness(1.45) saturate(1.1);
+    opacity: 0.72;
+    transform: scale(0.985);
+  }
+  100% {
+    filter: brightness(1);
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    opacity: 0;
+    transform: translateX(-130%);
+  }
+  22% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(130%);
+  }
+}
+
+@keyframes sparkle-pop {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(1.08) rotate(18deg);
+  }
+}
+
+@keyframes bubble-in {
+  0% {
+    opacity: 0;
+    transform: translate(-8px, 8px) scale(0.76);
+  }
+  72% {
+    opacity: 1;
+    transform: translate(2px, -1px) scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes bubble-pop {
+  0% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate(0, 0) scale(1);
+  }
+  45% {
+    opacity: 0.95;
+    filter: blur(0);
+    transform: translate(0, -2px) scale(1.14);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(3px);
+    transform: translate(8px, -8px) scale(0.28);
+  }
 }
 
 .quick-links,
@@ -294,9 +529,15 @@ p {
   align-items: center;
   flex-wrap: wrap;
   gap: 0.45rem;
-  margin: 0.65rem 0 0;
+  margin: 0.7rem 0 0;
   color: var(--muted);
   font-size: 0.92rem;
+}
+
+.profile-wrap .email-inline {
+  justify-content: flex-end;
+  max-width: 210px;
+  text-align: right;
 }
 
 .copy-button,
@@ -616,13 +857,32 @@ html[data-theme="dark"] .experience-brand-logo[src="images/PU-H-Full-RGB.png"] {
   }
 
   .profile-wrap {
-    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   .profile-photo {
     width: min(230px, 100%);
     height: auto;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 1 / 1;
+  }
+
+  .profile-wrap .email-inline {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .profile-bubble {
+    right: auto;
+    left: 0.75rem;
+    top: auto;
+    bottom: -0.9rem;
+    transform-origin: top left;
+  }
+
+  .profile-bubble::before {
+    left: 18px;
+    top: -6px;
+    clip-path: polygon(0 100%, 50% 0, 100% 100%);
   }
 
   .news-list li,
