@@ -1,0 +1,77 @@
+---
+layout: null
+title: Blog
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog | Sieun Choi</title>
+  <meta name="description" content="Notes, study logs, and reflections by Sieun Choi.">
+  <link rel="stylesheet" href="/stylesheet.css">
+  <script>
+    (function () {
+      var savedTheme = window.localStorage.getItem("theme");
+      var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", savedTheme || (prefersDark ? "dark" : "light"));
+    })();
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a class="site-title" href="/">Sieun Choi</a>
+      <div class="nav-links">
+        <a href="/#publications">Publications</a>
+        <a href="/#preprints">Preprints</a>
+        <a href="/#research-experience">Experience</a>
+        <a href="/#projects">Projects</a>
+        <a href="/blog/">Blog</a>
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">
+          <span class="theme-toggle-track" aria-hidden="true">
+            <span class="theme-toggle-icon theme-toggle-sun"></span>
+            <span class="theme-toggle-icon theme-toggle-moon"></span>
+            <span class="theme-toggle-thumb"></span>
+          </span>
+        </button>
+      </div>
+    </nav>
+  </header>
+  <main class="container">
+    <section class="blog-hero">
+      <h1>Blog</h1>
+      <p>Study notes, paper reading logs, and reflections from the work I am learning through.</p>
+    </section>
+
+    <section class="section">
+      <h2>Topics</h2>
+      <div class="topic-list">
+        {% assign categories = site.categories | sort %}
+        {% for category in categories %}
+          {% assign topic_name = category[1].first.topic | default: category[0] %}
+          <a class="topic-pill" href="#{{ category[0] | slugify }}">{{ topic_name }} <span>{{ category[1].size }}</span></a>
+        {% endfor %}
+      </div>
+    </section>
+
+    {% assign categories = site.categories | sort %}
+    {% for category in categories %}
+      <section class="section blog-topic" id="{{ category[0] | slugify }}">
+        {% assign topic_name = category[1].first.topic | default: category[0] %}
+        <h2>{{ topic_name }}</h2>
+        <ul class="post-list">
+          {% for post in category[1] %}
+            <li>
+              <a class="post-list-title" href="{{ post.url }}">{{ post.title }}</a>
+              <p class="post-list-meta">{{ post.date | date: "%B %-d, %Y" }}</p>
+              <p>{{ post.excerpt | strip_html | truncate: 180 }}</p>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endfor %}
+  </main>
+  <script src="/assets/js/site.js"></script>
+</body>
+</html>

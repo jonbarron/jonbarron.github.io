@@ -1,0 +1,68 @@
+backend:
+  name: github
+  repo: sdiaeyu6n/sdiaeyu6n.github.io
+  branch: master
+  site_domain: fancy-meringue-2047a4.netlify.app
+
+media_folder: "images/blog"
+public_folder: "/images/blog"
+
+site_url: "https://sdiaeyu6n.github.io"
+display_url: "https://sdiaeyu6n.github.io"
+logo_url: "/images/Sieun_Choi_Profile.jpg"
+
+publish_mode: editorial_workflow
+
+collections:
+  - name: "posts"
+    label: "Blog Posts"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    preview_path: "blog/{{category}}/{{slug}}/"
+    editor:
+      preview: true
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Publish Date"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+      - label: "Topic"
+        name: "category"
+        widget: "select"
+        options:
+          - label: "Grasp Generation"
+            value: "grasp-generation"
+          - label: "Paper Reading"
+            value: "paper-reading"
+          - label: "Research Notes"
+            value: "research-notes"
+          - label: "Thoughts"
+            value: "thoughts"
+      - label: "Topic Label"
+        name: "topic"
+        widget: "select"
+        options:
+          - "Grasp Generation"
+          - "Paper Reading"
+          - "Research Notes"
+          - "Thoughts"
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+      - label: "Permalink"
+        name: "permalink"
+        widget: "string"
+        required: false
+        hint: "Optional. Example: /blog/grasp-generation/my-note/"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"

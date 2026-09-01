@@ -3,3 +3,5 @@ description: Welcome to my website! I'm an M.S./Ph.D. student in the ML Lab at D
 url: "https://sdiaeyu6n.github.io"
 baseurl: ""
 markdown: kramdown
+future: true
+permalink: /blog/:categories/:title/

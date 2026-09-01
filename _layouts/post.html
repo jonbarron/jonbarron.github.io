@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 155 }}">
+  <link rel="stylesheet" href="/stylesheet.css">
+  <script>
+    (function () {
+      var savedTheme = window.localStorage.getItem("theme");
+      var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", savedTheme || (prefersDark ? "dark" : "light"));
+    })();
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a class="site-title" href="/">Sieun Choi</a>
+      <div class="nav-links">
+        <a href="/#publications">Publications</a>
+        <a href="/#preprints">Preprints</a>
+        <a href="/#research-experience">Experience</a>
+        <a href="/#projects">Projects</a>
+        <a href="/blog/">Blog</a>
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">
+          <span class="theme-toggle-track" aria-hidden="true">
+            <span class="theme-toggle-icon theme-toggle-sun"></span>
+            <span class="theme-toggle-icon theme-toggle-moon"></span>
+            <span class="theme-toggle-thumb"></span>
+          </span>
+        </button>
+      </div>
+    </nav>
+  </header>
+  <main class="container">
+    <article class="post">
+      <a class="back-link" href="/blog/">Back to Blog</a>
+      <header class="post-header">
+        <p class="post-category">{{ page.topic | default: page.category }}</p>
+        <h1>{{ page.title }}</h1>
+        <p class="post-meta">{{ page.date | date: "%B %-d, %Y" }}</p>
+      </header>
+      <div class="post-content">
+        {{ content }}
+      </div>
+    </article>
+  </main>
+  <script src="/assets/js/site.js"></script>
+</body>
+</html>
