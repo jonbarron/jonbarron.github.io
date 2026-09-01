@@ -2,6 +2,9 @@ backend:
   name: github
   repo: sdiaeyu6n/sdiaeyu6n.github.io
   branch: master
+  api_root: https://api.github.com
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
   site_domain: fancy-meringue-2047a4.netlify.app
 
 media_folder: "images/blog"
