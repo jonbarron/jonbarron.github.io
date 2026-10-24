@@ -197,18 +197,13 @@
   .hobbies { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
   @media (max-width: 640px) { .hobbies { grid-template-columns: 1fr; } }
   .hobby {
-    perspective: 800px; height: 130px; cursor: pointer; border: 0; background: none; padding: 0; font: inherit; color: inherit;
+    border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface);
+    box-shadow: var(--shadow); text-align: center; padding: 20px 16px;
+    transition: transform .25s, border-color .25s;
   }
-  .hobby-inner { position: relative; width: 100%; height: 100%; transition: transform .6s; transform-style: preserve-3d; }
-  .hobby.flipped .hobby-inner { transform: rotateY(180deg); }
-  .face {
-    position: absolute; inset: 0; backface-visibility: hidden; border-radius: var(--radius);
-    border: 1px solid var(--line); background: var(--surface); display: grid; place-items: center; text-align: center; padding: 14px;
-    box-shadow: var(--shadow);
-  }
-  .face .emoji { font-size: 34px; }
-  .face .name { font-weight: 600; margin-top: 4px; }
-  .face.back { transform: rotateY(180deg); background: var(--accent-soft); color: var(--accent-ink); font-size: 14.5px; }
+  .hobby:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+  .hobby .emoji { font-size: 34px; line-height: 1; }
+  .hobby .name { font-weight: 600; margin-top: 8px; }
 
   footer { border-top: 1px solid var(--line); margin-top: 30px; padding: 24px 0 40px; color: var(--muted); font-size: 13px; }
   footer .wrap { display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; }
@@ -329,20 +324,17 @@
 <section id="beyond" class="reveal">
   <div class="wrap">
     <h2>Beyond research</h2>
-    <p class="sub">What I do in my free time. Flip a card.</p>
+    <p class="sub">What I do in my free time.</p>
     <div class="hobbies">
-      <button class="hobby"><div class="hobby-inner">
-        <div class="face"><div><div class="emoji">🏏</div><div class="name">Cricket</div></div></div>
-        <div class="face back">Playing it and watching it.</div>
-      </div></button>
-      <button class="hobby"><div class="hobby-inner">
-        <div class="face"><div><div class="emoji">♟️</div><div class="name">Chess</div></div></div>
-        <div class="face back">Always up for a game.</div>
-      </div></button>
-      <button class="hobby"><div class="hobby-inner">
-        <div class="face"><div><div class="emoji">🎮</div><div class="name">PlayStation</div></div></div>
-        <div class="face back">Gaming when the GPUs are busy.</div>
-      </div></button>
+      <div class="hobby">
+        <div class="emoji">🏏</div><div class="name">Cricket</div>
+      </div>
+      <div class="hobby">
+        <div class="emoji">♟️</div><div class="name">Chess</div>
+      </div>
+      <div class="hobby">
+        <div class="emoji">🎮</div><div class="name">PlayStation</div>
+      </div>
     </div>
   </div>
 </section>
@@ -350,7 +342,6 @@
 <footer>
   <div class="wrap">
     <span>© <span id="yr"></span> Pranamya Kulkarni</span>
-    <span>Original template by <a href="https://github.com/jonbarron/jonbarron.github.io">Jon Barron</a></span>
   </div>
 </footer>
 
@@ -366,21 +357,22 @@
   var IMG = "https://pranamyakulkarni.github.io/images/";
   var ME = "Pranamya Kulkarni";
 
-  /* Logos: the page first tries images/logos/<key>.png in the repo (drop official
-     high-res logos there if you like), then the organization's own site icon, then initials. */
+  /* Logos: the page first tries images/<img> (or images/<key>.png if no img is given)
+     in the repo, then the organization's own site icon, then initials.
+     Filenames are case-sensitive on GitHub Pages. */
   function favicon(domain) { return "https://www.google.com/s2/favicons?sz=128&domain=" + domain; }
 
   var education = [
-    { key: "utaustin", org: "The University of Texas at Austin", domain: "utexas.edu", initials: "UT", current: true,
+    { key: "utaustin", img: "UTLogo.png", org: "The University of Texas at Austin", domain: "utexas.edu", initials: "UT", current: true,
       role: "PhD in Computer Science",
       body: 'Advised by <a href="https://sites.google.com/view/sanjay-shakkottai/home">Prof. Sanjay Shakkottai</a> and <a href="https://ece.utexas.edu/people/faculty/sujay-sanghavi">Prof. Sujay Sanghavi</a>. Exploring speculative decoding and post-training to make LLMs more efficient and better aligned with how they are used.' },
-    { key: "iitb", org: "IIT Bombay", domain: "iitb.ac.in", initials: "IITB",
+    { key: "iitb", img: "IITB_logo.png", org: "IIT Bombay", domain: "iitb.ac.in", initials: "IITB",
       role: "Interdisciplinary Dual Degree: B.Tech (Honors) in Electrical Engineering + M.Tech in AI & Data Science",
       body: 'Advised by <a href="https://www.cse.iitb.ac.in/~soumen/">Prof. Soumen Chakrabarti</a> and <a href="https://abir-de.github.io/">Prof. Abir De</a>, working on Graph Neural Networks.' }
   ];
 
   var experience = [
-    { key: "deepmind", org: "Google DeepMind", domain: "deepmind.google", initials: "GDM",
+    { key: "deepmind", org: "Google DeepMind India", domain: "deepmind.google", initials: "GDM",
       role: "Pre-Doctoral Researcher, Machine Learning & Optimization (MLO) team",
       body: 'Worked with <a href="https://www.prateekjain.org/">Dr. Prateek Jain</a>, <a href="https://sites.google.com/corp/site/pshenoyuw/">Dr. Pradeep Shenoy</a>, <a href="https://sites.google.com/corp/view/karthikeyan-shanmugam">Dr. Karthikeyan Shanmugam</a> and <a href="https://www.cs.cmu.edu/~asuggala/">Dr. Arun Suggala</a> on the training and inference efficiency of LLMs, and on label-free robotic pose estimation using causal representation learning.' },
     { key: "adobe", org: "Adobe Research India", domain: "adobe.com", initials: "Ad",
@@ -469,7 +461,7 @@
     box.className = "logo";
     var img = new Image();
     img.alt = d.org + " logo";
-    var sources = ["images/logos/" + d.key + ".png", favicon(d.domain)], n = 0;
+    var sources = [IMG + (d.img || d.key + ".png"), favicon(d.domain)], n = 0;
     img.onerror = function () {
       n++;
       if (n < sources.length) img.src = sources[n];
@@ -564,9 +556,6 @@
 
   document.getElementById("lightbox").addEventListener("click", function () { this.classList.remove("show"); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") document.getElementById("lightbox").classList.remove("show"); });
-
-  /* ---------- hobbies ---------- */
-  document.querySelectorAll(".hobby").forEach(function (h) { h.addEventListener("click", function () { h.classList.toggle("flipped"); }); });
 
   /* ---------- scroll: progress, active nav, back-to-top, reveal ---------- */
   var prog = document.getElementById("progress"), topBtn = document.getElementById("top");
