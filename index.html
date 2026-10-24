@@ -1,187 +1,595 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Pranamya Kulkarni</title>
-    <meta name="author" content="Pranamya Kulkarni">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
-  </head>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Pranamya Kulkarni">
+<meta name="description" content="Pranamya Kulkarni — PhD student in Computer Science at UT Austin working on efficient LLMs, speculative decoding and post-training.">
+<title>Pranamya Kulkarni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf8f4;
+    --surface: #ffffff;
+    --surface-2: #f2efe8;
+    --text: #1d1b18;
+    --muted: #6b665d;
+    --line: #e4dfd4;
+    --accent: #bf5700;          /* burnt orange, a nod to UT Austin */
+    --accent-soft: #fbe9db;
+    --accent-ink: #8a3f00;
+    --shadow: 0 1px 2px rgba(30,25,15,.06), 0 8px 24px rgba(30,25,15,.06);
+    --radius: 14px;
+  }
+  :root[data-theme="dark"] {
+    --bg: #141311;
+    --surface: #1c1a17;
+    --surface-2: #24221e;
+    --text: #ece8e1;
+    --muted: #a19b90;
+    --line: #34312b;
+    --accent: #ff9a4a;
+    --accent-soft: #3a2614;
+    --accent-ink: #ffb57a;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141311; --surface: #1c1a17; --surface-2: #24221e;
+      --text: #ece8e1; --muted: #a19b90; --line: #34312b;
+      --accent: #ff9a4a; --accent-soft: #3a2614; --accent-ink: #ffb57a;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+    }
+  }
 
-  <body>
-    <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-      <tr style="padding:0px">
-        <td style="padding:0px">
-          
-          <!-- PROFILE SECTION -->
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr style="padding:0px">
-              <td style="padding:2.5%;width:63%;vertical-align:middle">
-                <p class="name" style="text-align: center;">
-                  Pranamya Kulkarni
-                </p>
-                <p>
-                  I am a first-year PhD student in Computer Science at UT Austin, advised by <a href="https://sites.google.com/view/sanjay-shakkottai/home">Prof. Sanjay Shakkottai</a> and <a href="https://ece.utexas.edu/people/faculty/sujay-sanghavi">Prof. Sujay Sanghavi</a>. I am broadly interested in making Large Language Models more <strong>efficient</strong> and better aligned with how they are used, and am currently exploring topics such as <strong>speculative decoding</strong> and <strong>post-training</strong>.
-                </p>
-                <p>
-                  Previously, I was a Pre-Doctoral Researcher at Google DeepMind India in the Machine Learning and Optimization (MLO) team, where I worked with <a href="https://www.prateekjain.org/">Dr. Prateek Jain</a>, <a href="https://sites.google.com/corp/site/pshenoyuw/">Dr. Pradeep Shenoy</a>, <a href="https://sites.google.com/corp/view/karthikeyan-shanmugam">Dr. Karthikeyan Shanmugam</a>, and <a href="https://www.cs.cmu.edu/~asuggala/">Dr. Arun Suggala</a> on improving the <strong>training and inference efficiency</strong> of Large Language Models, as well as <strong>label-free robotic pose estimation</strong> using causal representation learning.
-                </p>
-                <p>
-                  Before that, I completed an Interdisciplinary Dual Degree at <a href="https://www.iitb.ac.in/">IIT Bombay</a>, earning a B.Tech (Honors) in Electrical Engineering and an M.Tech in Artificial Intelligence and Data Science. I was advised by <a href="https://www.cse.iitb.ac.in/~soumen/">Prof. Soumen Chakrabarti</a> and <a href="https://abir-de.github.io/">Prof. Abir De</a>, where I worked on Graph Neural Networks. I also completed a research internship at Adobe Research India.
-                </p>
-                <p>
-                  In my free time, I enjoy playing and watching cricket, playing chess, and gaming on PlayStation.
-                </p>
-                <p style="text-align:center">
-                  <!-- Just display the email address as text -->
-                  Email: pranamyakulkarni@gmail.com &nbsp;/&nbsp;
-                  <a href="data/Pranamya_Resume.pdf">Resume</a> &nbsp;/&nbsp;
-                  <a href="https://scholar.google.com/citations?user=6SmRwUgAAAAJ&hl=en">Scholar</a>
-                  <!-- <a href="https://github.com/pranamyakulkarni">Github</a> -->
-                </p>
-              </td>
-              <td style="padding:2.5%;width:37%;max-width:37%">
-                <!-- ☆ YOUR PHOTO HERE -->
-                <img style="width:100%;max-width:100%;object-fit:cover;border-radius:50%;" alt="profile photo" src="images/PranamyaKulkarni_SecurityPhoto.png">
-              </td>
-            </tr>
-          </tbody></table>
-          
-          <!-- PROJECTS SECTION -->
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr>
-              <td style="padding:20px;width:100%;vertical-align:middle">
-                <h2>Projects</h2>
-              </td>
-            </tr>
-          </tbody></table>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.65 "Inter", system-ui, sans-serif;
+    transition: background .3s, color .3s;
+  }
+  a { color: var(--accent-ink); text-decoration: none; background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size .25s; }
+  a:hover { background-size: 100% 1px; }
+  :root[data-theme="dark"] a, :root:not([data-theme="light"]) a { }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
 
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            
-            <!-- =============== START OF PROJECT 4 (MemCom) =============== -->
-            <tr>
-              <td style="padding:20px;width:25%;vertical-align:middle">
-                <img src="images/memcom_image.png" alt="MemCom project thumbnail" style="width:160px;border-radius:8px;">
-              </td>
-              <td style="padding:20px;width:75%;vertical-align:middle">
-                <a href="https://arxiv.org/abs/2510.16092">
-                  <span class="papertitle">Compressing Many-Shots in In-Context Learning</span>
-                </a>
-                <br>
-                <a href="https://www.devvrit.com/">Devvrit Khatri</a>, <strong>Pranamya Kulkarni</strong>, <a href="https://nilesh2797.github.io/">Nilesh Gupta</a>, <a href="https://varun221.github.io/">Yerram Varun</a>, <a href="https://scholar.google.com/citations?user=WnzIgp8AAAAJ&hl=en">Liqian Peng</a>, <a href="https://research.google/people/author36197/">Jay Yagnik</a>, <a href="https://praneethnetrapalli.org/">Praneeth Netrapalli</a>, <a href="https://web.cs.ucla.edu/~chohsieh/">Cho-Jui Hsieh</a>, <a href="https://scholar.google.com/citations?hl=en&user=I54RNh4AAAAJ&view_op=list_works&sortby=pubdate">Alec Go</a>, <a href="https://www.cs.utexas.edu/~inderjit/">Inderjit S Dhillon</a>, <a href="https://adityakusupati.com/">Aditya Kusupati</a>, <a href="https://www.prateekjain.org/">Pratek Jain</a>
-                <br>
-                <em>Preprint available on arXiv</em>
-                <br>
-                <a href="https://arxiv.org/abs/2510.16092">arXiv</a>
-                <p>
-                We introduce MemCom, a layer-wise compression method designed to improve the memory and computational efficiency of many-shot In-Context Learning (ICL). By compressing prompts into a compact key-value (KV) cache, MemCom significantly reduces inference costs while maintaining high performance across various classification tasks.
-                </p>
-              </td>
-            </tr>
-            <!-- =============== END OF PROJECT 4 =============== -->
+  /* progress bar */
+  #progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--accent); z-index: 60; }
 
-            <!-- =============== START OF PROJECT 3 (ROPES) =============== -->
-            <tr>
-              <td style="padding:20px;width:25%;vertical-align:middle">
-                <img src="images/ROPES_image.png" alt="ROPES project thumbnail" style="width:160px;border-radius:8px;">
-              </td>
-              <td style="padding:20px;width:75%;vertical-align:middle">
-                <a href="https://arxiv.org/abs/2510.20884">
-                  <span class="papertitle">ROPES: Robotic Pose Estimation via Score-Based Causal Representation Learning</span>
-                </a>
-                <br>
-                <strong>Pranamya Kulkarni</strong>*, <a href="https://puranjay14.github.io/puranjaydatta/">Puranjay Datta</a>*, <a href="https://scholar.google.com/citations?user=KLiI1JwAAAAJ&hl=en">Emre Acartürk</a>, <a href="https://bvarici.github.io/">Burak Varıcı</a>, <a href="https://sites.google.com/corp/view/karthikeyan-shanmugam">Karthikeyan Shanmugam</a>, <a href="https://www.isg-rpi.com/">Ali Tajer</a>
-                <br>
-                <em>Accepted to the Embodied World Models for Decision Making Workshop at NeurIPS 2025</em>
-                <br>
-                <a href="https://arxiv.org/abs/2510.20884">arXiv</a>
-                <p>
-                We propose ROPES, an unsupervised framework for robotic pose estimation that recovers joint angles from raw images using score-based Causal Representation Learning. By leveraging interventional data distributions, ROPES disentangles controllable latent variables without requiring any explicit pose labels.
-                </p>
-              </td>
-            </tr>
-            <!-- =============== END OF PROJECT 3 =============== -->
+  /* nav */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; gap: 8px; height: 58px; }
+  .brand { font-family: "Fraunces", serif; font-weight: 650; font-size: 18px; margin-right: auto; color: var(--text); background: none; }
+  .navlink { color: var(--muted); font-size: 14px; padding: 6px 10px; border-radius: 8px; background: none; }
+  .navlink:hover { color: var(--text); background: var(--surface-2); }
+  .navlink.active { color: var(--accent-ink); background: var(--accent-soft); }
+  .icon-btn {
+    border: 1px solid var(--line); background: var(--surface); color: var(--text);
+    width: 36px; height: 36px; border-radius: 10px; cursor: pointer; display: grid; place-items: center;
+  }
+  .icon-btn:hover { border-color: var(--accent); }
+  @media (max-width: 640px) { .navlink { display: none; } }
 
-            <!-- =============== START OF PROJECT 1 (M3CoL) =============== -->
-            <tr>
-              <td style="padding:20px;width:25%;vertical-align:middle">
-                <img src="images/M3col_image.png" alt="M3CoL project thumbnail" style="width:160px;border-radius:8px;">
-              </td>
-              <td style="padding:20px;width:75%;vertical-align:middle">
-                <a href="https://raghavsinghal10.github.io/m3col_page/"><span class="papertitle">M3CoL: Harnessing Shared Relations via Multimodal Mixup Contrastive Learning for Multimodal Classification</span></a>
-                <br>
-                <a href="https://raja-7-c.github.io/">Raja Kumar</a>*, <a href="https://raghavsinghal10.github.io/">Raghav Singhal</a>*, <strong>Pranamya Kulkarni</strong>, <a href="https://research.monash.edu/en/persons/deval-mehta/">Deval Mehta</a>, <a href="https://www.linkedin.com/in/kshitij-jadhav-64083b110">Kshitij Jadhav</a>
-                <br>
-                <em>TMLR</em>
-                <br>
-                <a href="https://raghavsinghal10.github.io/m3col_page/">project page</a> / 
-                <a href="https://github.com/RaghavSinghal10/M3CoL">code</a> / 
-                <a href="https://arxiv.org/abs/2409.17777">arXiv</a>
-                <p>
-                We introduce a multimodal mixup-based contrastive learning framework that effectively captures shared relations across modalities, enabling robust multimodal representation learning.
-                </p>
-              </td>
-            </tr>
-            <!-- =============== END OF PROJECT 1 =============== -->
+  /* hero */
+  header.hero { padding: 56px 0 24px; }
+  .hero-grid { display: grid; grid-template-columns: 1fr 220px; gap: 40px; align-items: start; }
+  @media (max-width: 720px) { .hero-grid { grid-template-columns: 1fr; } .photo-wrap { order: -1; max-width: 180px; } }
+  h1 { font-family: "Fraunces", serif; font-weight: 650; font-size: clamp(34px, 6vw, 52px); line-height: 1.05; margin: 0 0 10px; letter-spacing: -.01em; }
+  .tagline { font-size: 18px; color: var(--muted); margin: 0 0 22px; min-height: 1.6em; }
+  .tagline .typed { color: var(--accent-ink); font-weight: 600; border-right: 2px solid var(--accent); padding-right: 2px; animation: blink 1s step-end infinite; }
+  @keyframes blink { 50% { border-color: transparent; } }
+  .bio p { margin: 0 0 14px; }
+  .hl { background: var(--accent-soft); color: var(--accent-ink); padding: 0 4px; border-radius: 4px; font-weight: 600; cursor: help; position: relative; }
+  .hl:hover::after {
+    content: attr(data-tip); position: absolute; left: 0; bottom: calc(100% + 8px); width: 240px;
+    background: var(--text); color: var(--bg); font-weight: 400; font-size: 13px; line-height: 1.45;
+    padding: 8px 10px; border-radius: 8px; z-index: 5; box-shadow: var(--shadow);
+  }
+  .photo-wrap { position: relative; }
+  .photo-wrap img {
+    width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 50%;
+    border: 4px solid var(--surface); box-shadow: var(--shadow); transition: transform .4s;
+  }
+  .photo-wrap:hover img { transform: rotate(-3deg) scale(1.03); }
 
-            <!-- =============== START OF PROJECT 2 (IndiBias) =============== -->
-            <tr>
-              <td style="padding:20px;width:25%;vertical-align:middle">
-                <img src="images/IndiBias_Image.png" alt="IndiBias project thumbnail" style="width:160px;border-radius:8px;">
-              </td>
-              <td style="padding:20px;width:75%;vertical-align:middle">
-                <a href="https://arxiv.org/pdf/2403.20147"><span class="papertitle">IndiBias: A Benchmark Dataset to Measure Social Biases in Language Models for Indian Context</span></a>
-                <br>
-                <a href="https://sahoonihar.github.io/">Nihar Ranjan Sahoo</a>, <strong>Pranamya Kulkarni</strong>, <a href="https://scholar.google.com/citations?user=3YOCIDcAAAAJ&hl=en">Narjis Asad</a>, <a href="https://scholar.google.com/citations?user=fGZ5q1oAAAAJ&hl=en">Arif Ahmad</a>, <a href="https://scholar.google.com/citations?user=8qk2ALgAAAAJ&hl=en">Tanu Goyal</a>, <a href="https://research.adobe.com/person/aparna-garimella/">Aparna Garimella</a>, <a href="https://www.cse.iitb.ac.in/~pb/">Pushpak Bhattacharyya</a>
-                <br>
-                <em>NAACL 2024</em>
-                <br>
-                <a href="https://arxiv.org/pdf/2403.20147">Paper</a>
-                <p>
-                We introduce IndiBias, a comprehensive benchmarking dataset designed to evaluate social biases in Large Language Models within the unique socio-cultural nuances of the Indian context. The dataset is built by adapting existing resources and leveraging LLMs to cover diverse biases like gender, religion, caste, and more.
-                </p>
-              </td>
-            </tr>
-            <!-- =============== END OF PROJECT 2 =============== -->
+  .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .chip-btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--text);
+    font: 500 14px "Inter", sans-serif; cursor: pointer; background-image: none; transition: border-color .2s, transform .2s;
+  }
+  .chip-btn:hover { border-color: var(--accent); transform: translateY(-1px); background-size: 0; }
+  .chip-btn svg { width: 16px; height: 16px; }
 
-            <!-- =============== START OF PROJECT 5 (Image Description Patent) =============== -->
-            <tr>
-              <td style="padding:20px;width:25%;vertical-align:middle">
-                <img src="images/adobe_image.png" alt="Image Description project thumbnail" style="width:160px;border-radius:8px;">
-              </td>
-              <td style="padding:20px;width:75%;vertical-align:middle">
-                <a href="https://patents.google.com/patent/US20250028911A1/en">
-                  <span class="papertitle">Image Description Generation with Varying Levels of Detail</span>
-                </a>
-                <br>
-                <strong>Pranamya Kulkarni</strong>*, <a href="https://www.linkedin.com/in/akshay-iyer2211">Akshay Iyer</a>*, <a href="https://kanpard005.github.io/">Kanad Pardeshi</a>*, <a href="https://in.linkedin.com/in/nikunj-goyal-1831b517a">Nikunj Goyal</a>*, <a href="https://apoorvumang.github.io/">Apoorv Saxena</a>, <a href="https://scholar.google.com/citations?user=ppEFe2AAAAAJ&hl=en">Praneetha Vaddamanu</a>, <a href="https://abhilashasancheti.github.io/">Abhilasha Sancheti</a>, <a href="https://scholar.google.com/citations?user=Q4PJyXIAAAAJ&hl=en">Aparna Garimella</a>, <a href="https://scholar.google.com/citations?user=Rr5yTX0AAAAJ&hl=en">Vishwa Vinay</a>
-                <br>
-                <em>U.S. Patent Application Filed</em>
-                <br>
-                <a href="https://patents.google.com/patent/US20250028911A1/en">Patent</a>
-                <p>
-                We present a system for generating image descriptions with controllable levels of detail, catering to diverse user needs from low-level summaries to high-granularity captions. Our approach introduces a novel scoring mechanism and utilizes architectures like DetailBERT and DenseDetail to allow users to explicitly specify the amount of information required in the output.
-                </p>
-              </td>
-            </tr>
-            <!-- =============== END OF PROJECT 5 =============== -->
-            
-          </tbody></table>
+  /* sections */
+  section { padding: 40px 0; }
+  h2 { font-family: "Fraunces", serif; font-weight: 650; font-size: 28px; margin: 0 0 6px; }
+  .sub { color: var(--muted); margin: 0 0 24px; font-size: 15px; }
 
-          <!-- FOOTER -->
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr>
-              <td style="padding:0px">
-                <br>
-                <p style="text-align:right;font-size:small;">
-                  Website template by <a href="https://github.com/jonbarron/jonbarron.github.io">Jon Barron</a>.
-                </p>
-              </td>
-            </tr>
-          </tbody></table>
+  /* journey: education + experience */
+  .tracks { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  @media (max-width: 720px) { .tracks { grid-template-columns: 1fr; } }
+  .track h3.track-title {
+    display: flex; align-items: center; gap: 8px; margin: 0 0 14px; font-size: 13px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .08em; color: var(--muted);
+  }
+  .track h3.track-title svg { width: 16px; height: 16px; color: var(--accent); }
+  .timeline { position: relative; display: grid; gap: 12px; }
+  .timeline::before { content: ""; position: absolute; left: 32px; top: 32px; bottom: 32px; width: 2px; background: var(--line); }
+  .entry {
+    position: relative; display: block; width: 100%; text-align: left; cursor: pointer;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 12px 14px 12px 12px; box-shadow: var(--shadow); color: inherit; font: inherit;
+    transition: border-color .25s, transform .25s;
+  }
+  .entry:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); transform: translateX(2px); }
+  .entry-head { display: flex; align-items: center; gap: 14px; }
+  .logo {
+    flex: none; width: 40px; height: 40px; border-radius: 10px; background: #fff; border: 1px solid var(--line);
+    display: grid; place-items: center; overflow: hidden; position: relative; z-index: 1; padding: 5px;
+  }
+  .logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .logo .initials { font: 600 13px "Inter", sans-serif; color: #333; }
+  .entry-text { flex: 1; min-width: 0; }
+  .entry-org { font-weight: 600; font-size: 15.5px; line-height: 1.3; }
+  .entry-role { font-size: 13.5px; color: var(--muted); line-height: 1.4; }
+  .badge { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink); margin-left: 6px; vertical-align: 1px; }
+  .chev { flex: none; color: var(--muted); transition: transform .3s; }
+  .entry.open .chev { transform: rotate(180deg); }
+  .entry-body { max-height: 0; overflow: hidden; transition: max-height .4s ease, margin .3s; font-size: 14.5px; padding-left: 54px; }
+  .entry.open .entry-body { max-height: 260px; margin-top: 10px; }
+  .entry-body p { margin: 0; }
 
-        </td>
-      </tr>
-    </tbody></table>
-  </body>
+  /* pubs toolbar */
+  .toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 20px; }
+  .filter {
+    border: 1px solid var(--line); background: var(--surface); color: var(--muted);
+    padding: 6px 12px; border-radius: 999px; font: 500 13px "Inter", sans-serif; cursor: pointer; transition: all .2s;
+  }
+  .filter:hover { color: var(--text); border-color: var(--accent); }
+  .filter.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .search {
+    margin-left: auto; flex: 0 1 220px; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--line);
+    background: var(--surface); color: var(--text); font: 14px "Inter", sans-serif;
+  }
+  .search:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+  @media (max-width: 640px) { .search { margin-left: 0; flex: 1 1 100%; } }
+
+  /* pub cards */
+  .pubs { display: grid; gap: 16px; }
+  .pub {
+    display: grid; grid-template-columns: 180px 1fr; gap: 20px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 18px; box-shadow: var(--shadow); transition: transform .25s, border-color .25s, opacity .3s;
+  }
+  .pub:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); }
+  .pub.hidden { display: none; }
+  @media (max-width: 640px) { .pub { grid-template-columns: 1fr; } }
+  .thumb { border-radius: 10px; overflow: hidden; background: var(--surface-2); aspect-ratio: 4/3; cursor: zoom-in; }
+  .thumb img { width: 100%; height: 100%; object-fit: contain; transition: transform .4s; background: #fff; }
+  .pub:hover .thumb img { transform: scale(1.05); }
+  .pub h3 { margin: 0 0 6px; font-size: 17px; line-height: 1.35; }
+  .pub h3 a { color: var(--text); }
+  .authors { font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+  .authors .me { color: var(--text); font-weight: 600; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+  .venue { font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 6px; background: var(--accent-soft); color: var(--accent-ink); }
+  .tag { font-size: 12px; color: var(--muted); border: 1px solid var(--line); padding: 2px 8px; border-radius: 6px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 6px; }
+  .act {
+    font: 500 13px "Inter", sans-serif; padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line);
+    background: transparent; color: var(--text); cursor: pointer; background-image: none;
+  }
+  .act:hover { border-color: var(--accent); color: var(--accent-ink); }
+  .abstract { max-height: 0; overflow: hidden; transition: max-height .4s ease, margin .3s; font-size: 14.5px; color: var(--text); }
+  .pub.open .abstract { max-height: 400px; margin-top: 12px; }
+  .abstract p { margin: 0; padding: 12px 14px; background: var(--surface-2); border-radius: 10px; border-left: 3px solid var(--accent); }
+  .empty { display: none; text-align: center; color: var(--muted); padding: 30px; border: 1px dashed var(--line); border-radius: var(--radius); }
+
+  /* outside research */
+  .hobbies { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 640px) { .hobbies { grid-template-columns: 1fr; } }
+  .hobby {
+    perspective: 800px; height: 130px; cursor: pointer; border: 0; background: none; padding: 0; font: inherit; color: inherit;
+  }
+  .hobby-inner { position: relative; width: 100%; height: 100%; transition: transform .6s; transform-style: preserve-3d; }
+  .hobby.flipped .hobby-inner { transform: rotateY(180deg); }
+  .face {
+    position: absolute; inset: 0; backface-visibility: hidden; border-radius: var(--radius);
+    border: 1px solid var(--line); background: var(--surface); display: grid; place-items: center; text-align: center; padding: 14px;
+    box-shadow: var(--shadow);
+  }
+  .face .emoji { font-size: 34px; }
+  .face .name { font-weight: 600; margin-top: 4px; }
+  .face.back { transform: rotateY(180deg); background: var(--accent-soft); color: var(--accent-ink); font-size: 14.5px; }
+
+  footer { border-top: 1px solid var(--line); margin-top: 30px; padding: 24px 0 40px; color: var(--muted); font-size: 13px; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; }
+
+  /* lightbox */
+  #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.8); display: none; place-items: center; z-index: 100; padding: 20px; cursor: zoom-out; }
+  #lightbox.show { display: grid; }
+  #lightbox img { max-width: min(900px, 100%); max-height: 85vh; border-radius: 10px; background: #fff; }
+
+  /* toast */
+  #toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translate(-50%, 20px); opacity: 0;
+    background: var(--text); color: var(--bg); padding: 10px 16px; border-radius: 10px; font-size: 14px;
+    transition: all .3s; z-index: 110; pointer-events: none;
+  }
+  #toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  #top {
+    position: fixed; right: 20px; bottom: 20px; opacity: 0; pointer-events: none; transition: opacity .3s; z-index: 40;
+  }
+  #top.show { opacity: 1; pointer-events: auto; }
+
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<nav>
+  <div class="wrap">
+    <a href="#about" class="brand">Pranamya Kulkarni</a>
+    <a href="#about" class="navlink">About</a>
+    <a href="#journey" class="navlink">Journey</a>
+    <a href="#research" class="navlink">Research</a>
+    <a href="#beyond" class="navlink">Beyond</a>
+    <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode" title="Toggle theme">
+      <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<header class="hero" id="about">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Pranamya Kulkarni</h1>
+      <p class="tagline">Working on <span class="typed" id="typed"></span></p>
+      <div class="bio">
+        <p>I am a first-year PhD student in Computer Science at <strong>UT Austin</strong>, advised by
+          <a href="https://sites.google.com/view/sanjay-shakkottai/home">Prof. Sanjay Shakkottai</a> and
+          <a href="https://ece.utexas.edu/people/faculty/sujay-sanghavi">Prof. Sujay Sanghavi</a>.
+          I am broadly interested in making Large Language Models more
+          <span class="hl" data-tip="Lowering the memory, compute and latency cost of training and serving LLMs.">efficient</span>
+          and better aligned with how they are used, and am currently exploring
+          <span class="hl" data-tip="A small draft model proposes several tokens that the large model verifies in one pass, speeding up generation without changing outputs.">speculative decoding</span> and
+          <span class="hl" data-tip="Everything after pre-training: fine-tuning, RL from feedback and other alignment steps that shape how a model behaves.">post-training</span>.</p>
+        <p>Previously I was a Pre-Doctoral Researcher at <strong>Google DeepMind India</strong>, and before that I completed an Interdisciplinary Dual Degree at <strong>IIT Bombay</strong>. Click through my journey below for details.</p>
+      </div>
+      <div class="links">
+        <button class="chip-btn" id="emailBtn" data-email="pranamyakulkarni@gmail.com" title="Copy email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          <span>Copy email</span>
+        </button>
+        <a class="chip-btn" href="https://pranamyakulkarni.github.io/data/Pranamya_Resume.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg>
+          Resume
+        </a>
+        <a class="chip-btn" href="https://scholar.google.com/citations?user=6SmRwUgAAAAJ&hl=en" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 4 2 10l10 6z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>
+          Scholar
+        </a>
+      </div>
+    </div>
+    <div class="photo-wrap">
+      <img src="https://pranamyakulkarni.github.io/images/PranamyaKulkarni_SecurityPhoto.png" alt="Pranamya Kulkarni">
+    </div>
+  </div>
+</header>
+
+<section id="journey" class="reveal">
+  <div class="wrap">
+    <h2>Journey</h2>
+    <p class="sub">Tap any entry for details.</p>
+    <div class="tracks">
+      <div class="track">
+        <h3 class="track-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 4 2 10l10 6z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>Education</h3>
+        <div class="timeline" id="eduList"></div>
+      </div>
+      <div class="track">
+        <h3 class="track-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>Experience</h3>
+        <div class="timeline" id="workList"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="research" class="reveal">
+  <div class="wrap">
+    <h2>Research</h2>
+    <p class="sub">Filter by topic, search, or open an abstract.</p>
+    <div class="toolbar">
+      <button class="filter on" data-f="all">All</button>
+      <button class="filter" data-f="efficiency">LLM efficiency</button>
+      <button class="filter" data-f="causal">Causal / robotics</button>
+      <button class="filter" data-f="multimodal">Multimodal</button>
+      <button class="filter" data-f="nlp">NLP &amp; fairness</button>
+      <input class="search" id="search" type="search" placeholder="Search papers, authors…" aria-label="Search publications">
+    </div>
+    <div class="pubs" id="pubs"></div>
+    <div class="empty" id="empty">No papers match that search.</div>
+  </div>
+</section>
+
+<section id="beyond" class="reveal">
+  <div class="wrap">
+    <h2>Beyond research</h2>
+    <p class="sub">What I do in my free time. Flip a card.</p>
+    <div class="hobbies">
+      <button class="hobby"><div class="hobby-inner">
+        <div class="face"><div><div class="emoji">🏏</div><div class="name">Cricket</div></div></div>
+        <div class="face back">Playing it and watching it.</div>
+      </div></button>
+      <button class="hobby"><div class="hobby-inner">
+        <div class="face"><div><div class="emoji">♟️</div><div class="name">Chess</div></div></div>
+        <div class="face back">Always up for a game.</div>
+      </div></button>
+      <button class="hobby"><div class="hobby-inner">
+        <div class="face"><div><div class="emoji">🎮</div><div class="name">PlayStation</div></div></div>
+        <div class="face back">Gaming when the GPUs are busy.</div>
+      </div></button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr"></span> Pranamya Kulkarni</span>
+    <span>Original template by <a href="https://github.com/jonbarron/jonbarron.github.io">Jon Barron</a></span>
+  </div>
+</footer>
+
+<button class="icon-btn" id="top" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m18 15-6-6-6 6"/></svg>
+</button>
+<div id="lightbox"><img alt=""></div>
+<div id="toast"></div>
+
+<script>
+(function () {
+  /* ---------- data ---------- */
+  var IMG = "https://pranamyakulkarni.github.io/images/";
+  var ME = "Pranamya Kulkarni";
+
+  /* Logos: the page first tries images/logos/<key>.png in the repo (drop official
+     high-res logos there if you like), then the organization's own site icon, then initials. */
+  function favicon(domain) { return "https://www.google.com/s2/favicons?sz=128&domain=" + domain; }
+
+  var education = [
+    { key: "utaustin", org: "The University of Texas at Austin", domain: "utexas.edu", initials: "UT", current: true,
+      role: "PhD in Computer Science",
+      body: 'Advised by <a href="https://sites.google.com/view/sanjay-shakkottai/home">Prof. Sanjay Shakkottai</a> and <a href="https://ece.utexas.edu/people/faculty/sujay-sanghavi">Prof. Sujay Sanghavi</a>. Exploring speculative decoding and post-training to make LLMs more efficient and better aligned with how they are used.' },
+    { key: "iitb", org: "IIT Bombay", domain: "iitb.ac.in", initials: "IITB",
+      role: "Interdisciplinary Dual Degree: B.Tech (Honors) in Electrical Engineering + M.Tech in AI & Data Science",
+      body: 'Advised by <a href="https://www.cse.iitb.ac.in/~soumen/">Prof. Soumen Chakrabarti</a> and <a href="https://abir-de.github.io/">Prof. Abir De</a>, working on Graph Neural Networks.' }
+  ];
+
+  var experience = [
+    { key: "deepmind", org: "Google DeepMind", domain: "deepmind.google", initials: "GDM",
+      role: "Pre-Doctoral Researcher, Machine Learning & Optimization (MLO) team",
+      body: 'Worked with <a href="https://www.prateekjain.org/">Dr. Prateek Jain</a>, <a href="https://sites.google.com/corp/site/pshenoyuw/">Dr. Pradeep Shenoy</a>, <a href="https://sites.google.com/corp/view/karthikeyan-shanmugam">Dr. Karthikeyan Shanmugam</a> and <a href="https://www.cs.cmu.edu/~asuggala/">Dr. Arun Suggala</a> on the training and inference efficiency of LLMs, and on label-free robotic pose estimation using causal representation learning.' },
+    { key: "adobe", org: "Adobe Research India", domain: "adobe.com", initials: "Ad",
+      role: "Research Intern",
+      body: 'Worked on generating image descriptions with controllable levels of detail, which led to a <a href="https://patents.google.com/patent/US20250028911A1/en">U.S. patent application</a>.' }
+  ];
+
+  var pubs = [
+    { title: "Compressing Many-Shots in In-Context Learning", url: "https://arxiv.org/abs/2510.16092",
+      img: "memcom_image.png", venue: "arXiv preprint", cats: ["efficiency"], tags: ["ICL", "KV cache", "Compression"],
+      authors: ["Devvrit Khatri", ME, "Nilesh Gupta", "Yerram Varun", "Liqian Peng", "Jay Yagnik", "Praneeth Netrapalli", "Cho-Jui Hsieh", "Alec Go", "Inderjit S Dhillon", "Aditya Kusupati", "Prateek Jain"],
+      links: [["arXiv", "https://arxiv.org/abs/2510.16092"]],
+      abs: "We introduce MemCom, a layer-wise compression method designed to improve the memory and computational efficiency of many-shot In-Context Learning (ICL). By compressing prompts into a compact key-value (KV) cache, MemCom significantly reduces inference costs while maintaining high performance across various classification tasks." },
+    { title: "ROPES: Robotic Pose Estimation via Score-Based Causal Representation Learning", url: "https://arxiv.org/abs/2510.20884",
+      img: "ROPES_image.png", venue: "NeurIPS 2025 Workshop", cats: ["causal"], tags: ["Causal RL", "Robotics", "Unsupervised"],
+      authors: [ME + "*", "Puranjay Datta*", "Emre Acartürk", "Burak Varıcı", "Karthikeyan Shanmugam", "Ali Tajer"],
+      note: "Embodied World Models for Decision Making Workshop",
+      links: [["arXiv", "https://arxiv.org/abs/2510.20884"]],
+      abs: "We propose ROPES, an unsupervised framework for robotic pose estimation that recovers joint angles from raw images using score-based Causal Representation Learning. By leveraging interventional data distributions, ROPES disentangles controllable latent variables without requiring any explicit pose labels." },
+    { title: "M3CoL: Harnessing Shared Relations via Multimodal Mixup Contrastive Learning for Multimodal Classification", url: "https://raghavsinghal10.github.io/m3col_page/",
+      img: "M3col_image.png", venue: "TMLR", cats: ["multimodal"], tags: ["Contrastive", "Mixup", "Multimodal"],
+      authors: ["Raja Kumar*", "Raghav Singhal*", ME, "Deval Mehta", "Kshitij Jadhav"],
+      links: [["Project page", "https://raghavsinghal10.github.io/m3col_page/"], ["Code", "https://github.com/RaghavSinghal10/M3CoL"], ["arXiv", "https://arxiv.org/abs/2409.17777"]],
+      abs: "We introduce a multimodal mixup-based contrastive learning framework that effectively captures shared relations across modalities, enabling robust multimodal representation learning." },
+    { title: "IndiBias: A Benchmark Dataset to Measure Social Biases in Language Models for Indian Context", url: "https://arxiv.org/pdf/2403.20147",
+      img: "IndiBias_Image.png", venue: "NAACL 2024", cats: ["nlp"], tags: ["Benchmark", "Bias", "LLMs"],
+      authors: ["Nihar Ranjan Sahoo", ME, "Narjis Asad", "Arif Ahmad", "Tanu Goyal", "Aparna Garimella", "Pushpak Bhattacharyya"],
+      links: [["Paper", "https://arxiv.org/pdf/2403.20147"]],
+      abs: "We introduce IndiBias, a comprehensive benchmarking dataset designed to evaluate social biases in Large Language Models within the unique socio-cultural nuances of the Indian context. The dataset is built by adapting existing resources and leveraging LLMs to cover diverse biases like gender, religion, caste, and more." },
+    { title: "Image Description Generation with Varying Levels of Detail", url: "https://patents.google.com/patent/US20250028911A1/en",
+      img: "adobe_image.png", venue: "U.S. Patent Application", cats: ["multimodal", "nlp"], tags: ["Captioning", "Vision-language"],
+      authors: [ME + "*", "Akshay Iyer*", "Kanad Pardeshi*", "Nikunj Goyal*", "Apoorv Saxena", "Praneetha Vaddamanu", "Abhilasha Sancheti", "Aparna Garimella", "Vishwa Vinay"],
+      links: [["Patent", "https://patents.google.com/patent/US20250028911A1/en"]],
+      abs: "We present a system for generating image descriptions with controllable levels of detail, catering to diverse user needs from low-level summaries to high-granularity captions. Our approach introduces a novel scoring mechanism and utilizes architectures like DetailBERT and DenseDetail to allow users to explicitly specify the amount of information required in the output." }
+  ];
+
+  /* ---------- theme ---------- */
+  var root = document.documentElement;
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+  var saved = store("theme");
+  if (saved) root.setAttribute("data-theme", saved);
+  function isDark() {
+    var t = root.getAttribute("data-theme");
+    return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+  }
+  function paintIcon() {
+    document.getElementById("themeIcon").innerHTML = isDark()
+      ? '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'
+      : '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>';
+  }
+  paintIcon();
+  document.getElementById("themeBtn").addEventListener("click", function () {
+    var next = isDark() ? "light" : "dark";
+    root.setAttribute("data-theme", next); store("theme", next); paintIcon();
+  });
+
+  /* ---------- typing tagline ---------- */
+  var words = ["efficient LLMs", "speculative decoding", "post-training", "inference efficiency"];
+  var el = document.getElementById("typed"), wi = 0, ci = 0, del = false;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) { el.textContent = words[0]; }
+  else (function tick() {
+    var w = words[wi];
+    el.textContent = w.slice(0, ci);
+    if (!del && ci < w.length) { ci++; setTimeout(tick, 70); }
+    else if (!del) { del = true; setTimeout(tick, 1600); }
+    else if (ci > 0) { ci--; setTimeout(tick, 35); }
+    else { del = false; wi = (wi + 1) % words.length; setTimeout(tick, 300); }
+  })();
+
+  /* ---------- toast ---------- */
+  var toastEl = document.getElementById("toast"), tt;
+  function toast(msg) { toastEl.textContent = msg; toastEl.classList.add("show"); clearTimeout(tt); tt = setTimeout(function () { toastEl.classList.remove("show"); }, 1800); }
+  function copy(text, msg) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { toast(msg); }, function () { toast(text); });
+    } else { toast(text); }
+  }
+  document.getElementById("emailBtn").addEventListener("click", function () {
+    copy(this.dataset.email, "Email copied: " + this.dataset.email);
+  });
+
+  /* ---------- journey: education + experience ---------- */
+  function makeLogo(d) {
+    var box = document.createElement("div");
+    box.className = "logo";
+    var img = new Image();
+    img.alt = d.org + " logo";
+    var sources = ["images/logos/" + d.key + ".png", favicon(d.domain)], n = 0;
+    img.onerror = function () {
+      n++;
+      if (n < sources.length) img.src = sources[n];
+      else box.innerHTML = '<span class="initials">' + d.initials + '</span>';
+    };
+    img.src = sources[0];
+    box.appendChild(img);
+    return box;
+  }
+  function renderTrack(items, mountId, openFirst) {
+    var mount = document.getElementById(mountId);
+    items.forEach(function (d, i) {
+      var b = document.createElement("div");
+      b.className = "entry" + (openFirst && i === 0 ? " open" : "");
+      b.setAttribute("role", "button"); b.tabIndex = 0;
+      b.setAttribute("aria-expanded", openFirst && i === 0);
+      var head = document.createElement("div");
+      head.className = "entry-head";
+      head.appendChild(makeLogo(d));
+      head.insertAdjacentHTML("beforeend",
+        '<div class="entry-text"><div class="entry-org">' + d.org + (d.current ? '<span class="badge">Current</span>' : '') + '</div>' +
+        '<div class="entry-role">' + d.role + '</div></div>' +
+        '<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>');
+      b.appendChild(head);
+      b.insertAdjacentHTML("beforeend", '<div class="entry-body"><p>' + d.body + '</p></div>');
+      function toggle(e) {
+        if (e.target.closest("a")) return;
+        var open = b.classList.toggle("open"); b.setAttribute("aria-expanded", open);
+      }
+      b.addEventListener("click", toggle);
+      b.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(e); } });
+      mount.appendChild(b);
+    });
+  }
+  renderTrack(education, "eduList", true);
+  renderTrack(experience, "workList", true);
+
+  /* ---------- publications ---------- */
+  var list = document.getElementById("pubs");
+  function esc(s) { return s.replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  pubs.forEach(function (p, i) {
+    var authors = p.authors.map(function (a) {
+      return a.indexOf(ME) === 0 ? '<span class="me">' + esc(a) + '</span>' : esc(a);
+    }).join(", ");
+    var links = p.links.map(function (l) { return '<a class="act" href="' + l[1] + '" target="_blank" rel="noopener">' + l[0] + '</a>'; }).join("");
+    var div = document.createElement("article");
+    div.className = "pub";
+    div.dataset.cats = p.cats.join(" ");
+    div.dataset.text = (p.title + " " + p.authors.join(" ") + " " + p.venue + " " + p.tags.join(" ") + " " + p.abs).toLowerCase();
+    div.innerHTML =
+      '<div class="thumb"><img loading="lazy" src="' + IMG + p.img + '" alt="' + esc(p.title) + ' thumbnail"></div>' +
+      '<div><h3><a href="' + p.url + '" target="_blank" rel="noopener">' + esc(p.title) + '</a></h3>' +
+      '<div class="authors">' + authors + '</div>' +
+      '<div class="meta"><span class="venue" title="' + esc(p.note || p.venue) + '">' + esc(p.venue) + '</span>' +
+        p.tags.map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join("") + '</div>' +
+      '<div class="actions"><button class="act abs-btn" aria-expanded="false">Abstract ▾</button>' + links +
+        '<button class="act cite-btn">Copy citation</button></div>' +
+      '<div class="abstract"><p>' + esc(p.abs) + '</p></div></div>';
+    list.appendChild(div);
+
+    div.querySelector(".abs-btn").addEventListener("click", function () {
+      var open = div.classList.toggle("open");
+      this.textContent = open ? "Abstract ▴" : "Abstract ▾";
+      this.setAttribute("aria-expanded", open);
+    });
+    div.querySelector(".cite-btn").addEventListener("click", function () {
+      var auth = p.authors.map(function (a) { return a.replace(/\*$/, ""); }).join(", ");
+      copy(auth + '. "' + p.title + '." ' + (p.note ? p.note + ", " : "") + p.venue + ". " + p.url, "Citation copied");
+    });
+    div.querySelector(".thumb").addEventListener("click", function () {
+      var lb = document.getElementById("lightbox");
+      lb.querySelector("img").src = IMG + p.img; lb.classList.add("show");
+    });
+  });
+
+  var filter = "all", query = "";
+  function applyFilters() {
+    var shown = 0;
+    list.querySelectorAll(".pub").forEach(function (d) {
+      var ok = (filter === "all" || d.dataset.cats.split(" ").indexOf(filter) > -1) && (!query || d.dataset.text.indexOf(query) > -1);
+      d.classList.toggle("hidden", !ok); if (ok) shown++;
+    });
+    document.getElementById("empty").style.display = shown ? "none" : "block";
+  }
+  document.querySelectorAll(".filter").forEach(function (b) {
+    b.addEventListener("click", function () {
+      document.querySelectorAll(".filter").forEach(function (x) { x.classList.remove("on"); });
+      b.classList.add("on"); filter = b.dataset.f; applyFilters();
+    });
+  });
+  document.getElementById("search").addEventListener("input", function () { query = this.value.trim().toLowerCase(); applyFilters(); });
+
+  document.getElementById("lightbox").addEventListener("click", function () { this.classList.remove("show"); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") document.getElementById("lightbox").classList.remove("show"); });
+
+  /* ---------- hobbies ---------- */
+  document.querySelectorAll(".hobby").forEach(function (h) { h.addEventListener("click", function () { h.classList.toggle("flipped"); }); });
+
+  /* ---------- scroll: progress, active nav, back-to-top, reveal ---------- */
+  var prog = document.getElementById("progress"), topBtn = document.getElementById("top");
+  var navlinks = document.querySelectorAll(".navlink");
+  var sections = ["about", "journey", "research", "beyond"].map(function (id) { return document.getElementById(id); });
+  function onScroll() {
+    var h = document.documentElement.scrollHeight - innerHeight;
+    prog.style.width = (h > 0 ? scrollY / h * 100 : 0) + "%";
+    topBtn.classList.toggle("show", scrollY > 500);
+    var cur = sections[0].id;
+    sections.forEach(function (s) { if (s.getBoundingClientRect().top < 120) cur = s.id; });
+    navlinks.forEach(function (a) { a.classList.toggle("active", a.getAttribute("href") === "#" + cur); });
+  }
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  topBtn.addEventListener("click", function () { scrollTo({ top: 0, behavior: "smooth" }); });
+
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }); }, { threshold: .08 });
+    document.querySelectorAll(".reveal").forEach(function (r) { io.observe(r); });
+  } else { document.querySelectorAll(".reveal").forEach(function (r) { r.classList.add("in"); }); }
+
+  document.getElementById("yr").textContent = new Date().getFullYear();
+})();
+</script>
+</body>
 </html>
