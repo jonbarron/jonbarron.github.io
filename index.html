@@ -99,6 +99,49 @@
 </tr>
 
 
+<tr onmouseout="beignet_stop()" onmouseover="beignet_start()">
+  <td style="padding:16px;width:20%;vertical-align:middle">
+    <div class="one">
+      <div class="two" id='beignet_image'><video  width=100% height=100% muted autoplay loop>
+      <source src="images/beignet.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+      </video></div>
+      <img src='images/beignet.jpg' width="160">
+    </div>
+    <script type="text/javascript">
+      function beignet_start() {
+        document.getElementById('beignet_image').style.opacity = "1";
+      }
+
+      function beignet_stop() {
+        document.getElementById('beignet_image').style.opacity = "0";
+      }
+      beignet_stop()
+    </script>
+  </td>
+  <td style="padding:8px;width:80%;vertical-align:middle">
+    <a href="https://arxiv.org/abs/2605.24278">
+      <span class="papertitle">Fourier Feature Pyramids for Physics-Informed Neural Networks</span>
+    </a>
+    <br>
+    <a href="https://brandonyzhao.github.io/">Brandon Zhao</a>,
+    <a href="https://roywangyx.github.io/">Yixuan Wang</a>,
+    <strong>Jonathan T. Barron</strong>,
+    <a href="https://computationalcameras.org/">Katherine L. Bouman</a>,
+    <a href="https://dorverbin.github.io/">Dor Verbin</a>,
+    <a href="https://pratulsrinivasan.github.io/">Pratul P. Srinivasan</a>
+    <br>
+    <em>arXiv</em>, 2026
+    <br>
+    <a href="https://arxiv.org/abs/2605.24278">arXiv</a>
+    <p></p>
+    <p>
+    Replacing random Fourier features with a learned, Fourier-interpolated feature pyramid lets neural fields quickly solve PDEs to machine precision.
+    </p>
+  </td>
+</tr>
+
+
 <tr onmouseout="vbanana_stop()" onmouseover="vbanana_start()">
   <td style="padding:16px;width:20%;vertical-align:middle">
     <div class="one">
