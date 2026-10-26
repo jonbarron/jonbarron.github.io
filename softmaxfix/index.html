@@ -674,8 +674,8 @@ cross-entropy (CE) is <span class="math-inline">\(\mathcal{L}(\mathbf{z}, \mathb
 <span class="math-inline">\(\mathbf{g} = \nabla_{\mathbf{z}} \mathcal{L}(\mathbf{z}, \mathbf{p}) = \mathbf{q} -
 \mathbf{p}\)</span>.
 Though subtracting <span class="math-inline">\(z_{\max}\)</span> prevents overflow, two numerical bugs remain.</p>
-<p>The first bug, <em>Softmax Collapse</em> (<a href="#fig:fig1a" class="xref" data-ref="fig:fig1a">Figure&nbsp;1a</a>,
-<a href="#bib-prieto2025grokking" class="cite-link" data-bib="prieto2025grokking">Prieto et al., 2025</a>), occurs when a
+<p>The first bug, identified by <a href="#bib-prieto2025grokking" class="cite-link" data-bib="prieto2025grokking">Prieto et al. (2025)</a> as <em>Softmax
+Collapse</em> (<a href="#fig:fig1a" class="xref" data-ref="fig:fig1a">Figure&nbsp;1a</a>), occurs when a
 model correctly predicts the target class <span class="math-inline">\(t \in \{1, \dots,
 K\}\)</span> with high confidence, so that <span class="math-inline">\(z_{t} = z_{\max}\)</span> is
 much larger than all non-target logits <span class="math-inline">\(z_j\)</span> (<span class="math-inline">\(j \neq t\)</span>).
@@ -693,7 +693,7 @@ fp32, values near <span class="math-inline">\(0\)</span> can be as small as <spa
 values added to <span class="math-inline">\(1.0\)</span> are lost to rounding below <span class="math-inline">\({\sim}10^{-7}\)</span>.
 Because standard implementations form the denominator <span class="math-inline">\(1 + e^{-m}\)</span> by
 adding <span class="math-inline">\(e^{-m}\)</span> to <span class="math-inline">\(1.0\)</span>, the <span class="math-inline">\(e^{-m}\)</span> term is lost to rounding
-once the margin <span class="math-inline">\(m\)</span> exceeds a threshold <span class="math-inline">\(c_{d}\)</span> that we call the
+once the margin <span class="math-inline">\(m\)</span> exceeds a threshold <span class="math-inline">\(c_{d}\)</span> that we will call the
 <em>precision cliff</em> (<span class="math-inline">\(c_{16} \approx 5.5\)</span> in bf16,
 <span class="math-inline">\(c_{32} \approx 16.6\)</span> in fp32, and <span class="math-inline">\(c_{64} \approx
 36.7\)</span> in fp64).
@@ -703,28 +703,29 @@ evaluate to <span class="math-inline">\(1.0\)</span> and zeroes out both the los
 <span class="math-inline">\(\tilde{g}_{t} = q_{t} - 1 = 0.0\)</span>.
 However, the non-target gradients <span class="math-inline">\(\tilde{g}_j = q_j = e^{z_j -
 z_{t}} / (1 + e^{-m})\)</span> (<span class="math-inline">\(j \neq t\)</span>) are evaluated
-near <span class="math-inline">\(0\)</span> without adding <span class="math-inline">\(1.0\)</span> to their numerators, so they remain positive all
-the way down to exponent underflow (<span class="math-inline">\(m \approx 88\)</span>).
+near <span class="math-inline">\(0\)</span> without adding <span class="math-inline">\(1.0\)</span> to their numerators, so they remain positive down
+to exponent underflow (<span class="math-inline">\(m \approx 88\)</span>).
 Because the target gradient rounds to <span class="math-inline">\(0.0\)</span> while the non-target gradients do
 not, the gradients no longer sum to zero (<span class="math-inline">\(\sum_k \tilde{g}_k &gt; 0\)</span>).
 When training with adaptive optimizers such as Adam and AdamW
 (<a href="#bib-kingma2015adam" class="cite-link" data-bib="kingma2015adam">Kingma &amp; Ba, 2015</a>; <a href="#bib-loshchilov2019decoupled" class="cite-link" data-bib="loshchilov2019decoupled">Loshchilov &amp; Hutter, 2019</a>), which normalize each gradient
 by a moving average of its magnitude, this asymmetry causes the recurring
-“slingshot” loss spikes observed by <a href="#bib-thilak2022slingshot" class="cite-link" data-bib="thilak2022slingshot">Thilak et al. (2022)</a> and the
-grokking failures studied by <a href="#bib-prieto2025grokking" class="cite-link" data-bib="prieto2025grokking">Prieto et al. (2025)</a>.
+“slingshot” loss spikes (<a href="#bib-thilak2022slingshot" class="cite-link" data-bib="thilak2022slingshot">Thilak et al., 2022</a>; <a href="#bib-liu2026grokking" class="cite-link" data-bib="liu2026grokking">Liu et al., 2026</a>) and
+stalls grokking (<a href="#bib-prieto2025grokking" class="cite-link" data-bib="prieto2025grokking">Prieto et al., 2025</a>).
 While prior works used surrogate losses (<a href="#bib-prieto2025grokking" class="cite-link" data-bib="prieto2025grokking">Prieto et al., 2025</a>), gradient
 projection (<a href="#bib-liu2026grokking" class="cite-link" data-bib="liu2026grokking">Liu et al., 2026</a>), or fp64 casting
 (<a href="#bib-nanda2023progress" class="cite-link" data-bib="nanda2023progress">Nanda et al., 2023</a>; <a href="#bib-varma2023explaining" class="cite-link" data-bib="varma2023explaining">Varma et al., 2023</a>) to ameliorate these issues, we
 instead fix log-softmax, softmax, and cross-entropy directly
 (<a href="#sec:bug1" class="xref" data-ref="sec:bug1">Section&nbsp;2</a>).</p>
-<p>The second bug, <em>Softmax Cancellation</em> (<a href="#fig:fig4a" class="xref" data-ref="fig:fig4a">Figure&nbsp;1b</a>), occurs in
+<p>The second bug, which we will call <em>Softmax Cancellation</em>
+(<a href="#fig:fig4a" class="xref" data-ref="fig:fig4a">Figure&nbsp;1b</a>), occurs in
 knowledge distillation (<a href="#bib-hinton2015distilling" class="cite-link" data-bib="hinton2015distilling">Hinton et al., 2015</a>) and KL regularization,
 where the target <span class="math-inline">\(\mathbf{p} = \operatorname{softmax}(\mathbf{z}_{\mathrm{T}})\)</span> comes from teacher logits
 <span class="math-inline">\(\mathbf{z}_{\mathrm{T}}\)</span>.
 Standard implementations compute <span class="math-inline">\(\mathbf{q} = \operatorname{softmax}(\mathbf{z}_{\mathrm{S}})\)</span> and
 <span class="math-inline">\(\mathbf{p} = \operatorname{softmax}(\mathbf{z}_{\mathrm{T}})\)</span> separately and subtract them to get
 <span class="math-inline">\(\tilde{\mathbf{g}} = \mathbf{q} - \mathbf{p}\)</span>.
-This means that if <span class="math-inline">\(\mathbf{z}_{\mathrm{S}}\)</span> is close to <span class="math-inline">\(\mathbf{z}_{\mathrm{T}}\)</span>, subtracting these
+When <span class="math-inline">\(\mathbf{z}_{\mathrm{S}}\)</span> is close to <span class="math-inline">\(\mathbf{z}_{\mathrm{T}}\)</span>, subtracting these
 nearly equal probabilities loses precision, and slight differences between the
 forward-pass softmax and backward-pass log-softmax formulas leave a
 non-zero gradient even when <span class="math-inline">\(\mathbf{z}_{\mathrm{S}} = \mathbf{z}_{\mathrm{T}}\)</span>.
@@ -750,13 +751,14 @@ In floating point, however, the two expressions for <span class="math-inline">\(
 <a href="#eq:hard_exact" class="xref" data-ref="eq:hard_exact">Equation&nbsp;3</a> behave very differently once <span class="math-inline">\(m &gt; c_{d}\)</span>,
 where <span class="math-inline">\(e^{-m}\)</span> is too small to change <span class="math-inline">\(1.0\)</span> when added to it
 (<a href="#fig:fig1a" class="xref" data-ref="fig:fig1a">Figure&nbsp;1a</a>).
-Standard implementations add <span class="math-inline">\(1\)</span> and <span class="math-inline">\(e^{-m}\)</span> to form the denominator <span class="math-inline">\(1 +
-e^{-m}\)</span>, which rounds to <span class="math-inline">\(1\)</span> when <span class="math-inline">\(m &gt; c_{d}\)</span>.
-In the forward pass, <span class="math-inline">\(\log(1 + e^{-m})\)</span> then evaluates to <span class="math-inline">\(\log(1) = 0\)</span>,
-zeroing out both <span class="math-inline">\(\operatorname{logsoftmax}(\mathbf{z})_{t}\)</span> and <span class="math-inline">\(\mathcal{L}(\mathbf{z},
-t)\)</span>.
-In the backward pass, standard cross-entropy implementations compute
-<span class="math-inline">\(q_{t} = 1/(1 + e^{-m}) = 1\)</span> and subtract <span class="math-inline">\(1\)</span> to get
+Standard implementations form the denominator <span class="math-inline">\(1 + e^{-m}\)</span>,
+which rounds to <span class="math-inline">\(1\)</span> when <span class="math-inline">\(m &gt; c_{d}\)</span>
+(<a href="#bib-prieto2025grokking" class="cite-link" data-bib="prieto2025grokking">Prieto et al., 2025</a>).
+In the forward pass, <span class="math-inline">\(\log(1 + e^{-m})\)</span> evaluates to <span class="math-inline">\(\log(1)
+= 0\)</span>, so both <span class="math-inline">\(\operatorname{logsoftmax}(\mathbf{z})_{t}\)</span> and <span class="math-inline">\(\mathcal{L}(\mathbf{z},
+t)\)</span> round to zero.
+In the backward pass, standard implementations compute <span class="math-inline">\(q_{t}
+= 1/(1 + e^{-m}) = 1\)</span> and subtract <span class="math-inline">\(1\)</span> to get
 <span class="math-inline">\(\tilde{g}_{t} = q_{t} - 1 = 0\)</span>.
 In contrast, our fixed expression <span class="math-inline">\(-e^{-m}/(1 + e^{-m})\)</span> keeps
 <span class="math-inline">\(e^{-m}\)</span> in the numerator: even when the denominator <span class="math-inline">\(1 + e^{-m}\)</span>
@@ -768,12 +770,11 @@ For each non-target class <span class="math-inline">\(j \neq t\)</span>, standar
 <span class="math-inline">\(\tilde{g}_j = q_j = e^{z_j - z_{t}} / (1 +
 e^{-m})\)</span>.
 Because the numerator <span class="math-inline">\(e^{z_j - z_{t}}\)</span> is evaluated directly
-from the negative difference <span class="math-inline">\(z_j - z_{t}\)</span> without adding
-<span class="math-inline">\(1\)</span>, it remains accurate down to exponent underflow while the denominator rounds
-to <span class="math-inline">\(1\)</span>.
-When <span class="math-inline">\(m &gt; c_{d}\)</span>, standard cross-entropy therefore zeroes out only the
-target entry <span class="math-inline">\(t\)</span> while all <span class="math-inline">\(K - 1\)</span> non-target gradients
-remain positive:</p>
+from <span class="math-inline">\(z_j - z_{t} &lt; 0\)</span> without adding <span class="math-inline">\(1\)</span>, it remains
+accurate down to exponent underflow while the denominator rounds to <span class="math-inline">\(1\)</span>.
+When <span class="math-inline">\(m &gt; c_{d}\)</span>, standard cross-entropy zeroes out only the target
+entry <span class="math-inline">\(t\)</span> while all <span class="math-inline">\(K - 1\)</span> non-target gradients remain
+positive (<a href="#bib-liu2026grokking" class="cite-link" data-bib="liu2026grokking">Liu et al., 2026</a>):</p>
 <div class="equation-row" id="eq:hard_buggy"><div class="math-display">\[\tilde{g}_k = \mathbf{1}{[k \neq t]}\,g_k\,, \qquad
     \sum_k \tilde{g}_k = -g_{t}
     = \frac{e^{-m}}{1 + e^{-m}} &gt; 0
@@ -967,7 +968,7 @@ observed the <em>slingshot mechanism</em>, where training after memorization
 alternates between flat loss plateaus near zero and sudden loss spikes that
 coincide with jumps in test accuracy.</p>
 <p>These slingshot spikes are a direct consequence of Softmax Collapse
-(<a href="#sec:bug1" class="xref" data-ref="sec:bug1">Section&nbsp;2</a>).
+(<a href="#sec:bug1" class="xref" data-ref="sec:bug1">Section&nbsp;2</a>, <a href="#bib-prieto2025grokking" class="cite-link" data-bib="prieto2025grokking">Prieto et al., 2025</a>; <a href="#bib-liu2026grokking" class="cite-link" data-bib="liu2026grokking">Liu et al., 2026</a>).
 Recall that AdamW updates parameters <span class="math-inline">\(\boldsymbol{\theta}\)</span> by subtracting
 <span class="math-inline">\(\eta\big(\hat{\mathbf{m}} / (\sqrt{\hat{\mathbf{v}}} + \epsilon) +
 \lambda\boldsymbol{\theta}\big)\)</span>, where <span class="math-inline">\(\hat{\mathbf{m}}\)</span> and <span class="math-inline">\(\hat{\mathbf{v}}\)</span> are
@@ -1093,13 +1094,13 @@ the <span class="math-inline">\(g_i / \epsilon\)</span> step, so margins keep ri
           <span class="math-inline">\(\log({{}^{1}\!/\!{}_{\epsilon}})\)</span>.</figcaption></div></div></figure>
 <h2 id="sec:experiments" class="section-heading"><span class="sec-num">6.</span> Grokking Across Precisions and Benchmarks<a class="heading-anchor" href="#sec:experiments" title="Permalink">#</a></h2>
 <p>To see how the precision cliff behaves across floating-point formats, we follow
-<a href="#bib-varma2023explaining" class="cite-link" data-bib="varma2023explaining">Varma et al. (2023)</a> and <a href="#bib-lyle2025grokking" class="cite-link" data-bib="lyle2025grokking">Lyle et al. (2025)</a> and train a 1-layer
-width-<span class="math-inline">\(64\)</span> ReLU Transformer on <span class="math-inline">\(a + b \bmod 31\)</span> (<span class="math-inline">\(50\%\)</span> training split) for
-<span class="math-inline">\(10{,}000\)</span> epochs of full-batch AdamW (<span class="math-inline">\(\eta = 10^{-3}\)</span>, <span class="math-inline">\(\beta_1 = 0.9\)</span>,
-<span class="math-inline">\(\beta_2 = 0.98\)</span>, <span class="math-inline">\(\lambda = 1\)</span>), varying the loss (standard vs. fixed
-cross-entropy), precision (bf16, fp32, fp64), and
-<span class="math-inline">\(\epsilon \in \{10^{-8}, 10^{-12}, 10^{-16}\}\)</span> (<a href="#fig:fig2" class="xref" data-ref="fig:fig2">Figure&nbsp;5</a>,
-<a href="#tab:baselines" class="xref" data-ref="tab:baselines">Table&nbsp;1</a>).
+<a href="#bib-varma2023explaining" class="cite-link" data-bib="varma2023explaining">Varma et al. (2023)</a> and <a href="#bib-lyle2025grokking" class="cite-link" data-bib="lyle2025grokking">Lyle et al. (2025)</a> and train a 1-layer,
+4-head, width-<span class="math-inline">\(64\)</span> ReLU Transformer without LayerNorm on <span class="math-inline">\(a + b \bmod 31\)</span>
+(<span class="math-inline">\(50\%\)</span> training split) for <span class="math-inline">\(10{,}000\)</span> epochs of full-batch AdamW (<span class="math-inline">\(\eta =
+10^{-3}\)</span>, <span class="math-inline">\(\beta_1 = 0.9\)</span>, <span class="math-inline">\(\beta_2 = 0.98\)</span>, <span class="math-inline">\(\lambda = 1\)</span>), varying the loss
+(standard vs. fixed cross-entropy), logit precision at the loss (bf16,
+fp32, fp64), and <span class="math-inline">\(\epsilon \in \{10^{-8}, 10^{-12},
+10^{-16}\}\)</span> (<a href="#fig:fig2" class="xref" data-ref="fig:fig2">Figure&nbsp;5</a>, <a href="#tab:baselines" class="xref" data-ref="tab:baselines">Table&nbsp;1</a>).
 At <span class="math-inline">\(\epsilon = 10^{-8}\)</span> (<a href="#fig:fig2" class="xref" data-ref="fig:fig2">Figure&nbsp;5</a>, top), standard cross-entropy
 stalls at <span class="math-inline">\(c_{16} \approx 5.5\)</span> in bf16 and repeatedly spikes at
 <span class="math-inline">\(c_{32} \approx 16.6\)</span> in fp32, whereas fixed cross-entropy
@@ -1109,11 +1110,10 @@ Reducing <span class="math-inline">\(\epsilon\)</span> to <span class="math-inli
 equilibrium to <span class="math-inline">\(\log({{}^{1}\!/\!{}_{\epsilon}}) \approx 36.8 &gt; c_{64}\)</span>,
 breaking even fp64 standard cross-entropy at <span class="math-inline">\(c_{64} \approx
 36.7\)</span> while fixed cross-entropy converges smoothly across all precisions.</p>
-<p>In <a href="#tab:baselines" class="xref" data-ref="tab:baselines">Table&nbsp;1</a> we summarize these results and compare against two
-recent methods that modify the gradients or the loss to mitigate Softmax
-Collapse.
+<p><a href="#tab:baselines" class="xref" data-ref="tab:baselines">Table&nbsp;1</a> summarizes these results and compares against two
+recent methods that modify the gradients or loss to mitigate Softmax Collapse.
 <a href="#bib-liu2026grokking" class="cite-link" data-bib="liu2026grokking">Liu et al. (2026)</a> subtract the mean logit gradient from each entry so the
-gradients sum to zero (“Zero-sum Proj.”).
+gradients sum to zero (“Zero-sum Proj.”), which eliminates slingshot spikes.
 However, once <span class="math-inline">\(m &gt; c_{32}\)</span> and <span class="math-inline">\(\tilde{g}_{t} = 0\)</span>,
 subtracting the mean only gives the target logit <span class="math-inline">\(-{{}^{1}\!/\!{}_{K}}\)</span> of
 the total non-target gradient, stalling <span class="math-inline">\(m\)</span> near <span class="math-inline">\(18\)</span> and dropping test
@@ -1132,9 +1132,9 @@ all <span class="math-inline">\(\epsilon\)</span>.</p>
 On all four tasks, fp32 standard cross-entropy spikes once it hits
 <span class="math-inline">\(c_{32}\)</span>, whereas fp32 fixed cross-entropy matches
 fp64 standard cross-entropy and reaches <span class="math-inline">\(100\%\)</span> test accuracy.</p>
-<figure class="paper-figure" id="fig:fig2"><div class="fig-top-img-wrap"><img src="img/paper_fig2_legend.png" alt="paper_fig2_legend.png" class="fig-legend-img zoomable" style="width:68.0%;" loading="lazy"></div><div class="subfigure-row"><div class="subfigure" id="fig:fig2a" style="flex: 0 0 33.15%; max-width: 33.15%;"><img src="img/paper_fig2a.png" alt="paper_fig2a.png" class="fig-img zoomable" style="width:100.0%;" loading="lazy"><div class="subcaption" style="padding-left: 24.86%;"><strong>(a)</strong> Mean logit margin <span class="math-inline">\(m\)</span></div></div><div class="subfigure" id="fig:fig2b" style="flex: 0 0 32.51%; max-width: 32.51%;"><img src="img/paper_fig2b.png" alt="paper_fig2b.png" class="fig-img zoomable" style="width:100.0%;" loading="lazy"><div class="subcaption" style="padding-left: 21.47%;"><strong>(b)</strong> Training loss</div></div><div class="subfigure" id="fig:fig2c" style="flex: 0 0 32.34%; max-width: 32.34%;"><img src="img/paper_fig2c.png" alt="paper_fig2c.png" class="fig-img zoomable" style="width:100.0%;" loading="lazy"><div class="subcaption" style="padding-left: 21.74%;"><strong>(c)</strong> Test accuracy</div></div></div><figcaption class="fig-caption"><strong class="fig-label">Figure 5:</strong> Standard cross-entropy fails at the precision cliff <span class="math-inline">\(c_{d}\)</span> of its
-      floating-point format; fixed cross-entropy removes the cliff across all
-      precisions (<span class="math-inline">\(a + b \bmod 31\)</span>, <span class="math-inline">\(\lambda = 1\)</span>; 2 of 5 seeds shown).
+<figure class="paper-figure" id="fig:fig2"><div class="fig-top-img-wrap"><img src="img/paper_fig2_legend.png" alt="paper_fig2_legend.png" class="fig-legend-img zoomable" style="width:68.0%;" loading="lazy"></div><div class="subfigure-row"><div class="subfigure" id="fig:fig2a" style="flex: 0 0 33.15%; max-width: 33.15%;"><img src="img/paper_fig2a.png" alt="paper_fig2a.png" class="fig-img zoomable" style="width:100.0%;" loading="lazy"><div class="subcaption" style="padding-left: 24.86%;"><strong>(a)</strong> Mean logit margin <span class="math-inline">\(m\)</span></div></div><div class="subfigure" id="fig:fig2b" style="flex: 0 0 32.51%; max-width: 32.51%;"><img src="img/paper_fig2b.png" alt="paper_fig2b.png" class="fig-img zoomable" style="width:100.0%;" loading="lazy"><div class="subcaption" style="padding-left: 21.47%;"><strong>(b)</strong> Training loss</div></div><div class="subfigure" id="fig:fig2c" style="flex: 0 0 32.34%; max-width: 32.34%;"><img src="img/paper_fig2c.png" alt="paper_fig2c.png" class="fig-img zoomable" style="width:100.0%;" loading="lazy"><div class="subcaption" style="padding-left: 21.74%;"><strong>(c)</strong> Test accuracy</div></div></div><figcaption class="fig-caption"><strong class="fig-label">Figure 5:</strong> Standard cross-entropy fails at the precision cliff <span class="math-inline">\(c_{d}\)</span>; fixed
+      cross-entropy removes the cliff across all precisions (<span class="math-inline">\(a + b \bmod 31\)</span>,
+      <span class="math-inline">\(\lambda = 1\)</span>; 2 of 5 seeds shown).
       Top: <span class="math-inline">\(\epsilon = 10^{-8}\)</span>.
       Bottom: <span class="math-inline">\(\epsilon = 10^{-16}\)</span>, where even fp64 standard
       cross-entropy fails at <span class="math-inline">\(c_{64}\)</span> while fixed cross-entropy
@@ -1154,24 +1154,25 @@ fp64 standard cross-entropy and reaches <span class="math-inline">\(100\%\)</spa
       fp32 (orange) breaks at <span class="math-inline">\(c_{32}\)</span>.</figcaption></figure>
 <h2 id="sec:distillation" class="section-heading"><span class="sec-num">7.</span> Soft-Target Distillation<a class="heading-anchor" href="#sec:distillation" title="Permalink">#</a></h2>
 <p>To see how Softmax Cancellation (<a href="#sec:bug2" class="xref" data-ref="sec:bug2">Section&nbsp;3</a>) affects optimization,
-we initialize a student network with the weights of a teacher trained to <span class="math-inline">\(100\%\)</span>
-accuracy on <span class="math-inline">\(a + b \bmod 53\)</span> (<span class="math-inline">\(\boldsymbol{\theta}_{\mathrm{S}}^{(0)} = \boldsymbol{\theta}_{\mathrm{T}}\)</span>), and run
-<span class="math-inline">\(2{,}000\)</span> steps of Adam (<span class="math-inline">\(\eta = 2\times 10^{-3}\)</span>, <span class="math-inline">\(\lambda = 0\)</span>,
-<span class="math-inline">\(\epsilon = 10^{-8}\)</span>) at distillation temperature <span class="math-inline">\(T = 4\)</span>
-(<a href="#bib-hinton2015distilling" class="cite-link" data-bib="hinton2015distilling">Hinton et al., 2015</a>), which keeps the scaled margin <span class="math-inline">\(m/T\)</span>
-below <span class="math-inline">\(c_{16}\)</span> so <span class="math-inline">\(\mathbf{p}\)</span> does not round to one-hot.
+we initialize a 2-layer ReLU MLP student with the fp32 weights of a
+teacher trained to <span class="math-inline">\(100\%\)</span> accuracy on <span class="math-inline">\(a + b \bmod 53\)</span> (<span class="math-inline">\(\boldsymbol{\theta}_{\mathrm{S}}^{(0)} =
+\boldsymbol{\theta}_{\mathrm{T}}\)</span>), and run <span class="math-inline">\(2{,}000\)</span> full-batch steps of Adam (<span class="math-inline">\(\eta =
+2\times 10^{-3}\)</span>, <span class="math-inline">\(\lambda = 0\)</span>, <span class="math-inline">\(\epsilon = 10^{-8}\)</span>) on the <span class="math-inline">\(50\%\)</span> training
+split at temperature <span class="math-inline">\(T = 4\)</span> (<a href="#bib-hinton2015distilling" class="cite-link" data-bib="hinton2015distilling">Hinton et al., 2015</a>) (which keeps
+<span class="math-inline">\(m/T &lt; c_{16}\)</span> so <span class="math-inline">\(\mathbf{p}\)</span> does not round to one-hot),
+computing the forward pass and loss in bf16, fp32, or
+fp64.
 Because <span class="math-inline">\(\mathbf{z}_{\mathrm{S}} = \mathbf{z}_{\mathrm{T}}\)</span> initially, the true gradient is zero and the
 student should not move.
 However, standard soft-target cross-entropy has a non-zero residual gradient at
 <span class="math-inline">\(\mathbf{z}_{\mathrm{S}} = \mathbf{z}_{\mathrm{T}}\)</span> due to the mismatch between its forward softmax
 and backward log-softmax (<a href="#fig:fig4a" class="xref" data-ref="fig:fig4a">Figure&nbsp;1b</a>).
-Whenever this residual gradient exceeds <span class="math-inline">\(\epsilon\)</span>, Adam normalizes it into
-steps of size <span class="math-inline">\(\eta\)</span> (<a href="#fig:fig4" class="xref" data-ref="fig:fig4">Figure&nbsp;7</a>): in fp64 the residual
-(<span class="math-inline">\({\sim}10^{-17}\)</span>) lies well below <span class="math-inline">\(\epsilon = 10^{-8}\)</span> so the student stays
-near <span class="math-inline">\(\mathrm{KL} = 0\)</span>, in fp32 (<span class="math-inline">\({\sim}10^{-8}\)</span>) it causes an initial
-<span class="math-inline">\(\mathrm{KL}\)</span> spike and a <span class="math-inline">\({\sim}10^{-6}\)</span> floor, and in bf16
-(<span class="math-inline">\({\sim}10^{-3}\)</span>) it drives the student away from the teacher and degrades test
-accuracy.
+Because Adam divides by <span class="math-inline">\(\sqrt{\hat{\mathbf{v}}} + \epsilon\)</span>, it amplifies even tiny
+residual gradients (<a href="#fig:fig4" class="xref" data-ref="fig:fig4">Figure&nbsp;7</a>): in bf16 (<span class="math-inline">\({\sim}10^{-3}\)</span>) it
+drives the student away from the teacher and degrades test accuracy, in
+fp32 (<span class="math-inline">\({\sim}10^{-8}\)</span>) it causes an initial <span class="math-inline">\(\mathrm{KL}\)</span> spike and a
+<span class="math-inline">\({\sim}10^{-6}\)</span> floor, and in fp64 (<span class="math-inline">\({\sim}10^{-17}\)</span>) the update is
+too small to change the fp32 weights.
 Our fixed soft-target cross-entropy returns <span class="math-inline">\(\mathbf{g} = \mathbf{0}\)</span> at <span class="math-inline">\(\mathbf{z}_{\mathrm{S}} =
 \mathbf{z}_{\mathrm{T}}\)</span>, so the student stays at <span class="math-inline">\(\mathrm{KL} = 0\)</span> and <span class="math-inline">\(100\%\)</span> accuracy
 across all precisions.</p>
