@@ -9,449 +9,368 @@
   <meta name="author" content="Ananya Vivek Kulkarni">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
-
+  <script>
+    try {
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch (e) { }
+  </script>
 </head>
 
 <body>
-  <table
-    style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-    <tbody>
-      <tr style="padding:0px">
-        <td style="padding:0px">
-          <table
-            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr style="padding:0px">
-                <td style="padding:2.5%;width:63%;vertical-align:middle">
-                  <p class="name" style="text-align: center;">
-                    Ananya Vivek Kulkarni
-                  </p>
-                  <p>
-                    I am a
-                    MS by Research (CSE) student at <a href="https://www.iiit.ac.in/">IIIT Hyderabad</a>,
-                    advised by Prof. <a href="https://www.iiit.ac.in/faculty/jawahar-c-v/">C. V. Jawahar</a>.
-                    I am also an AI/ML Intern at
-                    <a href="https://ihub-data.iiit.ac.in/">iHub-Data, IIIT Hyderabad</a>.
-                    My work focuses on computer vision, Optimization, Image-Video Denoising, and
-                    knowledge distillation for adverse weather removal and real-time edge deployment.
+  <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme"
+          title="Switch to light theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"></path>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"></path>
+          </svg>
+        </button>
 
-                    Previously, I worked as a Research Intern at <a href="https://www.sac.gov.in/">SAC, ISRO</a>
-                    on radiative transfer emulation and at <a href="https://www.diat.ac.in/">DIAT, DRDO</a>
-                    on deep learning–based leak detection.
-                  </p>
+  <nav class="topbar" id="topbar" aria-label="Sections">
+    <div class="wrap topbar-inner">
+      <a href="#top">About</a>
+      <a href="#updates">Updates</a>
+      <a href="#research">Research</a>
+      <a href="#miscellanea">Miscellanea</a>
+    </div>
+  </nav>
 
-                  <p>
-                    I received my B.Tech in Information Technology from
-                    <a href="https://www.ddu.ac.in/">Dharmsinh Desai University</a>.
-                    <br><br>
-                    I have received a Best Paper Award (Springer CCIS, 2023), have publications in OTCON 2025,
-                    and papers accepted at ERCICAM 2025 and ICVGIP 2025, along with a patent on a real-time
-                    text-to-Braille conversion system.
-                  </p>
+  <header class="hero" id="top">
 
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <p class="eyebrow">MS by Research (CSE) &middot; IIIT Hyderabad</p>
+        <h1 class="name">Ananya Vivek Kulkarni</h1>
 
-                  <p style="text-align:center">
-                    <a href="mailto:ananyakulkarni2103@gmail.com">Email</a> &nbsp;/&nbsp;
-                    <a href="data/Ananya_Vivek_Kulkarni_Latest_dec_2025.pdf">CV</a> &nbsp;/&nbsp;
-                    <a href="data/bio.txt">Bio</a> &nbsp;/&nbsp;
-                    <a href="https://scholar.google.com/citations?user=GddubbUAAAAJ">Scholar</a> &nbsp;/&nbsp;
-                    <a href="https://github.com/ananya12k">Github</a> &nbsp;/&nbsp;
-                    <a href="https://www.linkedin.com/in/ananya-kulkarni-cvml/">LinkedIn</a>
-                  </p>
-                </td>
-                <td style="padding:2.5%;width:37%;max-width:37%">
-                  <a href="images/AnanyaK.jpg"><img
-                      style="width:100%;max-width:100%;object-fit: cover; border-radius: 50%;" alt="profile photo"
-                      src="images/AnanyaK.jpg" class="hoverZoomLink"></a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <table
-            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr>
-                <td style="padding:16px;width:100%;vertical-align:middle">
-                  <h2>Research</h2>
-                  <p>
-                    My research focuses on image and video restoration, particularly denoising and
-                    adverse weather removal, along with efficient model design through knowledge
-                    distillation. I aim to improve visual perception systems for challenging
-                    real-world environments.
-                    <br><br>
-                    <b>Areas of Interest:</b> Image and Video Restoration, Video Processing, Knowledge Distillation,
-                    Object Detection, Computer Vision.
+        <p>
+          I am a
+          MS by Research (CSE) student at <a href="https://www.iiit.ac.in/">IIIT Hyderabad</a>,
+          advised by Prof. <a href="https://www.iiit.ac.in/faculty/jawahar-c-v/">C. V. Jawahar</a>.
+          I am also an AI/ML Intern at
+          <a href="https://ihub-data.iiit.ac.in/">iHub-Data, IIIT Hyderabad</a>.
+          My work focuses on computer vision, Optimization, Image-Video Denoising, and
+          knowledge distillation for adverse weather removal and real-time edge deployment.
 
-                    <br>Some papers are <span class="highlight">highlighted</span>.
-                  </p>
+          Previously, I worked as a Research Intern at <a href="https://www.sac.gov.in/">SAC, ISRO</a>
+          on radiative transfer emulation and at <a href="https://www.diat.ac.in/">DIAT, DRDO</a>
+          on deep learning–based leak detection.
+        </p>
 
+        <p>
+          I received my B.Tech in Information Technology from
+          <a href="https://www.ddu.ac.in/">Dharmsinh Desai University</a>.
+        </p>
 
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <table
-            style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
+        <p>
+          I have received a Best Paper Award (Springer CCIS, 2023), have publications in OTCON 2025,
+          and papers accepted at ERCICAM 2025 and ICVGIP 2025, along with a patent on a real-time
+          text-to-Braille conversion system.
+        </p>
 
-              <tr>
-                <td colspan="2" style="padding:12px;">
-                  <div class="paper-card featured">
-                    <table style="width:100%;border-collapse:collapse;">
-                      <tr onmouseover="icvgip_start()" onmouseout="icvgip_stop()">
+        <div class="contact">
+          <a href="mailto:ananyakulkarni2103@gmail.com">Email</a>
+          <a href="data/Ananya_Vivek_Kulkarni_Latest_dec_2025.pdf">CV</a>
+          <a href="data/bio.txt">Bio</a>
+          <a href="https://scholar.google.com/citations?user=GddubbUAAAAJ">Scholar</a>
+          <a href="https://github.com/ananya12k">Github</a>
+          <a href="https://www.linkedin.com/in/ananya-kulkarni-cvml/">LinkedIn</a>
+        </div>
+      </div>
 
-                        <!-- IMAGE -->
-                        <td style="padding:16px;width:20%;vertical-align:middle">
-                          <div class="one">
-                            <div class="two" id="icvgip_image">
-                              <img src="images/awr_after.png" width="100%">
-                            </div>
-                            <img src="images/awr_before.png" width="100%">
-                          </div>
-                          <script type="text/javascript">
-                            function icvgip_start() {
-                              document.getElementById('icvgip_image').style.opacity = "1";
-                            }
-                            function icvgip_stop() {
-                              document.getElementById('icvgip_image').style.opacity = "0";
-                            }
-                            icvgip_stop();
-                          </script>
-                        </td>
+      <div class="hero-side">
+        <a class="portrait" href="images/AnanyaK.jpg">
+          <img alt="Portrait of Ananya Vivek Kulkarni" src="images/AnanyaK.jpg">
+        </a>
+      </div>
+    </div>
+  </header>
 
-                        <!-- TEXT -->
-                        <td style="padding:8px;width:80%;vertical-align:middle">
-                          <span class="papertitle">
-                            Enhancing Driving Visibility via Semantic-Guided Knowledge Distillation
-                            for Adverse Weather Removal
-                          </span>
-                          <br>
-                          H. S. Mukkamala,  S. Gangisetty, <strong>Ananya Vivek Kulkarni</strong>, V. G. Yalla, C. V.
-                          Jawahar
-                          <br>
-                          <em>ICVGIP</em>, 2025
-                          <br>
-                          <a href="https://github.com/Hanvitha-51/AdvWeatherRemoval">code</a>
-                          <p></p>
-                          <p>
-                            We propose a semantic-guided knowledge distillation framework that improves
-                            visibility restoration under adverse weather while enabling efficient
-                            real-time deployment on edge devices.
-                          </p>
-                        </td>
+  <main class="wrap">
+    <section id="updates">
+      <h2>Updates</h2>
+      <ul class="updates">
+        <li>
+          <time>Feb 2026</time>
+          <span>Gave technical sessions on Git and Linux for the TRAIL Team, INAI Mobility, CVIT, IIIT Hyderabad.</span>
+        </li>
+        <li>
+          <time>2025</time>
+          <span>Paper on semantic-guided knowledge distillation for adverse weather removal accepted at <a href="#paper-1">ICVGIP 2025</a>.</span>
+        </li>
+        <li>
+          <time>2025</time>
+          <span>Paper on gender agreement in Indo-Aryan languages accepted at <a href="#paper-3">ERCICAM 2025</a>.</span>
+        </li>
+        <li>
+          <time>2025</time>
+          <span>Presented our work on vehicle visibility in fog at <a href="#paper-2">OTCON 2025</a>.</span>
+        </li>
+        <li>
+          <time>Dec 2024</time>
+          <span>Indian patent application on a real-time text-to-Braille converter published.</span>
+        </li>
+        <li>
+          <time>2023</time>
+          <span>Received the Best Paper Award at <a href="#paper-4">ASCIS 2023 (Springer CCIS)</a>.</span>
+        </li>
+      </ul>
+    </section>
 
-                      </tr>
-                    </table>
-                  </div>
-                </td>
-              </tr>
+    <section id="research">
+      <h2>Research</h2>
+      <p class="lede">
+        My research focuses on image and video restoration, particularly denoising and
+        adverse weather removal, along with efficient model design through knowledge
+        distillation. I aim to improve visual perception systems for challenging
+        real-world environments.
+      </p>
 
-              <tr>
-                <td colspan="2" style="padding:12px;">
-                  <div class="paper-card">
-                    <table style="width:100%;border-collapse:collapse;">
-                      <tr onmouseover="fog_start()" onmouseout="fog_stop()">
+      <div class="interests">
+        <span class="interests-label">Areas of Interest</span>
+        <ul class="chips">
+          <li>Image and Video Restoration</li>
+          <li>Video Processing</li>
+          <li>Knowledge Distillation</li>
+          <li>Object Detection</li>
+          <li>Computer Vision</li>
+        </ul>
+      </div>
 
-                        <!-- IMAGE (Before / After) -->
-                        <td style="padding:16px;width:20%;vertical-align:middle">
-                          <div class="one">
-                            <div class="two" id="fog_image">
-                              <img src="images/car_detect_after.png" width="100%">
-                            </div>
-                            <img src="images/car_detect_before.png" width="100%">
-                          </div>
-                          <script type="text/javascript">
-                            function fog_start() {
-                              document.getElementById('fog_image').style.opacity = "1";
-                            }
-                            function fog_stop() {
-                              document.getElementById('fog_image').style.opacity = "0";
-                            }
-                            fog_stop();
-                          </script>
-                        </td>
+      <p class="legend">Some papers are <span class="highlight">highlighted</span>.</p>
 
-                        <!-- TEXT -->
-                        <td style="padding:8px;width:80%;vertical-align:middle">
-                          <span class="papertitle">
-                            Improving Vehicle Visibility in Fog Environment
-                          </span>
-                          <br>
-                          <strong>Ananya Vivek Kulkarni</strong>, Zankhana Barad, Harshadkumar B. Prajapati
-                          <br>
-                          <em>OTCON</em>, 2025
-                          <br>
-                          <a href="https://doi.org/10.1109/OTCON65728.2025.11070636">paper</a>
-                          <p></p>
-                          <p>
-                            This work combines image enhancement techniques (DCP, CLAHE) with
-                            deep learning-based detection and tracking to improve vehicle visibility
-                            and robustness in foggy driving scenarios.
-                          </p>
-                        </td>
+      <div class="papers">
 
-                      </tr>
-                    </table>
-                  </div>
-                </td>
-              </tr>
+        <article class="paper featured" id="paper-1">
+          <div class="thumb" tabindex="0" aria-label="Show restored result">
+            <img src="images/awr_before.png" alt="Driving scene in adverse weather" loading="lazy">
+            <img class="after" src="images/awr_after.png" alt="The same scene after weather removal" loading="lazy">
+          </div>
+          <div class="paper-body">
+            <p class="venue">ICVGIP 2025</p>
+            <h3 class="papertitle">
+              Enhancing Driving Visibility via Semantic-Guided Knowledge Distillation
+              for Adverse Weather Removal
+            </h3>
+            <p class="authors">
+              H. S. Mukkamala, S. Gangisetty, <strong>Ananya Vivek Kulkarni</strong>, V. G. Yalla, C. V.
+              Jawahar
+            </p>
+            <p>
+              We propose a semantic-guided knowledge distillation framework that improves
+              visibility restoration under adverse weather while enabling efficient
+              real-time deployment on edge devices.
+            </p>
+            <p class="paper-links">
+              <a href="https://github.com/Hanvitha-51/AdvWeatherRemoval">code</a>
+            </p>
+          </div>
+        </article>
 
+        <article class="paper" id="paper-2">
+          <div class="thumb" tabindex="0" aria-label="Show enhanced result">
+            <img src="images/car_detect_before.png" alt="Fog visibility demo interface before processing" loading="lazy">
+            <img class="after" src="images/car_detect_after.png" alt="Fog visibility demo interface after processing"
+              loading="lazy">
+          </div>
+          <div class="paper-body">
+            <p class="venue">OTCON 2025</p>
+            <h3 class="papertitle">
+              Improving Vehicle Visibility in Fog Environment
+            </h3>
+            <p class="authors">
+              <strong>Ananya Vivek Kulkarni</strong>, Zankhana Barad, Harshadkumar B. Prajapati
+            </p>
+            <p>
+              This work combines image enhancement techniques (DCP, CLAHE) with
+              deep learning-based detection and tracking to improve vehicle visibility
+              and robustness in foggy driving scenarios.
+            </p>
+            <p class="paper-links">
+              <a href="https://doi.org/10.1109/OTCON65728.2025.11070636">paper</a>
+            </p>
+          </div>
+        </article>
 
+        <article class="paper" id="paper-3">
+          <div class="thumb fit">
+            <img src="images/ercicam_fa.jpg" alt="Finite automaton diagram" loading="lazy">
+          </div>
+          <div class="paper-body">
+            <p class="venue">ERCICAM 2025</p>
+            <h3 class="papertitle">
+              Gender Agreement in Indo-Aryan Languages Using Rule-Based Parsing and Finite Automata
+            </h3>
+            <p class="authors">
+              <strong>Ananya Vivek Kulkarni</strong>, Srushti Pednekar, Deepak Vegda
+            </p>
+            <p>
+              We present a rule-based syntactic parsing framework using finite automata
+              to model gender agreement in Indo-Aryan languages, combining linguistic
+              theory with computational efficiency.
+            </p>
+            <p class="paper-links">
+              <a
+                href="https://www.researchgate.net/publication/393400083_Gender_Agreement_in_Indo-Aryan_Languages_Using_Rule-Based_Parsing_and_Finite_Automata">preprint</a>
+            </p>
+          </div>
+        </article>
 
-              <tr>
-                <td colspan="2" style="padding:12px;">
-                  <div class="paper-card">
-                    <table style="width:100%;border-collapse:collapse;">
-                      <tr>
+        <article class="paper" id="paper-4">
+          <div class="thumb" tabindex="0" aria-label="Show second image">
+            <img src="images/rpi_before.jpeg" alt="Image-to-Braille converter prototype" loading="lazy">
+            <img class="after" src="images/rpi_after.png" alt="Image-to-Braille converter output" loading="lazy">
+          </div>
+          <div class="paper-body">
+            <p class="venue">Springer CCIS 2024 <span class="award">Best Paper Award</span>
+            </p>
+            <h3 class="papertitle">
+              Raspberry Pi-Driven Affordable Image-to-Braille Converter
+              for Visually Impaired Users
+            </h3>
+            <p class="authors">
+              <strong>Ananya Vivek Kulkarni</strong>, Maitri Shah, Nivedita Thakur, Srushti Pednekar, Viral
+              H. Shah
+            </p>
+            <p>
+              We propose a low-cost, real-time image-to-Braille conversion system
+              using OCR and Raspberry Pi, designed to improve accessibility to
+              educational content for visually impaired users.
+            </p>
+            <p class="paper-links">
+              <a href="https://doi.org/10.1007/978-3-031-59107-5_15">paper</a>
+            </p>
+          </div>
+        </article>
 
-                        <!-- IMAGE -->
-                        <td style="padding:16px;width:20%;vertical-align:middle">
-                          <img src="images/ercicam_fa.jpg" width="100%">
-                        </td>
+        <article class="paper" id="paper-5">
+          <div class="thumb fit">
+            <img src="images/survey.png" alt="Survey illustration" loading="lazy">
+          </div>
+          <div class="paper-body">
+            <p class="venue">Conference Paper 2024</p>
+            <h3 class="papertitle">
+              Women Academicians in Engineering Colleges in Gujarat, India:
+              A Survey of the Current Scenario
+            </h3>
+            <p class="authors">
+              Srushti Pednekar, <strong>Ananya Vivek Kulkarni</strong>, Maitri Shah, Nikita Desai
+            </p>
+            <p>
+              This survey analyzes participation, challenges, and representation
+              of women academicians in engineering institutions across Gujarat,
+              highlighting structural and institutional trends.
+            </p>
+            <p class="paper-links">
+              <a
+                href="https://www.researchgate.net/publication/377115929_Women_Academicians_in_Engineering_Colleges_in_Gujarat_India_A_Survey_of_the_Current_Scenario">preprint</a>
+            </p>
+          </div>
+        </article>
 
-                        <!-- TEXT -->
-                        <td style="padding:8px;width:80%;vertical-align:middle">
-                          <span class="papertitle">
-                            Gender Agreement in Indo-Aryan Languages Using Rule-Based Parsing and Finite Automata
-                          </span>
-                          <br>
-                          <strong>Ananya Vivek Kulkarni</strong>, Srushti Pednekar, Deepak Vegda
-                          <br>
-                          <em>ERCICAM</em>, 2025
-                          <br>
-                          <a
-                            href="https://www.researchgate.net/publication/393400083_Gender_Agreement_in_Indo-Aryan_Languages_Using_Rule-Based_Parsing_and_Finite_Automata">preprint</a>
-                          <p></p>
-                          <p>
-                            We present a rule-based syntactic parsing framework using finite automata
-                            to model gender agreement in Indo-Aryan languages, combining linguistic
-                            theory with computational efficiency.
-                          </p>
-                        </td>
+      </div>
+    </section>
 
-                      </tr>
-                    </table>
-                  </div>
-                </td>
-              </tr>
+    <section id="miscellanea">
+      <h2>Miscellanea</h2>
 
-              <tr>
-                <td colspan="2" style="padding:12px;">
-                  <div class="paper-card">
-                    <table style="width:100%;border-collapse:collapse;">
-                      <tr onmouseover="braille_start()" onmouseout="braille_stop()">
+      <div class="misc-row">
+        <h3 class="misc-label" style="--tab:#fcb97d">Honors</h3>
+        <ul class="misc-list">
+          <li>Best Paper Award, ASCIS 2023 (Springer CCIS)</li>
+          <li>Student Startup Innovation Policy (SSIP), Govt. of Gujarat (funded student project)</li>
+          <li>Top-10 Finalist, DevHeat Beta Hackathon (student category)</li>
+        </ul>
+      </div>
 
-                        <!-- IMAGE (Before / After) -->
-                        <td style="padding:16px;width:20%;vertical-align:middle">
-                          <div class="one">
-                            <div class="two" id="braille_image">
-                              <img src="images/rpi_after.png" width="100%">
-                            </div>
-                            <img src="images/rpi_before.jpeg" width="100%">
-                          </div>
-                          <script type="text/javascript">
-                            function braille_start() {
-                              var el = document.getElementById('braille_image');
-                              if (el) el.style.opacity = "1";
-                            }
-                            function braille_stop() {
-                              var el = document.getElementById('braille_image');
-                              if (el) el.style.opacity = "0";
-                            }
-                            braille_stop();
-                          </script>
-                        </td>
+      <div class="misc-row">
+        <h3 class="misc-label" style="--tab:#aaba9e">Presentations</h3>
+        <ul class="misc-list">
+          <li>Paper presentation at ERCICAM 2025 (rule-based parsing for Indo-Aryan languages)</li>
+          <li>Conference presentation at OTCON 2025 (vehicle visibility in foggy environments)</li>
+          <li>Best Paper presentation at ASCIS 2023</li>
+          <li>
+            Technical session on Git Fundamentals for TRAIL Team, INAI Mobility, CVIT, IIIT Hyderabad
+            <span class="year">(Feb 2026)</span>
+            [<a href="https://docs.google.com/presentation/d/1Z9G_MsRpQNfkTcvfV-Gb-L3dJBM1l6iMyGOM9FpKaUw/edit?slide=id.p1#slide=id.p1"
+              target="_blank" rel="noopener noreferrer">slides</a>]
+          </li>
+          <li>
+            Technical session on Introduction to Linux for TRAIL Team, INAI Mobility, CVIT, IIIT Hyderabad
+            <span class="year">(Feb 2026)</span>
+            [<a href="https://docs.google.com/presentation/d/1nIo0jlCst-wUmAV59fNzUniUuu2IMwnOFgp8PIu1EUY/edit?usp=sharing"
+              target="_blank" rel="noopener noreferrer">slides</a>]
+          </li>
+          <li>
+            Technical session on Linux Command Line Fundamentals for TRAIL Team, INAI Mobility, CVIT, IIIT
+            Hyderabad
+            <span class="year">(Feb 2026)</span>
+            [<a href="https://docs.google.com/presentation/d/1vdik6jZ9zR5vNJpwZCTpJvj0mD5uhxqxx25tpTfUw2o/edit?usp=sharing"
+              target="_blank" rel="noopener noreferrer">slides</a>]
+          </li>
+        </ul>
+      </div>
 
-                        <!-- TEXT -->
-                        <td style="padding:8px;width:80%;vertical-align:middle">
-                          <span class="papertitle">
-                            Raspberry Pi-Driven Affordable Image-to-Braille Converter
-                            for Visually Impaired Users
-                          </span>
-                          <br>
-                          <strong>Ananya Vivek Kulkarni</strong>, Maitri Shah, Nivedita Thakur, Srushti Pednekar, Viral
-                          H. Shah
-                          <br>
-                          <em>Springer CCIS</em>, 2024 <strong style="color:#d32f2f;">(Best Paper Award)</strong>
-                          <br>
-                          <a href="https://doi.org/10.1007/978-3-031-59107-5_15">paper</a>
-                          <p></p>
-                          <p>
-                            We propose a low-cost, real-time image-to-Braille conversion system
-                            using OCR and Raspberry Pi, designed to improve accessibility to
-                            educational content for visually impaired users.
-                          </p>
-                        </td>
+      <div class="misc-row">
+        <h3 class="misc-label" style="--tab:#c6b89e">Patents</h3>
+        <ul class="misc-list plain">
+          <li><strong>A System and Method for Real-Time Text-to-Braille Converter</strong></li>
+          <li class="year">Indian Patent Application No. 202421066714, published Dec 2024</li>
+        </ul>
+      </div>
 
-                      </tr>
-                    </table>
-                  </div>
-                </td>
-              </tr>
+      <div class="misc-row">
+        <h3 class="misc-label" style="--tab:#edd892">Beyond Research</h3>
+        <ul class="misc-list">
+          <li>Classical Bharatanatyam dancer (trained for 3 years, distinction)</li>
+          <li>Contributor to open-source climate ML projects (OpenClimateFix)</li>
+          <li>Interested in edge AI systems, low-visibility perception, and 3D scene understanding</li>
+        </ul>
+      </div>
+    </section>
+  </main>
 
+  <footer class="credit">
+    <div class="wrap">
+      &copy; <span id="year">2026</span> Ananya Vivek Kulkarni. All rights reserved.
+      Layout inspired by <a href="https://jonbarron.info/">Jon Barron's website</a>.
+    </div>
+  </footer>
 
+  <script>
+    (function () {
+      /* Light/dark switch */
+      var root = document.documentElement;
+      var toggle = document.getElementById('theme-toggle');
 
-              <tr>
-                <td colspan="2" style="padding:12px;">
-                  <div class="paper-card">
-                    <table style="width:100%;border-collapse:collapse;">
-                      <tr>
+      function readTheme() {
+        var light = root.getAttribute('data-theme') === 'light';
+        var label = light ? 'Switch to dark theme' : 'Switch to light theme';
+        toggle.setAttribute('aria-label', label);
+        toggle.title = label;
+      }
 
-                        <!-- IMAGE -->
-                        <td style="padding:16px;width:20%;vertical-align:middle">
-                          <img src="images/survey.png" width="100%">
-                        </td>
+      toggle.addEventListener('click', function () {
+        var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) { }
+        readTheme();
+      });
+      readTheme();
 
-                        <!-- TEXT -->
-                        <td style="padding:8px;width:80%;vertical-align:middle">
-                          <span class="papertitle">
-                            Women Academicians in Engineering Colleges in Gujarat, India:
-                            A Survey of the Current Scenario
-                          </span>
-                          <br>
-                          Srushti Pednekar, <strong>Ananya Vivek Kulkarni</strong>, Maitri Shah, Nikita Desai
-                          <br>
-                          <em>Conference Paper</em>, 2024
-                          <br>
-                          <a
-                            href="https://www.researchgate.net/publication/377115929_Women_Academicians_in_Engineering_Colleges_in_Gujarat_India_A_Survey_of_the_Current_Scenario">preprint</a>
-                          <p></p>
-                          <p>
-                            This survey analyzes participation, challenges, and representation
-                            of women academicians in engineering institutions across Gujarat,
-                            highlighting structural and institutional trends.
-                          </p>
-                        </td>
-
-                      </tr>
-                    </table>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-
-
-          <!-- ===== Miscellanea ===== -->
-          <table style="width:100%; margin:0 auto; border:0; border-spacing:0; padding:16px;">
-            <tbody>
-              <tr>
-                <td>
-                  <h2>Miscellanea</h2>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <table style="width:100%; border:0; border-spacing:0px 10px; border-collapse:separate; margin:auto;">
-            <tbody>
-
-              <!-- Honors -->
-              <tr class="misc-row">
-                <td align="center" style="padding:16px;width:20%;vertical-align:top">
-                  <div class="colored-box" style="background-color:#fcb97d;">
-                    <h2>Honors</h2>
-                  </div>
-                </td>
-                <td class="misc-content">
-                  <div class="misc-list">
-                    <div class="item">Best Paper Award, ASCIS 2023 (Springer CCIS)</div>
-                    <div class="item">Student Startup Innovation Policy (SSIP), Govt. of Gujarat (funded student
-                      project)</div>
-                    <div class="item">Top-10 Finalist, DevHeat Beta Hackathon (student category)</div>
-                  </div>
-                </td>
-              </tr>
-
-              <!-- Presentations -->
-              <tr class="misc-row">
-                <td align="center" style="padding:16px;width:20%;vertical-align:top">
-                  <div class="colored-box" style="background-color:#aaba9e;">
-                    <h2>Presentations</h2>
-                  </div>
-                </td>
-                <td class="misc-content">
-                  <div class="misc-list">
-
-                    <div class="item">
-                      Paper presentation at ERCICAM 2025 (rule-based parsing for Indo-Aryan languages)
-                    </div>
-
-                    <div class="item">
-                      Conference presentation at OTCON 2025 (vehicle visibility in foggy environments)
-                    </div>
-
-                    <div class="item">
-                      Best Paper presentation at ASCIS 2023
-                    </div>
-
-                    <div class="item">
-                      Technical session on Git Fundamentals for TRAIL Team, INAI Mobility, CVIT, IIIT Hyderabad
-                      <span class="year">(Feb 2026)</span>
-                      [<a
-                        href="https://docs.google.com/presentation/d/1Z9G_MsRpQNfkTcvfV-Gb-L3dJBM1l6iMyGOM9FpKaUw/edit?slide=id.p1#slide=id.p1" target="_blank" rel="noopener noreferrer">slides</a>]
-                    </div>
-
-                    <div class="item">
-                      Technical session on Introduction to Linux for TRAIL Team, INAI Mobility, CVIT, IIIT Hyderabad
-                      <span class="year">(Feb 2026)</span>
-                      [<a
-                        href="https://docs.google.com/presentation/d/1nIo0jlCst-wUmAV59fNzUniUuu2IMwnOFgp8PIu1EUY/edit?usp=sharing" target="_blank" rel="noopener noreferrer">slides</a>]
-                    </div>
-
-                    <div class="item">
-                      Technical session on Linux Command Line Fundamentals for TRAIL Team, INAI Mobility, CVIT, IIIT
-                      Hyderabad
-                      <span class="year">(Feb 2026)</span>
-                      [<a
-                        href="https://docs.google.com/presentation/d/1vdik6jZ9zR5vNJpwZCTpJvj0mD5uhxqxx25tpTfUw2o/edit?usp=sharing" target="_blank" rel="noopener noreferrer">slides</a>]
-                    </div>
-
-                  </div>
-                </td>
-              </tr>
-
-              <!-- Patents -->
-              <tr class="misc-row">
-                <td align="center" style="padding:16px;width:20%;vertical-align:top">
-                  <div class="colored-box" style="background-color:#c6b89e;">
-                    <h2>Patents</h2>
-                  </div>
-                </td>
-                <td class="misc-content">
-                  <div class="misc-list">
-                    <div class="item">
-                      <strong>A System and Method for Real-Time Text-to-Braille Converter</strong>
-                    </div>
-                    <div class="item year">
-                      Indian Patent Application No. 202421066714, published Dec 2024
-                    </div>
-                  </div>
-                </td>
-              </tr>
-
-              <!-- Beyond Research -->
-              <tr class="misc-row">
-                <td align="center" style="padding:16px;width:20%;vertical-align:top">
-                  <div class="colored-box" style="background-color:#edd892;">
-                    <h2>Beyond Research</h2>
-                  </div>
-                </td>
-                <td class="misc-content">
-                  <div class="misc-list">
-                    <div class="item">Classical Bharatanatyam dancer (trained for 3 years, distinction)</div>
-                    <div class="item">Contributor to open-source climate ML projects (OpenClimateFix)</div>
-                    <div class="item">Interested in edge AI systems, low-visibility perception, and 3D scene
-                      understanding</div>
-                  </div>
-                </td>
-              </tr>
-
-            </tbody>
-          </table>
-
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
 </body>
 
 </html>
