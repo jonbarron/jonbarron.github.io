@@ -1,86 +1,329 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A Fix for Softmax and Cross-Entropy - Interactive Demo</title>
-  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <title>A Fix for Softmax and Cross-Entropy — Interactive Demo</title>
+  <meta name="author" content="Jonathan T. Barron, Dan Gnanapragasam, Michael Tschannen" />
+  <meta name="description" content="Interactive 2D AdamW optimization demo comparing standard vs. fixed cross-entropy across bf16, fp32, and fp64 precision cliffs." />
+  <meta property="og:title" content="A Fix for Softmax and Cross-Entropy — Interactive Demo" />
+  <meta property="og:description" content="Interactive 2D AdamW optimization demo comparing standard vs. fixed cross-entropy across bf16, fp32, and fp64 precision cliffs." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jonbarron.info/softmaxfix/demo.html" />
+  <meta property="og:image" content="https://jonbarron.info/softmaxfix/img/social_preview.png" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@jon_barron" />
+  <meta name="twitter:title" content="A Fix for Softmax and Cross-Entropy — Interactive Demo" />
+  <meta name="twitter:description" content="Interactive 2D AdamW optimization demo comparing standard vs. fixed cross-entropy across bf16, fp32, and fp64 precision cliffs." />
+  <meta name="twitter:image" content="https://jonbarron.info/softmaxfix/img/social_preview.png" />
+  <link rel="icon" type="image/png" href="data:image/png;base64,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" />
+  <link rel="stylesheet" type="text/css" href="../stylesheet.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --background: #ffffff;
+      --foreground: #000000;
+      --card: #ffffff;
+      --card-foreground: #000000;
+      --muted: #f7f7f5;
+      --muted-foreground: #555555;
+      --border: #e2e2dc;
+    }
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
-      padding: 12px;
+      padding: 20px 16px 40px;
+      background-color: var(--background);
+      color: var(--foreground);
+      font-family: 'Lato', Verdana, Helvetica, sans-serif;
+      font-size: 14px;
+      -webkit-font-smoothing: antialiased;
       user-select: none;
     }
     canvas {
       display: block;
     }
+    .demo-shell {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .demo-back {
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+    .demo-back a {
+      font-size: 14px;
+      color: #1772d0;
+      text-decoration: none;
+    }
+    .demo-back a:hover,
+    .demo-back a:focus {
+      color: #f09228;
+      text-decoration: none;
+    }
+    html.dark .demo-back a {
+      color: #58a6ff;
+    }
+    html.dark .demo-back a:hover,
+    html.dark .demo-back a:focus {
+      color: #f09228;
+    }
+    .controls-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding: 9px 12px;
+      border-radius: 4px;
+      background: var(--muted);
+      border: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .controls-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+    .controls-row.with-divider {
+      justify-content: space-between;
+      padding-top: 7px;
+      border-top: 1px solid var(--border);
+    }
+    .sliders-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+    .ctrl-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ctrl-group.sep {
+      border-left: 1px solid var(--border);
+      padding-left: 10px;
+    }
+    .ctrl-label {
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--foreground);
+    }
+    .seg-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      padding: 2px;
+      border-radius: 4px;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+    .seg-btn {
+      appearance: none;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 3px;
+      padding: 3px 9px;
+      font-family: 'Lato', Verdana, Helvetica, sans-serif;
+      font-size: 12.5px;
+      line-height: 1.3;
+      color: var(--muted-foreground);
+      cursor: pointer;
+      transition: color 0.12s, background 0.12s, border-color 0.12s;
+    }
+    .seg-btn.mono {
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+      font-size: 12px;
+      padding: 3px 7px;
+    }
+    .seg-btn:hover {
+      color: #f09228;
+    }
+    .seg-btn.is-active-amber {
+      background: rgba(245, 158, 11, 0.16);
+      border-color: #d97706;
+      color: #78350f;
+      font-weight: 700;
+    }
+    html.dark .seg-btn.is-active-amber {
+      background: rgba(250, 204, 21, 0.20);
+      border-color: #facc15;
+      color: #fef08a;
+    }
+    .seg-btn.is-active-blue {
+      background: rgba(23, 114, 208, 0.13);
+      border-color: #1772d0;
+      color: #0d47a1;
+      font-weight: 700;
+    }
+    html.dark .seg-btn.is-active-blue {
+      background: rgba(59, 130, 246, 0.22);
+      border-color: #60a5fa;
+      color: #dbeafe;
+    }
     input[type="range"] {
-      accent-color: #eab308;
+      width: 68px;
+      cursor: pointer;
+      accent-color: #d97706;
+    }
+    .val-readout {
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--foreground);
+      display: inline-block;
+    }
+    .val-w-sm { width: 32px; }
+    .val-w-md { width: 46px; }
+    .val-w-lg { width: 48px; }
+    .frozen-betas {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-left: 1px solid var(--border);
+      padding-left: 10px;
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+      font-size: 12px;
+      color: var(--muted-foreground);
+    }
+    .frozen-betas span + span {
+      border-left: 1px solid var(--border);
+      padding-left: 8px;
+    }
+    .plots-grid {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 12px;
+      align-items: stretch;
+    }
+    @media (max-width: 760px) {
+      .plots-grid {
+        grid-template-columns: 1fr;
+      }
+      .ctrl-group.sep, .frozen-betas {
+        border-left: none;
+        padding-left: 0;
+      }
+    }
+    .panel-box {
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: var(--background);
+      overflow: hidden;
+    }
+    .panel-box.strip-panel {
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+    }
+    #mapCanvas {
+      cursor: crosshair;
+    }
+    .footer-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 10px;
+      padding: 7px 12px;
+      border-radius: 4px;
+      background: var(--muted);
+      border: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .theme-btn {
+      appearance: none;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--foreground);
+      font-family: 'Lato', Verdana, Helvetica, sans-serif;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: border-color 0.12s, color 0.12s;
+    }
+    .theme-btn:hover {
+      border-color: #f09228;
+      color: #f09228;
     }
   </style>
 </head>
-<body class="bg-transparent text-[var(--foreground)] antialiased">
-  <div class="max-w-5xl mx-auto rounded-xl border border-[var(--border)] bg-[var(--card)] p-3.5 shadow-sm">
+<body>
+  <div class="demo-shell">
+    <div class="demo-back">
+      <a href="./">&larr; A Fix for Softmax and Cross-Entropy</a>
+    </div>
+
     <!-- Top Controls Bar -->
-    <div class="flex flex-col gap-2 mb-2.5 px-2.5 py-2 rounded-lg bg-[var(--muted)]/60 border border-[var(--border)] text-xs">
-      <!-- Row 1: Presets (left) + Precision dtypes -->
-      <div class="flex flex-wrap items-center gap-3">
-        <div class="flex items-center gap-1.5">
-          <span class="font-semibold text-[var(--foreground)]">Preset:</span>
-          <div class="inline-flex rounded-md border border-[var(--border)] bg-[var(--card)] p-0.5 gap-0.5">
-            <button data-preset="wd" class="preset-btn px-2.5 py-0.5 rounded text-xs transition-colors">Lots of Weight Decay &amp; Noise-Free Labels</button>
-            <button data-preset="noisy" class="preset-btn px-2.5 py-0.5 rounded text-xs transition-colors">No Weight Decay &amp; Noisy Labels</button>
+    <div class="controls-bar">
+      <!-- Row 1: Presets + Precision dtypes -->
+      <div class="controls-row">
+        <div class="ctrl-group">
+          <span class="ctrl-label">Preset:</span>
+          <div class="seg-group">
+            <button data-preset="wd" class="seg-btn preset-btn">Lots of Weight Decay &amp; Noise-Free Labels</button>
+            <button data-preset="noisy" class="seg-btn preset-btn">No Weight Decay &amp; Noisy Labels</button>
           </div>
         </div>
-        <div class="flex items-center gap-1.5 border-l border-[var(--border)] pl-3">
-          <span class="font-semibold text-[var(--foreground)]">Precision:</span>
-          <div class="inline-flex rounded-md border border-[var(--border)] bg-[var(--card)] p-0.5 gap-0.5">
-            <button data-p="8" class="dtype-btn px-2.5 py-0.5 rounded font-mono text-xs transition-colors">bf16</button>
-            <button data-p="24" class="dtype-btn px-2.5 py-0.5 rounded font-mono text-xs transition-colors">fp32</button>
-            <button data-p="52" class="dtype-btn px-2.5 py-0.5 rounded font-mono text-xs transition-colors">fp64</button>
+        <div class="ctrl-group sep">
+          <span class="ctrl-label">Precision:</span>
+          <div class="seg-group">
+            <button data-p="8" class="seg-btn mono dtype-btn">bf16</button>
+            <button data-p="24" class="seg-btn mono dtype-btn">fp32</button>
+            <button data-p="52" class="seg-btn mono dtype-btn">fp64</button>
           </div>
         </div>
       </div>
 
-      <!-- Row 2: Sliders (Cross-entropy, Weight decay, Adam ε, Label Noise) + Frozen Betas -->
-      <div class="flex flex-wrap items-center justify-between gap-2 pt-1.5 border-t border-[var(--border)]/60">
-        <div class="flex flex-wrap items-center gap-2.5">
-          <div class="flex items-center gap-1" title="Cross-entropy loss magnitude on a non-linear log10 scale (0, then 0.1 to 10)">
-            <span class="font-semibold text-[var(--foreground)]">CE Mult:</span>
-            <input id="ceSlider" type="range" min="-1.1" max="1.0" step="0.05" value="0.0" class="w-16 cursor-pointer" />
-            <span id="ceLabel" class="font-mono font-semibold text-[var(--foreground)] w-8"></span>
+      <!-- Row 2: Sliders + Frozen Betas -->
+      <div class="controls-row with-divider">
+        <div class="sliders-wrap">
+          <div class="ctrl-group" title="Cross-entropy loss magnitude on a non-linear log10 scale (0, then 0.1 to 10)">
+            <span class="ctrl-label">CE Mult:</span>
+            <input id="ceSlider" type="range" min="-1.1" max="1.0" step="0.05" value="0.0" />
+            <span id="ceLabel" class="val-readout val-w-sm"></span>
           </div>
-          <div class="flex items-center gap-1 border-l border-[var(--border)] pl-2" title="Decoupled weight decay λ on a non-linear log10 scale (0, then 0.1 to 10)">
-            <span class="font-semibold text-[var(--foreground)]">Weight decay:</span>
-            <input id="wdSlider" type="range" min="-1.1" max="1.0" step="0.05" value="0.0" class="w-16 cursor-pointer" />
-            <span id="wdLabel" class="font-mono font-semibold text-[var(--foreground)] w-8"></span>
+          <div class="ctrl-group sep" title="Decoupled weight decay λ on a non-linear log10 scale (0, then 0.1 to 10)">
+            <span class="ctrl-label">Weight decay:</span>
+            <input id="wdSlider" type="range" min="-1.1" max="1.0" step="0.05" value="0.0" />
+            <span id="wdLabel" class="val-readout val-w-sm"></span>
           </div>
-          <div class="flex items-center gap-1 border-l border-[var(--border)] pl-2" title="Adam denominator epsilon ε = 10^-d">
-            <span class="font-semibold text-[var(--foreground)]">Adam ε:</span>
-            <input id="epsSlider" type="range" min="-30" max="-1" step="1" value="-16" class="w-16 cursor-pointer" />
-            <span id="epsLabel" class="font-mono font-semibold text-[var(--foreground)] w-11"></span>
+          <div class="ctrl-group sep" title="Adam denominator epsilon ε = 10^-d">
+            <span class="ctrl-label">Adam ε:</span>
+            <input id="epsSlider" type="range" min="-30" max="-1" step="1" value="-16" />
+            <span id="epsLabel" class="val-readout val-w-md"></span>
           </div>
-          <div class="flex items-center gap-1 border-l border-[var(--border)] pl-2" title="Label noise probability on a log10 scale (0, then 0.0001 to 0.1)">
-            <span class="font-semibold text-[var(--foreground)]">Label Noise:</span>
-            <input id="outlierSlider" type="range" min="-4.1" max="-1.0" step="0.05" value="-4.1" class="w-16 cursor-pointer" />
-            <span id="outlierLabel" class="font-mono font-semibold text-[var(--foreground)] w-12"></span>
+          <div class="ctrl-group sep" title="Label noise probability on a log10 scale (0, then 0.0001 to 0.1)">
+            <span class="ctrl-label">Label Noise:</span>
+            <input id="outlierSlider" type="range" min="-4.1" max="-1.0" step="0.05" value="-4.1" />
+            <span id="outlierLabel" class="val-readout val-w-lg"></span>
           </div>
         </div>
-        <div class="flex items-center gap-2 border-l border-[var(--border)] pl-2.5">
-          <span class="font-mono text-[var(--muted-foreground)]">β₁ = 0.5</span>
-          <span class="font-mono text-[var(--muted-foreground)] border-l border-[var(--border)] pl-2">β₂ = 0.9</span>
+        <div class="frozen-betas">
+          <span>β₁ = 0.5</span>
+          <span>β₂ = 0.9</span>
         </div>
       </div>
     </div>
 
     <!-- Main 2-Column Content -->
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-stretch">
-      <div class="md:col-span-5 rounded-lg border border-[var(--border)] bg-[var(--background)] overflow-hidden">
+    <div class="plots-grid">
+      <div class="panel-box">
         <div id="mapWrap" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-          <canvas id="mapCanvas" class="cursor-crosshair" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></canvas>
+          <canvas id="mapCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></canvas>
         </div>
       </div>
-      <div class="md:col-span-7 rounded-lg border border-[var(--border)] bg-[var(--background)] p-2 flex flex-col">
+      <div class="panel-box strip-panel">
         <div id="stripWrap" style="position: relative; width: 100%; flex: 1 1 auto; min-height: 360px;">
           <canvas id="stripCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></canvas>
         </div>
@@ -88,20 +331,20 @@
     </div>
 
     <!-- Bottom Bar: Refresh Rate Control & Night Mode Toggle -->
-    <div class="flex flex-wrap items-center justify-between gap-2 mt-2.5 px-2.5 py-1.5 rounded-lg bg-[var(--muted)]/60 border border-[var(--border)] text-xs">
-      <div class="flex items-center gap-1.5">
-        <span class="font-semibold text-[var(--foreground)]">Refresh Rate:</span>
-        <div class="inline-flex rounded-md border border-[var(--border)] bg-[var(--card)] p-0.5 gap-0.5">
-          <button data-fps="0" class="fps-btn px-1.5 py-0.5 rounded font-mono text-xs transition-colors">Pause</button>
-          <button data-fps="5" class="fps-btn px-1.5 py-0.5 rounded font-mono text-xs transition-colors">5Hz</button>
-          <button data-fps="15" class="fps-btn px-1.5 py-0.5 rounded font-mono text-xs transition-colors">15Hz</button>
-          <button data-fps="30" class="fps-btn px-1.5 py-0.5 rounded font-mono text-xs transition-colors">30Hz</button>
-          <button data-fps="60" class="fps-btn px-1.5 py-0.5 rounded font-mono text-xs transition-colors">60Hz</button>
-          <button data-fps="120" class="fps-btn px-1.5 py-0.5 rounded font-mono text-xs transition-colors">120Hz</button>
+    <div class="footer-bar">
+      <div class="ctrl-group">
+        <span class="ctrl-label">Refresh Rate:</span>
+        <div class="seg-group">
+          <button data-fps="0" class="seg-btn mono fps-btn">Pause</button>
+          <button data-fps="5" class="seg-btn mono fps-btn">5Hz</button>
+          <button data-fps="15" class="seg-btn mono fps-btn">15Hz</button>
+          <button data-fps="30" class="seg-btn mono fps-btn">30Hz</button>
+          <button data-fps="60" class="seg-btn mono fps-btn">60Hz</button>
+          <button data-fps="120" class="seg-btn mono fps-btn">120Hz</button>
         </div>
       </div>
-      <div class="flex items-center gap-1.5">
-        <button id="themeToggleBtn" type="button" class="px-2.5 py-0.5 rounded-md border border-[var(--border)] bg-[var(--card)] text-[var(--foreground)] font-semibold text-xs transition-colors hover:bg-[var(--muted)]"></button>
+      <div>
+        <button id="themeToggleBtn" type="button" class="theme-btn"></button>
       </div>
     </div>
   </div>
@@ -152,12 +395,12 @@
         '--border': '#1f2937'
       } : {
         '--background': '#ffffff',
-        '--foreground': '#0f172a',
-        '--card': '#f8fafc',
-        '--card-foreground': '#0f172a',
-        '--muted': '#f1f5f9',
-        '--muted-foreground': '#64748b',
-        '--border': '#e2e8f0'
+        '--foreground': '#000000',
+        '--card': '#ffffff',
+        '--card-foreground': '#000000',
+        '--muted': '#f7f7f5',
+        '--muted-foreground': '#555555',
+        '--border': '#e2e2dc'
       };
       Object.entries(vars).forEach(([k, v]) => document.documentElement.style.setProperty(k, v));
       document.body.style.backgroundColor = vars['--background'];
@@ -721,11 +964,6 @@
       document.getElementById('wdLabel').textContent = fmtWd(weightDecay);
       document.getElementById('wdSlider').value = String(wdSliderVal);
 
-      const activeYellowClasses = isDark()
-        ? 'bg-yellow-500/20 border border-yellow-400 text-[var(--foreground)] font-semibold'
-        : 'bg-amber-500/20 border-2 border-amber-600 text-amber-950 font-semibold shadow-xs';
-      const inactiveBtnClasses = 'text-[var(--muted-foreground)] hover:text-[var(--foreground)] border border-transparent';
-
       document.querySelectorAll('.preset-btn').forEach(btn => {
         const key = btn.dataset.preset;
         const cfg = PRESETS[key];
@@ -734,23 +972,17 @@
           Math.abs(weightDecay - cfg.wd) < 1e-4 &&
           Math.abs(outlierProb - cfg.outlier) < 1e-5 &&
           Math.abs(ceWeight - cfg.ce) < 1e-4;
-        btn.className = 'preset-btn px-2.5 py-0.5 rounded text-xs transition-colors ' +
-          (active ? activeYellowClasses : inactiveBtnClasses);
+        btn.classList.toggle('is-active-amber', !!active);
       });
 
       document.querySelectorAll('.dtype-btn').forEach(btn => {
         const active = Number(btn.dataset.p) === pBits;
-        btn.className = 'dtype-btn px-2.5 py-0.5 rounded font-mono text-xs transition-colors ' +
-          (active ? activeYellowClasses : inactiveBtnClasses);
+        btn.classList.toggle('is-active-amber', active);
       });
 
-      const activeBlueClasses = isDark()
-        ? 'bg-blue-500/20 border border-blue-500 text-[var(--foreground)] font-semibold'
-        : 'bg-blue-500/15 border-2 border-blue-600 text-blue-950 font-semibold shadow-xs';
       document.querySelectorAll('.fps-btn').forEach(btn => {
         const active = Number(btn.dataset.fps) === targetFps;
-        btn.className = 'fps-btn px-1.5 py-0.5 rounded font-mono text-xs transition-colors ' +
-          (active ? activeBlueClasses : inactiveBtnClasses);
+        btn.classList.toggle('is-active-blue', active);
       });
 
       const themeBtn = document.getElementById('themeToggleBtn');
@@ -873,7 +1105,7 @@
 
     function drawContourPill(ctx, text, x, y, isHighlight, dark) {
       ctx.save();
-      ctx.font = (isHighlight ? '700 ' : '600 ') + '10px ui-monospace, SFMono-Regular, monospace';
+      ctx.font = (isHighlight ? '700 ' : '600 ') + '10px "JetBrains Mono", ui-monospace, SFMono-Regular, monospace';
       const tw = ctx.measureText(text).width;
       const pw = tw + 8;
       const ph = 14;
@@ -925,7 +1157,7 @@
         { label: 'Float Cutoff', kind: 'dead' }
       ];
       ctx.save();
-      ctx.font = '600 11px ui-sans-serif, system-ui, sans-serif';
+      ctx.font = '700 11.5px Lato, Verdana, Helvetica, sans-serif';
       const rowH = 17;
       const boxW = 35 + Math.max(...items.map(it => ctx.measureText(it.label).width));
       const boxH = items.length * rowH + 10;
@@ -1027,7 +1259,7 @@
         ctx.fillStyle = LABEL_TEXT_COLOR;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.font = '700 12px ui-monospace, SFMono-Regular, monospace';
+        ctx.font = '700 12px "JetBrains Mono", ui-monospace, SFMono-Regular, monospace';
         ctx.fillText('Weight', wx, wy - 6.5);
         ctx.fillText('Decay', wx, wy + 7.5);
         ctx.restore();
@@ -1074,7 +1306,7 @@
       ctx.fillStyle = LABEL_TEXT_COLOR;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.font = '700 12px ui-monospace, SFMono-Regular, monospace';
+      ctx.font = '700 12px "JetBrains Mono", ui-monospace, SFMono-Regular, monospace';
       ctx.fillText('Cross', ox, oy + 16.0);
       ctx.fillText('Entropy', ox, oy + 29.0);
       ctx.restore();
@@ -1103,7 +1335,7 @@
 
       if (SHOW_MAP_TITLE) {
         const mapTitle = 'Loss Landscape';
-        ctx.font = '600 11px ui-sans-serif, system-ui, sans-serif';
+        ctx.font = '700 11.5px Lato, Verdana, Helvetica, sans-serif';
         const titleW = ctx.measureText(mapTitle).width + 12;
         ctx.fillStyle = dark ? 'rgba(15, 23, 42, 0.78)' : 'rgba(248, 250, 252, 0.85)';
         ctx.fillRect(8, 8, titleW, 18);
@@ -1211,7 +1443,7 @@
           return floorY - norm * (trackH - 22);
         };
 
-        ctx.font = '10px ui-monospace, SFMono-Regular, monospace';
+        ctx.font = '10px "JetBrains Mono", ui-monospace, SFMono-Regular, monospace';
         ctx.textAlign = 'right';
         ctx.textBaseline = 'middle';
         tr.ticks.forEach(tk => {
@@ -1287,7 +1519,7 @@
           }
         }
 
-        ctx.font = '600 11px ui-sans-serif, system-ui, sans-serif';
+        ctx.font = '700 11.5px Lato, Verdana, Helvetica, sans-serif';
         const titleW = ctx.measureText(tr.title).width + 10;
         ctx.fillStyle = dark ? 'rgba(15, 23, 42, 0.78)' : 'rgba(248, 250, 252, 0.85)';
         ctx.fillRect(padL + 4, top + 2, titleW, 14);

@@ -1,0 +1,978 @@
+:root {
+  --bg: #ffffff;
+  --bg-code: #f7f7f5;
+  --text: #000000;
+  --text-muted: #555555;
+  --border: #e4e4e0;
+  --accent: #1772d0;
+  --accent-hover: #f09228;
+  --highlight-bg: #ffffd0;
+  --tok-kw: #0550ae;
+  --tok-comment: #6e7781;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.10);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.paper-main,
+.paper-main p,
+.paper-main a,
+.paper-main strong,
+.paper-main em,
+.paper-main li {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+a,
+a.xref,
+a.cite-link {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus,
+a.xref:hover,
+a.cite-link:hover {
+  color: var(--accent-hover);
+  text-decoration: none;
+}
+
+/* Continuous 3-column grid:
+   - Above ~1500px: TOC sits 140px to the left of the centered 768px paper.
+   - Between 1500px and 1104px: TOC stays >= 28px inside the left viewport edge
+     (using min(100%, 336px) on the grid track rather than 100vw, so it never
+     drifts off-screen) while its gap to the paper narrows smoothly to 36px.
+   - Below 1104px: TOC hides and the 768px paper centers cleanly. */
+.page-layout {
+  display: grid;
+  grid-template-columns: minmax(232px, 1fr) minmax(0, 768px) minmax(0, 1fr);
+  padding: 20px 28px 72px;
+}
+
+.toc-sidebar {
+  justify-self: end;
+  width: min(100%, 336px);
+  padding-right: 36px;
+  margin-top: calc(18vh - 20px);
+  position: sticky;
+  top: 18vh;
+  align-self: start;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 1.42;
+  max-height: calc(82vh - 24px);
+  overflow-y: auto;
+}
+
+.toc-header {
+  max-width: 196px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.toc-list {
+  max-width: 196px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-left: 1px solid var(--border);
+}
+
+.toc-list li {
+  margin: 0;
+}
+
+.toc-list a {
+  display: block;
+  padding: 4px 0 4px 12px;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  margin-left: -1px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.toc-list a.active {
+  color: var(--accent);
+  border-left-color: var(--accent);
+  font-weight: 700;
+}
+
+.toc-list a:hover {
+  color: var(--accent-hover);
+  border-left-color: var(--accent-hover);
+}
+
+.paper-main {
+  grid-column: 2;
+  min-width: 0;
+}
+
+.layout-spacer {
+  grid-column: 3;
+}
+
+@media (max-width: 1104px) {
+  .page-layout {
+    grid-template-columns: minmax(0, 768px);
+    justify-content: center;
+    padding: 20px 16px 72px;
+  }
+  .paper-main {
+    grid-column: 1;
+  }
+  .toc-sidebar,
+  .layout-spacer {
+    display: none;
+  }
+}
+
+/* Top utility row: flush left & flush right across the full paper width */
+.paper-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 12px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 1.35;
+  color: var(--text);
+}
+
+.paper-nav-links {
+  text-align: right;
+}
+
+.paper-main .paper-nav,
+.paper-main .paper-nav a,
+.paper-main .paper-nav-links {
+  font-size: 14px;
+}
+
+#copy-bibtex-btn {
+  position: relative;
+}
+
+#copy-bibtex-btn::after {
+  content: "Copied!";
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2px 7px;
+  background: #222222;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 1.4;
+  border-radius: 3px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
+}
+
+#copy-bibtex-btn.is-copied::after {
+  opacity: 1;
+}
+
+/* Paper Header: Title, Authors, Mixed Affiliations, Emails & Venue */
+.paper-header {
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.paper-title {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 32px;
+  line-height: 1.22;
+  font-weight: 400;
+  margin: 0 0 14px;
+  text-wrap: balance;
+}
+
+.paper-main .paper-authors,
+.paper-main .paper-authors a {
+  font-size: 16.5px;
+  line-height: 1.45;
+}
+
+.paper-authors {
+  margin-bottom: 4px;
+}
+
+.paper-authors.author-blocks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 30px;
+  margin-bottom: 8px;
+}
+
+.author-entry {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.38;
+}
+
+.author-sup {
+  font-size: 11px;
+  line-height: 0;
+  margin-left: 1px;
+  color: var(--text-muted);
+}
+
+.author-affil {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.author-email,
+.paper-emails {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: 1px;
+  font-variant-ligatures: none;
+}
+
+.paper-emails {
+  margin-top: 3px;
+}
+
+.paper-affil {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 2px 0 0;
+}
+
+.paper-affil sup {
+  font-size: 10.5px;
+  margin-right: 1.5px;
+}
+
+.affil-item + .affil-item {
+  margin-left: 14px;
+}
+
+.paper-notes {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.paper-notes sup {
+  font-size: 10.5px;
+  margin-right: 1px;
+}
+
+.paper-venue {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+/* Abstract: full paper width so left & right margins match nav and body */
+.abstract-box {
+  width: 100%;
+  margin: 0 0 32px;
+  padding: 0;
+}
+
+.abstract-title {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--text);
+  margin: 0 0 10px;
+  text-align: center;
+}
+
+.abstract-box p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.65;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Headings, Theorems, Lists & Paragraphs */
+.paper-main .section-heading,
+.paper-main .section-heading .sec-num {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 23px;
+  font-weight: 400;
+}
+
+.section-heading {
+  margin: 38px 0 12px;
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+}
+
+.sec-num {
+  color: var(--text);
+}
+
+.paper-main .heading-anchor {
+  margin-left: 6px;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-muted);
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.section-heading:hover .heading-anchor,
+.subsec-heading:hover .heading-anchor {
+  opacity: 0.7;
+}
+
+.paper-main .subsec-heading,
+.paper-main .subsec-heading .sec-num {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.subsec-heading {
+  margin: 28px 0 8px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.theorem-block {
+  margin: 18px 0;
+}
+
+.proof-block {
+  margin: 14px 0 18px;
+}
+
+p {
+  margin: 0 0 14px;
+  text-align: justify;
+  hyphens: auto;
+}
+
+ul.paper-list,
+ol.paper-list {
+  margin: 0 0 14px;
+  padding-left: 22px;
+}
+
+ul.paper-list li,
+ol.paper-list li {
+  margin-bottom: 4px;
+  text-align: justify;
+  hyphens: auto;
+}
+
+code {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85em;
+  background: var(--bg-code);
+  padding: 1.5px 4px;
+  border-radius: 3px;
+  font-variant-ligatures: none;
+}
+
+/* Match KaTeX_Main x-height optically to Lato while keeping KaTeX's internal
+   line-height: 1.2 intact (so \neq / accents align) and clamping outer inline
+   line-box contributions (CSS equivalent of \setlength{\lineskiplimit}{-3pt}). */
+.math-nowrap {
+  white-space: nowrap;
+}
+
+.math-inline {
+  line-height: 0;
+}
+
+.math-inline .katex {
+  font-size: 1.05em;
+}
+
+.math-inline .katex-html > .base,
+.math-inline .katex-html > .katex-base {
+  margin-top: -0.28em;
+  margin-bottom: -0.28em;
+}
+
+.math-display .katex {
+  font-size: 1.03em;
+}
+
+/* Display Equations */
+.equation-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 14px 0;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: background 0.25s;
+}
+
+.equation-row:target {
+  background: var(--highlight-bg);
+}
+
+.math-display {
+  flex: 1;
+  text-align: center;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4px 0;
+}
+
+.math-display .katex-display {
+  margin: 0.2em 0;
+}
+
+.eq-num {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-left: 14px;
+  flex-shrink: 0;
+}
+
+/* Code Listings */
+.code-card {
+  position: relative;
+  margin: 16px 0 20px;
+  background: var(--bg-code);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.copy-code-btn {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  padding: 2px 8px;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 12px;
+  color: var(--text-muted);
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.copy-code-btn:hover {
+  opacity: 1;
+  border-color: var(--accent-hover);
+  color: var(--accent-hover);
+}
+
+.code-listing {
+  margin: 0;
+  padding: 12px 14px;
+  overflow-x: auto;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.2px;
+  line-height: 1.45;
+  font-variant-ligatures: none;
+  tab-size: 2;
+}
+
+.code-listing code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+  white-space: pre;
+}
+
+.tok-kw {
+  color: var(--tok-kw);
+  font-weight: 500;
+}
+
+.tok-comment {
+  color: var(--tok-comment);
+}
+
+/* Algorithm / Pseudocode Floats */
+.algorithm-card {
+  margin: 24px 0;
+  border-top: 1.5px solid var(--text);
+  border-bottom: 1.5px solid var(--text);
+  transition: background 0.2s;
+}
+
+.algorithm-card:target {
+  background: var(--highlight-bg);
+}
+
+.paper-main .algorithm-header,
+.paper-main .algorithm-header strong,
+.paper-main .algorithm-header a {
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.algorithm-header {
+  padding: 6px 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.paper-main .algorithm-body,
+.paper-main .algorithm-body strong,
+.paper-main .algorithm-body em,
+.paper-main .algorithm-body a {
+  font-size: 14px;
+  line-height: 1.58;
+}
+
+.algorithm-body {
+  padding: 7px 6px;
+}
+
+.alg-line {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 1px 0;
+}
+
+.alg-lineno {
+  width: 22px;
+  flex-shrink: 0;
+  text-align: right;
+  font-size: 12px;
+  color: var(--text-muted);
+  user-select: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.alg-code {
+  flex: 1;
+  min-width: 0;
+}
+
+.alg-comment {
+  margin-left: auto;
+  padding-left: 16px;
+  color: var(--text-muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* Figures, Subfigures & Embedded Widgets */
+.paper-figure {
+  margin: 26px 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+.widget-frame {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+}
+
+.fig-top-img-wrap {
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.fig-img,
+.fig-legend-img {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  cursor: zoom-in;
+}
+
+.subfigure-row {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.subfigure {
+  text-align: center;
+  padding: 2px;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+
+.subfigure:target {
+  background: var(--highlight-bg);
+}
+
+.paper-main .subcaption,
+.paper-main .subcaption strong,
+.paper-main .subcaption a {
+  font-size: 13px;
+  line-height: 1.38;
+  margin-top: 3px;
+  text-align: center;
+}
+
+.fig-minipage-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.fig-minipage {
+  text-align: center;
+}
+
+.paper-main .fig-caption,
+.paper-main .fig-caption strong,
+.paper-main .fig-caption a {
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: justify;
+  margin-top: 6px;
+}
+
+.fig-label {
+  font-weight: 700;
+}
+
+.math-display::-webkit-scrollbar,
+.table-scroll::-webkit-scrollbar,
+.code-listing::-webkit-scrollbar {
+  height: 4px;
+}
+
+.math-display::-webkit-scrollbar-thumb,
+.table-scroll::-webkit-scrollbar-thumb,
+.code-listing::-webkit-scrollbar-thumb {
+  background: #d4d4cf;
+  border-radius: 4px;
+}
+
+@media (max-width: 640px) {
+  .page-layout {
+    padding: 16px 14px 56px;
+  }
+  body,
+  .paper-main,
+  .paper-main p,
+  .paper-main a,
+  .paper-main strong,
+  .paper-main em,
+  .paper-main li,
+  .abstract-box p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .paper-nav {
+    margin-bottom: 18px;
+    gap: 2px 6px;
+  }
+  .paper-main .paper-nav,
+  .paper-main .paper-nav a,
+  .paper-main .paper-nav-links {
+    font-size: 12px;
+  }
+  .paper-header {
+    margin-bottom: 20px;
+  }
+  .paper-title {
+    font-size: 24px;
+    margin: 0 0 12px;
+  }
+  .paper-main .paper-authors,
+  .paper-main .paper-authors a {
+    font-size: 15px;
+  }
+  .paper-authors.author-blocks {
+    gap: 6px 18px;
+    margin-bottom: 6px;
+  }
+  .author-email,
+  .paper-emails {
+    font-size: 11.5px;
+  }
+  .paper-affil,
+  .paper-venue {
+    font-size: 13px;
+  }
+  .abstract-title {
+    font-size: 17px;
+    margin: 0 0 8px;
+  }
+  .abstract-box {
+    margin: 0 0 24px;
+  }
+  .equation-row {
+    padding: 4px 2px;
+  }
+  .math-display .katex {
+    font-size: 0.94em;
+  }
+  .eq-num {
+    margin-left: 8px;
+    font-size: 13px;
+  }
+  .fig-legend-img {
+    width: 100% !important;
+  }
+  .subfigure-row,
+  .fig-minipage-row {
+    flex-wrap: wrap;
+  }
+  .subfigure,
+  .fig-minipage {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  .subcaption {
+    padding-left: 0 !important;
+  }
+}
+
+@media (max-width: 359px) {
+  .paper-nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  .paper-nav-links {
+    text-align: center;
+  }
+}
+
+/* Booktabs Tables */
+.table-card {
+  margin: 26px 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  transition: background 0.2s;
+}
+
+.table-card:target {
+  background: var(--highlight-bg);
+}
+
+.paper-main .table-caption,
+.paper-main .table-caption strong,
+.paper-main .table-caption a {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 8px;
+  text-align: justify;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.booktabs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 13.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.booktabs-table th,
+.booktabs-table td {
+  font-size: 13.5px;
+  padding: 4px 6px;
+  white-space: nowrap;
+}
+
+.booktabs-table th {
+  font-weight: 700;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.booktabs-table thead tr:last-child th {
+  border-bottom: 1.2px solid var(--text);
+}
+
+.booktabs-table th.cmidrule-lr {
+  position: relative;
+  padding-bottom: 7px;
+}
+
+.booktabs-table th.cmidrule-lr::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  bottom: 1px;
+  height: 1px;
+  background: var(--text-muted);
+  opacity: 0.55;
+}
+
+.booktabs-table tr.row-group-start td {
+  padding-top: 10px;
+}
+
+.booktabs-table tr.row-midrule-top td {
+  border-top: 1px solid var(--border);
+  padding-top: 7px;
+}
+
+.align-left { text-align: left; }
+.align-center { text-align: center; }
+.align-right { text-align: right; }
+
+.booktabs-table td.nopad-l,
+.booktabs-table th.nopad-l {
+  padding-left: 1px;
+}
+
+.booktabs-table td.nopad-r,
+.booktabs-table th.nopad-r {
+  padding-right: 1px;
+}
+
+.variant-eps-hdr {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.eps-hdr-label {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+/* Bibliography */
+.bib-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.paper-main .bib-item,
+.paper-main .bib-item a,
+.paper-main .bib-item em {
+  font-size: 14px;
+  line-height: 1.52;
+}
+
+.bib-item {
+  margin-bottom: 10px;
+  padding: 2px 4px 2px 18px;
+  text-indent: -18px;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+
+.bib-item:target {
+  background: var(--highlight-bg);
+}
+
+.bib-tag {
+  font-weight: 700;
+  color: var(--text);
+  margin-right: 4px;
+}
+
+.bib-title {
+  font-weight: 400;
+}
+
+/* Subtle template footer */
+.paper-main .paper-footer,
+.paper-main .paper-footer a {
+  font-size: 12.5px;
+}
+
+.paper-footer {
+  margin-top: 44px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  text-align: right;
+  color: var(--text-muted);
+}
+
+/* Hover preview popover */
+#hover-popover {
+  position: fixed;
+  z-index: 250;
+  max-width: 560px;
+  max-height: 380px;
+  overflow: auto;
+  background: #ffffff;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 16px;
+  box-shadow: var(--shadow);
+  font-size: 13.5px;
+  line-height: 1.48;
+  pointer-events: none;
+  display: none;
+}
+
+#hover-popover .paper-figure,
+#hover-popover .algorithm-card,
+#hover-popover .table-card {
+  margin: 0;
+}
+
+/* Lightbox modal */
+#lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(0, 0, 0, 0.82);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  cursor: zoom-out;
+}
+
+#lightbox-overlay img {
+  max-width: 96vw;
+  max-height: 92vh;
+  background: #ffffff;
+  padding: 12px;
+  border-radius: 4px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}

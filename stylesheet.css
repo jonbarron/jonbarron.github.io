@@ -3,6 +3,7 @@
   font-family: 'Lato';
   font-style: italic;
   font-weight: 400;
+  font-display: swap;
   src: local('Lato Italic'), local('Lato-Italic'), url(https://fonts.gstatic.com/s/lato/v15/S6u8w4BMUTPHjxsAUi-qNiXg7eU0.woff2) format('woff2');
   unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
@@ -11,6 +12,7 @@
   font-family: 'Lato';
   font-style: italic;
   font-weight: 400;
+  font-display: swap;
   src: local('Lato Italic'), local('Lato-Italic'), url(https://fonts.gstatic.com/s/lato/v15/S6u8w4BMUTPHjxsAXC-qNiXg7Q.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
@@ -19,6 +21,7 @@
   font-family: 'Lato';
   font-style: italic;
   font-weight: 700;
+  font-display: swap;
   src: local('Lato Bold Italic'), local('Lato-BoldItalic'), url(https://fonts.gstatic.com/s/lato/v15/S6u_w4BMUTPHjxsI5wq_FQftx9897sxZ.woff2) format('woff2');
   unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
@@ -27,6 +30,7 @@
   font-family: 'Lato';
   font-style: italic;
   font-weight: 700;
+  font-display: swap;
   src: local('Lato Bold Italic'), local('Lato-BoldItalic'), url(https://fonts.gstatic.com/s/lato/v15/S6u_w4BMUTPHjxsI5wq_Gwftx9897g.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
@@ -35,6 +39,7 @@
   font-family: 'Lato';
   font-style: normal;
   font-weight: 400;
+  font-display: swap;
   src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v15/S6uyw4BMUTPHjxAwXiWtFCfQ7A.woff2) format('woff2');
   unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
@@ -43,6 +48,7 @@
   font-family: 'Lato';
   font-style: normal;
   font-weight: 400;
+  font-display: swap;
   src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v15/S6uyw4BMUTPHjx4wXiWtFCc.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
@@ -51,6 +57,7 @@
   font-family: 'Lato';
   font-style: normal;
   font-weight: 700;
+  font-display: swap;
   src: local('Lato Bold'), local('Lato-Bold'), url(https://fonts.gstatic.com/s/lato/v15/S6u9w4BMUTPHh6UVSwaPGQ3q5d0N7w.woff2) format('woff2');
   unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
@@ -59,8 +66,14 @@
   font-family: 'Lato';
   font-style: normal;
   font-weight: 700;
+  font-display: swap;
   src: local('Lato Bold'), local('Lato-Bold'), url(https://fonts.gstatic.com/s/lato/v15/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+body {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 14px;
 }
 
 a {
@@ -74,39 +87,120 @@ a:hover {
   text-decoration: none;
 }
 
-body,
-td,
-th,
-tr,
-p,
-a {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 14px;
-}
-
-strong {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 14px;
-}
-
 h2 {
   margin: 0;
-  font-weight: normal;
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-weight: 400;
   font-size: 22px;
 }
 
-.papertitle {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 14px;
-  font-weight: 700;
+.page {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.bio {
+  display: flex;
+  align-items: center;
+}
+
+.bio-text {
+  width: 63%;
+  padding: 2.5%;
+  box-sizing: border-box;
+}
+
+.bio-photo {
+  width: 37%;
+  padding: 2.5%;
+  box-sizing: border-box;
+}
+
+.bio-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .name {
   padding-top: 20px;
   margin: 0;
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-weight: 400;
   font-size: 32px;
+  text-align: center;
+}
+
+.bio-links {
+  text-align: center;
+}
+
+.section-header {
+  padding: 16px;
+}
+
+.highlight {
+  background-color: #ffffd0;
+}
+
+.papers {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.paper,
+.misc-row {
+  display: grid;
+  grid-template-columns: 192px minmax(0, 1fr);
+  align-items: center;
+}
+
+.paper.highlighted {
+  background-color: #ffffd0;
+}
+
+.paper-media,
+.misc-badge {
+  padding: 16px;
+}
+
+.misc-badge {
+  text-align: center;
+}
+
+.paper-info,
+.misc-links {
+  padding: 8px;
+}
+
+.papertitle {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.paper-authors {
+  text-wrap: balance;
+}
+
+.paper-authors a,
+.paper-authors strong,
+.paper-authors .author {
+  white-space: nowrap;
+}
+
+.award {
+  color: red;
+}
+
+.award-highlight {
+  color: #ff8080;
+}
+
+.paper-desc {
+  margin: 14px 0 0;
 }
 
 .one {
@@ -115,28 +209,115 @@ h2 {
   position: relative;
 }
 
+.one-short,
+.one-short .two {
+  height: 120px;
+}
+
 .two {
   width: 160px;
   height: 160px;
   position: absolute;
-  transition: opacity .2s ease-in-out;
-  -moz-transition: opacity .2s ease-in-out;
-  -webkit-transition: opacity .2s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
 }
 
-.fade {
-  transition: opacity .2s ease-in-out;
-  -moz-transition: opacity .2s ease-in-out;
-  -webkit-transition: opacity .2s ease-in-out;
+.one img,
+.paper-media > img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-span.highlight {
-  background-color: #ffffd0;
+.one video {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.paper:hover > .paper-media > .one > .two,
+.paper.hover-active > .paper-media > .one > .two {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .colored-box {
-    color: black;
-    padding: 20px;
-    display: inline-block;
-    border-radius: 10px;
+  color: #000;
+  padding: 20px;
+  display: inline-block;
+  border-radius: 10px;
+}
+
+.site-footer {
+  text-align: right;
+  font-size: small;
+  margin-top: 18px;
+}
+
+@media (max-width: 600px) {
+  body {
+    margin: 0;
+  }
+
+  .bio {
+    flex-direction: column-reverse;
+  }
+
+  .bio-text {
+    width: 100%;
+    padding: 8px 16px;
+  }
+
+  .bio-photo {
+    width: 100%;
+    padding: 20px 16px 0;
+    text-align: center;
+  }
+
+  .bio-photo img {
+    width: 148px;
+    margin: 0 auto;
+  }
+
+  .name {
+    padding-top: 8px;
+    font-size: 28px;
+  }
+
+  .paper,
+  .misc-row {
+    grid-template-columns: 124px minmax(0, 1fr);
+  }
+
+  .paper-media,
+  .misc-badge {
+    padding: 12px 8px 12px 12px;
+  }
+
+  .paper-info,
+  .misc-links {
+    padding: 10px 12px 10px 6px;
+  }
+
+  .one,
+  .two {
+    width: 104px;
+    height: 104px;
+  }
+
+  .one-short,
+  .one-short .two {
+    height: 78px;
+  }
+
+  .colored-box {
+    padding: 12px 8px;
+    box-sizing: border-box;
+    width: 104px;
+  }
+
+  .colored-box h2 {
+    font-size: 15px;
+  }
 }

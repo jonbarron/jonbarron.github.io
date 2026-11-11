@@ -1,0 +1,140 @@
+# -*- mode: Perl -*-
+# Shared LaTeXML preload bindings for tex_to_html:
+# - ML/CV conference style stubs (ICLR, NeurIPS, CVPR, ICML)
+# - subcaption {subfigure}/{subtable} width & optical-margin preservation
+# - {algorithm} + {algorithmic}/algpseudocode fallback when texlive-science is absent
+# - optional \htmlwidget[opts]{src} hook for interactive HTML embeds
+package LaTeXML::Package::Pool;
+use strict;
+use warnings;
+use LaTeXML::Package;
+
+DefMacro('\isLaTeXML', '1');
+
+# Common ML/CV conference macros:
+DefMacro('\iclrfinalcopy', '');
+DefMacro('\neuripsfinal', '');
+DefMacro('\cvprfinalcopy', '');
+DefMacro('\icmltitlerunning{}', '');
+DefMacro('\lhead{}', '');
+DefMacro('\rhead{}', '');
+DefMacro('\chead{}', '');
+DefConstructor('\htmlwidget[]{}',
+  "<ltx:note role='htmlwidget' ?#1(class='#1')>#2</ltx:note>");
+
+AtBeginDocument(sub {
+  # 1. Preserve subfigure/subtable Dimension width and \captionsetup{margin=...}:
+  if (LookupDefinition(T_CS('\begin{subfigure}'))) {
+    DefEnvironment('{subfigure}[]{Dimension}',
+      "^<ltx:figure xml:id='#id' inlist='#inlist' width='#width' ?#1(placement='#1')>"
+        . "#tags"
+        . "#body"
+        . "</ltx:figure>",
+      properties   => sub { (layout => 'vertical', width => $_[2]); },
+      beforeDigest => sub { beforeFloat('subfigure', preincrement => 'figure'); },
+      afterDigest  => sub { afterFloat($_[1]); });
+  }
+  DefMacro('\captionsetup[]{}', sub {
+    my ($gullet, $opt, $kv) = @_;
+    my $s = ToString($kv);
+    if ($s =~ /margin\s*=\s*\{\s*([0-9.]+)\s*\\textwidth\s*,\s*0pt\s*\}/) {
+      return Invocation(T_CS('\lx@capmargin'), T_OTHER($1));
+    }
+    return ();
+  });
+  DefConstructor('\lx@capmargin{}', "<ltx:note role='capmargin'>#1</ltx:note>");
+
+  # 2. Fallback {algorithm} float if algorithm.sty was not found on the system:
+  if (!LookupDefinition(T_CS('\begin{algorithm}'))) {
+    RequirePackage('float');
+    Digest(Tokens(
+      T_CS('\floatstyle'), T_BEGIN, Explode('ruled'), T_END,
+      T_CS('\newfloat'), T_BEGIN, Explode('algorithm'), T_END,
+      T_BEGIN, Explode('htbp'), T_END, T_BEGIN, Explode('loa'), T_END,
+      T_CS('\floatname'), T_BEGIN, Explode('algorithm'), T_END,
+      T_BEGIN, Explode('Algorithm'), T_END));
+  }
+
+  # 3. Fallback {algorithmic} + algpseudocode/algorithmic macros if absent:
+  if (!LookupDefinition(T_CS('\begin{algorithmic}'))) {
+    NewCounter('lx@algline');
+    DefConstructor('\lx@alg@closeline', '',
+      beforeConstruct => sub { $_[0]->maybeCloseElement('ltx:listingline'); });
+    DefEnvironment('{algorithmic}[]',
+      "<ltx:listing class='ltx_algorithmic'>#body</ltx:listing>",
+      beforeDigest => sub {
+        ResetCounter('lx@algline');
+        AssignValue(lx_alg_indent => 0);
+      },
+      afterDigestBegin => sub {
+        AssignValue(lx_alg_num => ($_[1]->getArg(1) ? 1 : 0));
+      },
+      beforeDigestEnd => sub { Digest(T_CS('\lx@alg@closeline')); },
+      beforeConstruct => sub { $_[0]->maybeCloseElement('ltx:p'); });
+
+    DefConstructor('\lx@alg@openline{}{}',
+      "<ltx:listingline>#1#2",
+      beforeConstruct => sub { $_[0]->maybeCloseElement('ltx:listingline'); });
+
+    DefPrimitive('\lx@alg@step{}', sub {
+      my ($stomach, $delta_after) = @_;
+      $delta_after = ToString($delta_after) + 0;
+      my $ind = LookupValue('lx_alg_indent') || 0;
+      my $numbered = LookupValue('lx_alg_num') || 0;
+      my $num_tok = Tokens();
+      if ($numbered) {
+        StepCounter('lx@algline');
+        my $n = CounterValue('lx@algline');
+        $num_tok = Invocation(T_CS('\lx@alg@lno'), T_OTHER($n));
+      }
+      my $pad = "\x{00A0}" x ($ind * 4);
+      AssignValue(lx_alg_indent => ($ind + $delta_after > 0 ? $ind + $delta_after : 0));
+      return Digest(Invocation(T_CS('\lx@alg@openline'), $num_tok, T_OTHER($pad)));
+    });
+    DefPrimitive('\lx@alg@dedent', sub {
+      my $ind = LookupValue('lx_alg_indent') || 0;
+      AssignValue(lx_alg_indent => ($ind > 0 ? $ind - 1 : 0));
+      return;
+    });
+    DefConstructor('\lx@alg@lno{}', "<ltx:tags><ltx:tag role='refnum'>#1</ltx:tag></ltx:tags>");
+    DefConstructor('\lx@alg@comment{}', "<ltx:text cssstyle='float:right'>\x{25B9} #1</ltx:text>");
+
+    DefMacro('\Require', '\lx@alg@openline{}{\textbf{Require:} }');
+    DefMacro('\Ensure',  '\lx@alg@openline{}{\textbf{Ensure:} }');
+    DefMacro('\REQUIRE', '\Require');
+    DefMacro('\ENSURE',  '\Ensure');
+    DefMacro('\State',   '\lx@alg@step{0}');
+    DefMacro('\Statex',  '\lx@alg@openline{}{}');
+    DefMacro('\STATE',   '\State');
+    DefMacro('\For{}',       '\lx@alg@step{1}\textbf{for} #1 \textbf{do}');
+    DefMacro('\ForAll{}',    '\lx@alg@step{1}\textbf{for all} #1 \textbf{do}');
+    DefMacro('\EndFor',      '\lx@alg@dedent\lx@alg@step{0}\textbf{end for}');
+    DefMacro('\FOR{}',       '\For{#1}');
+    DefMacro('\ENDFOR',      '\EndFor');
+    DefMacro('\While{}',     '\lx@alg@step{1}\textbf{while} #1 \textbf{do}');
+    DefMacro('\EndWhile',    '\lx@alg@dedent\lx@alg@step{0}\textbf{end while}');
+    DefMacro('\WHILE{}',     '\While{#1}');
+    DefMacro('\ENDWHILE',    '\EndWhile');
+    DefMacro('\If{}',        '\lx@alg@step{1}\textbf{if} #1 \textbf{then}');
+    DefMacro('\ElsIf{}',     '\lx@alg@dedent\lx@alg@step{1}\textbf{else if} #1 \textbf{then}');
+    DefMacro('\Else',        '\lx@alg@dedent\lx@alg@step{1}\textbf{else}');
+    DefMacro('\EndIf',       '\lx@alg@dedent\lx@alg@step{0}\textbf{end if}');
+    DefMacro('\IF{}',        '\If{#1}');
+    DefMacro('\ELSIF{}',     '\ElsIf{#1}');
+    DefMacro('\ELSE',        '\Else');
+    DefMacro('\ENDIF',       '\EndIf');
+    DefMacro('\Repeat',      '\lx@alg@step{1}\textbf{repeat}');
+    DefMacro('\Until{}',     '\lx@alg@dedent\lx@alg@step{0}\textbf{until} #1');
+    DefMacro('\Function{}{}',  '\lx@alg@step{1}\textbf{function} \textsc{#1}(#2)');
+    DefMacro('\EndFunction',   '\lx@alg@dedent\lx@alg@step{0}\textbf{end function}');
+    DefMacro('\Procedure{}{}', '\lx@alg@step{1}\textbf{procedure} \textsc{#1}(#2)');
+    DefMacro('\EndProcedure',  '\lx@alg@dedent\lx@alg@step{0}\textbf{end procedure}');
+    DefMacro('\Call{}{}',      '\textsc{#1}(#2)');
+    DefMacro('\Return',      '{\textbf{return}}\space ');
+    DefMacro('\RETURN',      '\Return');
+    DefMacro('\Comment{}',   '\lx@alg@comment{#1}');
+    DefMacro('\COMMENT{}',   '\lx@alg@comment{#1}');
+  }
+});
+
+1;
