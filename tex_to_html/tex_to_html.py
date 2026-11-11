@@ -198,7 +198,7 @@ def extract_braced(text: str, start: int) -> tuple[str, int]:
   raise ValueError(f"Unbalanced braces starting at {text[start:start+40]!r}")
 
 
-def clean_tex_accents(s: str) -> str:
+def clean_tex_accents(s: str, strip: bool = True) -> str:
   """Converts common TeX accents, dashes, and non-breaking spaces to UTF-8."""
   s = (
       s.replace(r"\'a", "á")
@@ -227,12 +227,122 @@ def clean_tex_accents(s: str) -> str:
   )
   for _ in range(3):
     s = re.sub(r"\{([^{}\\]*)\}", r"\1", s)
-  return re.sub(r"\s+", " ", s).strip()
+  collapsed = re.sub(r"\s+", " ", s)
+  return collapsed.strip() if strip else collapsed
 
 
-def parse_bbl(bbl_path: str) -> tuple[dict[str, dict[str, str]], list[str]]:
+def _format_bib_text_and_math(
+    text: str,
+    render_math_fn=None,
+    math_out: list[str] | None = None,
+) -> str:
+  """Renders `.bbl` prose with optional inline `$...$` / `{$...$}` math."""
+  out: list[str] = []
+  i = 0
+  n = len(text)
+  text_start = 0
+  while i < n:
+    if text[i] == "\\":
+      i += 2
+      continue
+    if text[i] == "$":
+      j = i + 1
+      while j < n:
+        if text[j] == "\\":
+          j += 2
+          continue
+        if text[j] == "$":
+          break
+        j += 1
+      if j < n and j > i + 1:
+        brace_wrapped = (
+            i > text_start
+            and text[i - 1] == "{"
+            and not (i >= 2 and text[i - 2] == "\\")
+            and j + 1 < n
+            and text[j + 1] == "}"
+        )
+        plain_end = i - 1 if brace_wrapped else i
+        if plain_end > text_start:
+          out.append(
+              html.escape(
+                  clean_tex_accents(text[text_start:plain_end], strip=False)
+              )
+          )
+        tex = normalize_math_tex(text[i + 1 : j])
+        if math_out is not None and tex:
+          math_out.append(tex)
+        if render_math_fn is not None and tex:
+          out.append(render_math_fn(tex))
+        else:
+          out.append(html.escape(f"\\({tex}\\)"))
+        i = j + 2 if brace_wrapped else j + 1
+        text_start = i
+        continue
+    i += 1
+  if text_start < n:
+    out.append(
+        html.escape(clean_tex_accents(text[text_start:], strip=False))
+    )
+  joined = "".join(out)
+  return re.sub(
+      r"arXiv:(\d{4}\.\d{4,5})",
+      r'<a href="https://arxiv.org/abs/\1" target="_blank"'
+      r' rel="noopener">arXiv:\1</a>',
+      joined,
+  )
+
+
+def format_bib_part(
+    part: str,
+    render_math_fn=None,
+    math_out: list[str] | None = None,
+) -> str:
+  """Formats a `.bbl` title/venue field, supporting `\\emph` and inline math."""
+  part = part.replace(r"\textit{", r"\emph{")
+  out_parts: list[str] = []
+  pos = 0
+  while True:
+    idx = part.find(r"\emph{", pos)
+    if idx == -1:
+      out_parts.append(
+          _format_bib_text_and_math(
+              part[pos:], render_math_fn=render_math_fn, math_out=math_out
+          )
+      )
+      break
+    out_parts.append(
+        _format_bib_text_and_math(
+            part[pos:idx], render_math_fn=render_math_fn, math_out=math_out
+        )
+    )
+    inner, pos = extract_braced(part, idx + 5)
+    inner_html = _format_bib_text_and_math(
+        inner, render_math_fn=render_math_fn, math_out=math_out
+    )
+    out_parts.append(f"<em>{inner_html.strip()}</em>")
+  return "".join(out_parts).strip()
+
+
+def render_bbl_entry_html(entry: dict, render_math_fn=None) -> str:
+  """Renders a parsed `.bbl` entry dict to HTML using optional math callback."""
+  authors_html = html.escape(entry["authors_raw"])
+  title_html = format_bib_part(
+      entry["title_raw"], render_math_fn=render_math_fn
+  )
+  venue_html = format_bib_part(
+      entry["venue_raw"], render_math_fn=render_math_fn
+  )
+  return (
+      f'<span class="bib-authors">{authors_html}</span> <span'
+      f' class="bib-title">{title_html}</span> <span'
+      f' class="bib-venue">{venue_html}</span>'
+  )
+
+
+def parse_bbl(bbl_path: str) -> tuple[dict[str, dict], list[str]]:
   """Parses a BibTeX .bbl file into (bib_dict, ordered_keys)."""
-  bib_dict: dict[str, dict[str, str]] = {}
+  bib_dict: dict[str, dict] = {}
   ordered_keys: list[str] = []
   if not os.path.exists(bbl_path):
     return bib_dict, ordered_keys
@@ -264,39 +374,19 @@ def parse_bbl(bbl_path: str) -> tuple[dict[str, dict[str, str]], list[str]]:
     title_raw = blocks[1] if len(blocks) > 1 else ""
     venue_raw = " ".join(blocks[2:]) if len(blocks) > 2 else ""
 
-    def format_bib_part(part: str) -> str:
-      part = part.replace(r"\textit{", r"\emph{")
-      out_parts: list[str] = []
-      pos = 0
-      while True:
-        idx = part.find(r"\emph{", pos)
-        if idx == -1:
-          out_parts.append(html.escape(clean_tex_accents(part[pos:])))
-          break
-        out_parts.append(html.escape(clean_tex_accents(part[pos:idx])))
-        inner, pos = extract_braced(part, idx + 5)
-        out_parts.append(f"<em>{html.escape(clean_tex_accents(inner))}</em>")
-      escaped = "".join(out_parts)
-      return re.sub(
-          r"arXiv:(\d{4}\.\d{4,5})",
-          r'<a href="https://arxiv.org/abs/\1" target="_blank"'
-          r' rel="noopener">arXiv:\1</a>',
-          escaped,
-      )
-
-    authors_html = html.escape(authors_raw)
-    title_html = format_bib_part(title_raw)
-    venue_html = format_bib_part(venue_raw)
-    full_html = (
-        f'<span class="bib-authors">{authors_html}</span> <span'
-        f' class="bib-title">{title_html}</span> <span'
-        f' class="bib-venue">{venue_html}</span>'
-    )
-    bib_dict[key] = {
+    math_texs: list[str] = []
+    format_bib_part(title_raw, math_out=math_texs)
+    format_bib_part(venue_raw, math_out=math_texs)
+    entry: dict = {
         "short_author": short_author,
         "year": year,
-        "html": full_html,
+        "authors_raw": authors_raw,
+        "title_raw": title_raw,
+        "venue_raw": venue_raw,
+        "math_texs": math_texs,
     }
+    entry["html"] = render_bbl_entry_html(entry)
+    bib_dict[key] = entry
     ordered_keys.append(key)
   return bib_dict, ordered_keys
 
@@ -663,6 +753,43 @@ def _branch_math_nodes(container: ET.Element) -> set[ET.Element]:
   return out
 
 
+def _equation_math_nodes(container: ET.Element) -> set[ET.Element]:
+  """Returns `<ltx:Math>` elements nested directly inside `<ltx:equation>`."""
+  out: set[ET.Element] = set()
+  for eq in container.findall(f".//{{{LTX_NS}}}equation"):
+    out.update(eq.findall(f".//{{{LTX_NS}}}Math"))
+  return out
+
+
+def _aligned_equationgroup_tex(eg_el: ET.Element) -> str | None:
+  """Builds a single `\\begin{aligned}` block for unnumbered row groups."""
+  eqs = [ch for ch in eg_el if local_tag(ch) == "equation"]
+  if len(eqs) < 2:
+    return None
+  # Per-row numbered groups (e.g. `align`) render each row separately.
+  if any(
+      eq.find(f"./{{{LTX_NS}}}tags") is not None or eq.get("labels")
+      for eq in eqs
+  ):
+    return None
+  rows_tex: list[str] = []
+  for eq in eqs:
+    cells: list[str] = []
+    for mf in eq.findall(f"./{{{LTX_NS}}}MathFork"):
+      tds = mf.findall(f"./{{{LTX_NS}}}MathBranch/{{{LTX_NS}}}td")
+      if not tds:
+        return None
+      for td in tds:
+        m = td.find(f".//{{{LTX_NS}}}Math")
+        cell_tex = normalize_math_tex(m.get("tex") or "") if m is not None else ""
+        cell_tex = re.sub(r"^\\displaystyle\s*", "", cell_tex)
+        cells.append(cell_tex)
+    if not cells:
+      return None
+    rows_tex.append(" & ".join(cells))
+  return r"\begin{aligned} " + r" \\ ".join(rows_tex) + r" \end{aligned}"
+
+
 class LaTeXMLPaperCompiler:
   """Walks LaTeXML's semantic XML AST and emits clean jonbarron.info HTML."""
 
@@ -711,14 +838,22 @@ class LaTeXMLPaperCompiler:
 
     # Batch pre-render math expressions with KaTeX if node/gjs is available
     branch_math = _branch_math_nodes(self.root)
+    eq_math = _equation_math_nodes(self.root) - branch_math
     math_reqs: list[tuple[bool, str]] = []
     for m in self.root.findall(f".//{{{LTX_NS}}}Math"):
       if m in branch_math:
         continue
-      is_disp = m.get("mode") == "display"
+      is_disp = (m.get("mode") == "display") or (m in eq_math)
       tex = normalize_math_tex(m.get("tex") or "")
       if tex:
         math_reqs.append((is_disp, tex))
+    for eg in self.root.findall(f".//{{{LTX_NS}}}equationgroup"):
+      aligned_tex = _aligned_equationgroup_tex(eg)
+      if aligned_tex:
+        math_reqs.append((True, aligned_tex))
+    for k in self.bib_order:
+      for tex in self.bib_dict[k].get("math_texs", ()):
+        math_reqs.append((False, tex))
     prerendered = batch_prerender_katex(
         math_reqs, self.script_dir, self.tex_dir
     )
@@ -727,6 +862,16 @@ class LaTeXMLPaperCompiler:
     else:
       self.katex_cache = None
       self.katex_version = KATEX_VERSION
+    for k in self.bib_order:
+      entry = self.bib_dict[k]
+      if entry.get("math_texs"):
+        entry["html"] = render_bbl_entry_html(
+            entry,
+            lambda tex: (
+                f'<span class="math-inline">{self.render_math_str(tex, False)}'
+                "</span>"
+            ),
+        )
 
   def _elem_refnum(self, el: ET.Element, default: str = "") -> str:
     """Extracts `<ltx:tag role='refnum'>` from `el` (normalizing `1(a)`->`1a`)."""
@@ -856,7 +1001,13 @@ class LaTeXMLPaperCompiler:
   def render_math_str(self, tex: str, is_disp: bool) -> str:
     """Returns pre-rendered KaTeX HTML or client-side delimiter fallback."""
     if self.katex_cache is not None:
-      return self.katex_cache.get((is_disp, tex), html.escape(tex))
+      if (is_disp, tex) in self.katex_cache:
+        return self.katex_cache[(is_disp, tex)]
+      if (not is_disp, tex) in self.katex_cache:
+        return self.katex_cache[(not is_disp, tex)]
+      raise KeyError(
+          f"Missing pre-rendered KaTeX expression (display={is_disp}): {tex!r}"
+      )
     delim_l, delim_r = (r"\[", r"\]") if is_disp else (r"\(", r"\)")
     return f"{delim_l}{html.escape(tex)}{delim_r}"
 
@@ -1021,12 +1172,14 @@ class LaTeXMLPaperCompiler:
         f' class="{css_class}" style="width:{w_pct:.1f}%;" loading="lazy">'
     )
 
-  def render_subfigure(self, sf_el: ET.Element, idx: int) -> str:
+  def render_subfigure(
+      self, sf_el: ET.Element, idx: int, width_pct: float | None = None
+  ) -> str:
     """Renders a `subcaption` subfigure column with proportional flex width."""
     sub_lbl = label_key(sf_el.get("labels"))
     sub_letter = chr(ord("a") + idx)
     w_pt = parse_pt(sf_el.get("width")) or LATEXML_TEXTWIDTH_PT
-    w_pct = (w_pt / LATEXML_TEXTWIDTH_PT) * 100.0
+    w_pct = width_pct if width_pct is not None else (w_pt / LATEXML_TEXTWIDTH_PT) * 100.0
 
     cap_el = sf_el.find(f"{{{LTX_NS}}}caption")
     cap_html = self.render_caption_inner(cap_el) if cap_el is not None else ""
@@ -1220,10 +1373,37 @@ class LaTeXMLPaperCompiler:
       parts.append(f'<div class="fig-top-img-wrap">{img_tag}</div>')
 
     if subfigs:
-      sub_html = "".join(
-          self.render_subfigure(sf, i) for i, sf in enumerate(subfigs)
-      )
-      parts.append(f'<div class="subfigure-row">{sub_html}</div>')
+      rows: list[list[tuple[ET.Element, int, float]]] = []
+      cur_row: list[tuple[ET.Element, int, float]] = []
+      cur_sum = 0.0
+      sf_idx = 0
+      for ch in fig_el:
+        ct = local_tag(ch)
+        if ct == "p" and cur_row:
+          rows.append(cur_row)
+          cur_row = []
+          cur_sum = 0.0
+        elif ct == "figure":
+          w_pt = parse_pt(ch.get("width")) or LATEXML_TEXTWIDTH_PT
+          w_pct = (w_pt / LATEXML_TEXTWIDTH_PT) * 100.0
+          if cur_row and cur_sum + w_pct > 118.0:
+            rows.append(cur_row)
+            cur_row = []
+            cur_sum = 0.0
+          cur_row.append((ch, sf_idx, w_pct))
+          cur_sum += w_pct
+          sf_idx += 1
+      if cur_row:
+        rows.append(cur_row)
+      for row in rows:
+        row_sum = sum(w for _, _, w in row)
+        max_row_sum = 100.0 - 1.2 * max(0, len(row) - 1)
+        scale = max_row_sum / row_sum if (len(row) > 1 and row_sum > max_row_sum) else 1.0
+        sub_html = "".join(
+            self.render_subfigure(sf, i, width_pct=w * scale)
+            for sf, i, w in row
+        )
+        parts.append(f'<div class="subfigure-row">{sub_html}</div>')
 
     if cap_html:
       parts.append(
@@ -1556,6 +1736,22 @@ class LaTeXMLPaperCompiler:
 
     if t in ("equation", "equationgroup"):
       if t == "equationgroup":
+        aligned_tex = _aligned_equationgroup_tex(el)
+        if aligned_tex:
+          lbl = label_key(el.get("labels"))
+          eq_num = self._elem_refnum(el)
+          id_attr = f' id="{html.escape(lbl)}"' if lbl else ""
+          num_html = (
+              f'<span class="eq-num">({html.escape(eq_num)})</span>'
+              if eq_num
+              else ""
+          )
+          rendered = self.render_math_str(aligned_tex, True)
+          return (
+              f'<div class="equation-row"{id_attr}>'
+              f'<div class="math-display">{rendered}</div>'
+              f"{num_html}</div>"
+          )
         eg_parts = []
         for ch in el:
           ct = local_tag(ch)
