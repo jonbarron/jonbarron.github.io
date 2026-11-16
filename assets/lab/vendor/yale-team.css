@@ -1,0 +1,168 @@
+/* Team presentation from Yale NLP Lab:
+   https://github.com/yale-nlp/yale-nlp.github.io/blob/gh-pages/_pages/team.html
+   Reuse permitted by its README. Rules are scoped to BBIC's Students section.
+   Member name headings use h3 beneath the existing Students h2.
+   The final rules reproduce the source page's Bootstrap 3.3.7 inheritance. */
+
+.lab-site .students-section .card {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 50pt;
+  max-height: 100%;
+  padding: 5px;
+  border-radius: 15px;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  align-items: center;
+  justify-content: flex-start;
+  transition: transform 1s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.lab-site .students-section .card:hover {
+  transform: translateY(-10px);
+  box-shadow: 2px 2px 16px 16px rgba(0, 0, 0, 0.2);
+}
+
+.lab-site .students-section .card-body h3 {
+  text-align: center;
+  font-size: large;
+  font-weight: 600;
+}
+
+.lab-site .students-section .student-name-links {
+  display: inline-flex;
+  gap: 6px;
+  margin-left: 6px;
+  vertical-align: baseline;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.lab-site .students-section .student-name-links .icon { width: auto; height: auto; }
+
+.lab-site .students-section .card-body p {
+  text-align: center;
+  font-size: small;
+}
+
+.lab-site .students-section .avatar {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lab-site .students-section .avatar img {
+  width: 100%;
+  height: 100%;
+  margin: 20px auto;
+  object-fit: cover;
+  object-position: center;
+}
+
+.lab-site .students-section .card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.lab-site .students-section .icons {
+  margin-bottom: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.lab-site .students-section .icon {
+  width: 24px;
+  height: 24px;
+  fill: white;
+}
+
+.lab-site .students-section .interests-box { margin-top: 10px; }
+
+.lab-site .students-section .interests-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.lab-site .students-section .interest-item {
+  background-color: #e0e0e0;
+  color: #333;
+  font-size: 0.8em;
+  padding: 4px 8px;
+  border-radius: 15px;
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+}
+
+.lab-site .students-section .interest-item:hover {
+  overflow: none;
+  white-space: normal;
+  max-width: none;
+  z-index: 1;
+}
+
+.lab-site .students-section .interest-item:hover::after {
+  content: attr(title);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100%;
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  font-size: 0.9em;
+}
+
+.lab-site .students-section .card-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.lab-site .students-section .team-grid {
+  display: grid;
+  /* Match the PI frame's 20px extension from the shared content container. */
+  margin-left: -20px;
+  margin-right: -20px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 45px;
+}
+
+/* BBIC: four students per row on desktop; retain the source grid on small screens. */
+@media (min-width: 960px) {
+  .lab-site .students-section .team-grid {
+    grid-template-columns: repeat(4, minmax(150px, 1fr));
+  }
+}
+
+.lab-site .students-section .card { height: 100%; }
+
+/* Bootstrap 3.3.7 is loaded after Lumen on the original Yale Team page.
+   Preserve those inherited values here without changing other BBIC sections. */
+.lab-site .students-section .team-grid {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+}
+.lab-site .students-section figure { display: block; margin: 0; }
+.lab-site .students-section .card-body h3 { margin: 20px 0 10px; line-height: 1.1; }
+.lab-site .students-section .card-body p { margin: 0 0 10px; }

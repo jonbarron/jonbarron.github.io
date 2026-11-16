@@ -1,0 +1,75 @@
+{
+  "name": "BBIC Lab",
+  "nav_name": "BBIC Lab@ZJU",
+  "email": "qiyu@zju.edu.cn",
+  "location": "Yuquan Campus, Zhejiang University",
+  "home_photo": "assets/lab/lab-group.jpg",
+  "research_areas": [
+    "Brain computer interface",
+    "Neural decoding",
+    "Artificial intelligence",
+    "Machine learning"
+  ],
+  "research_highlight": {
+    "title": "Highlights",
+    "publication_url": "https://www.nature.com/nathumbehav/volumes/9/issues/6",
+    "cover": "assets/lab/nature-human-behaviour-june-2025.png",
+    "video": "assets/lab/videos/recent-research-1080p.mp4",
+    "poster": "assets/lab/videos/recent-research-poster.jpg",
+    "source_url": "https://www.fengshows.com/video/14ddc23a-3da1-4588-87b2-84bfd05ef2bc"
+  },
+  "news": [
+    {
+      "date": "Nov 2026",
+      "text": "Our paper “Content-related motor cortical representation during attempted handwriting” by Xinzhu Xiong，Xiaodi Wu，Xiaomeng Yang，Yueming Wang，Yu Qi was accepted at **Cell reports**! Congratulations to all the authors!"
+    },
+    {
+      "date": "Nov 2026",
+      "text": "Our paper “Brain-writing-BERT for generalizable handwriting brain-computer interface” by Xiaomeng Yang, Jie Qin, Xinzhu Xiong, Junming Zhu, Jianmin Zhang, Yueming Wang, Yu Qi was published in **Communications Biology**! Congratulations to all the authors!",
+      "link": "https://www.nature.com/articles/s42003-026-11194-9_reference.pdf",
+      "link_label": "Communications Biology"
+    },
+    {
+      "date": "Nov 2026",
+      "text": "Our paper “Learning Neural State Transitions with a Graph-Augmented State-Space Model for High-Performance Neural Decoding” by Jie Yu, Lei Wang, Xiaomeng Yang, Xinzhu Xiong, Yueming Wang and Yu Qi was published in **Neurocomputing**! Congratulations to all the authors!",
+      "link": "https://www.sciencedirect.com/science/article/abs/pii/S0925231226029243",
+      "link_label": "Neurocomputing"
+    },
+    {
+      "date": "Oct 2026",
+      "text": "Our paper “Improving Neural Decoding Performance for Language BCIs by Explicitly Modeling Context-Induced Noise” by Yao Jia, Xianhan Tan, Binli Luo, Yueming Wang, and Yu Qi was accepted at **NeurIPS 2026**! Congratulations to all the authors!",
+      "link": "https://neurips.cc/virtual/2026/loc/sydney/poster/148927",
+      "link_label": "NeurIPS"
+    }
+  ],
+  "paper_sharing": [
+      {
+      "year": 2026,
+      "date": "Nov 13",
+      "presenter": "Xiaomeng Yang",
+      "title": "Sparse component analysis: A method that uncovers separable computations within neural population activity",
+      "slides": "assets/lab/paper-sharing/SCA-yang-xiaomeng.pdf",
+      "slides_format": "PDF",
+      "paper_url": "https://www.sciencedirect.com/science/article/pii/S0896627326004149"
+    },
+    {
+      "year": 2026,
+      "date": "Nov 6",
+      "presenter": "Yunpeng Shang",
+      "title": "Denoising Diffusion Probabilistic Models",
+      "slides": "assets/lab/paper-sharing/ddpm-shang-yunpeng.pdf",
+      "slides_format": "PDF",
+      "paper_url": "https://arxiv.org/abs/2006.11239"
+    },
+    {
+      "year": 2026,
+      "date": "Oct 9",
+      "presenter": "Zhengyi Wang",
+      "title": "Joint-Space Empowerment for Dexterous Coordination in Tendon-Driven Hands",
+      "slides": "assets/lab/paper-sharing/jose-wang-zhengyi.pptx",
+      "slides_format": "PPTX",
+      "slides_preview": "assets/lab/paper-sharing/jose-wang-zhengyi.pdf",
+      "paper_url": "https://proceedings.mlr.press/v306/heald26a.html"
+    }
+  ]
+}

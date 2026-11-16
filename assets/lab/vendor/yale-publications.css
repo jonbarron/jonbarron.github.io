@@ -1,0 +1,271 @@
+/* Adapted from Yale NLP Lab's publications page and its public Jekyll template:
+   https://nlp.cs.yale.edu/publications/
+   https://github.com/yale-nlp/yale-nlp.github.io/blob/gh-pages/_pages/publications.md
+   Retrieved 2026-11-09. Keep Yale's typography, spacing, and publication badges;
+   use BBIC's accent, accessible filter inputs, and wrapping on narrow screens. */
+
+.lab-site .publication-page {
+  font-size: 16px;
+  line-height: 1.428571429;
+  color: #555;
+}
+
+.lab-site .publication-page .line-through-title {
+  position: relative;
+  text-align: center;
+  margin: 15px 0 20px;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.lab-site .publication-page .line-through-title span {
+  position: relative;
+  z-index: 1;
+  padding: 0 20px;
+  background: #fff;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+}
+
+.lab-site .publication-page .line-through-title::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  height: 2px;
+  border: 0;
+  background: linear-gradient(to right, transparent, var(--lab-accent), transparent);
+}
+
+.lab-site .publication-page .justified-content { text-align: justify; }
+.lab-site .publication-page .justified-content ul,
+.lab-site .publication-page .publication-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.lab-site .publication-page .publication-item {
+  min-width: 0;
+  margin-bottom: 20px;
+  overflow-wrap: anywhere;
+}
+
+.lab-site .publication-page .publication-title-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  min-width: 0;
+  margin-bottom: 5px;
+}
+
+.lab-site .publication-page .publication-title {
+  min-width: 0;
+  max-width: 100%;
+  margin: 0 10px 0 0;
+  font-size: inherit;
+  font-weight: bold;
+  line-height: inherit;
+  color: var(--lab-accent);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: color 0.5s ease;
+}
+
+.lab-site .publication-page .publication-title:hover,
+.lab-site .publication-page .publication-title:focus { color: var(--lab-accent); }
+
+.lab-site .publication-page .publication-award {
+  margin-left: 10px;
+  color: #f00;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.lab-site .publication-page .publication-authors {
+  display: block;
+  margin: 0 0 5px;
+}
+
+.lab-site .publication-page .publication-venue-categories {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  min-width: 0;
+}
+
+.lab-site .publication-page .publication-venue {
+  min-width: 0;
+  max-width: 100%;
+  padding: 2px 15px;
+  margin: 0 5px 0 0;
+  border-radius: 4px;
+  font-size: 14px;
+  font-style: italic;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.lab-site .publication-page .publication-venue-preprint,
+.lab-site .publication-page .publication-type-label-preprint {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+.lab-site .publication-page .publication-venue-journal,
+.lab-site .publication-page .publication-type-label-journal {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+.lab-site .publication-page .publication-venue-conference,
+.lab-site .publication-page .publication-type-label-conference {
+  background: #f3e5f5;
+  color: #6a1b9a;
+}
+.lab-site .publication-page .publication-venue-workshop,
+.lab-site .publication-page .publication-type-label-workshop {
+  background: #f5ead5;
+  color: #ad8539;
+}
+
+.lab-site .publication-page .publication-categories {
+  display: inline;
+  min-width: 0;
+  margin-left: 5px;
+}
+
+.lab-site .publication-page .publication-category,
+.lab-site .publication-page .publication-code-link {
+  display: inline-block;
+  max-width: 100%;
+  padding: 2px 8px;
+  margin: 2px 4px 2px 0;
+  border-radius: 3px;
+  font-size: 12px;
+  text-decoration: none;
+  background: #f0f0f0;
+  color: #333;
+  overflow-wrap: anywhere;
+}
+
+.lab-site .publication-page .publication-category-dataset { background: #e3f2fd; color: #1565c0; }
+.lab-site .publication-page .publication-category-reasoning { background: #e8f5e9; color: #2e7d32; }
+.lab-site .publication-page .publication-category-evaluation { background: #fff3e0; color: #e65100; }
+.lab-site .publication-page .publication-category-document-understanding { background: #f3e5f5; color: #6a1b9a; }
+.lab-site .publication-page .publication-category-specialized-domains { background: #e1f5fe; color: #0277bd; }
+
+.lab-site .publication-page .publication-code-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.lab-site .publication-page .publication-code-link:hover,
+.lab-site .publication-page .publication-code-link:focus {
+  color: #6a1b9a;
+  text-decoration: none;
+  background: #e9e9e9;
+}
+.lab-site .publication-page .separator { margin: 0 5px; color: #999; }
+
+.lab-site .publication-page #publication-type-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.lab-site .publication-page #publication-type-filter h5 {
+  display: block;
+  width: 100%;
+  margin: 11px 15px 11px 0;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* Hide only the native boxes; their adjacent labels stay visible and operable. */
+.lab-site .publication-page .publication-type-checkbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.lab-site .publication-page .publication-type-label {
+  display: inline-block;
+  padding: 2px 10px;
+  margin-right: 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: small;
+  font-weight: 400;
+  font-style: italic;
+  opacity: 0.4;
+}
+.lab-site .publication-page .publication-type-checkbox:checked + label.publication-type-label {
+  opacity: 1;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+}
+.lab-site .publication-page .publication-type-checkbox:focus + label.publication-type-label {
+  outline: 2px solid var(--lab-accent);
+  outline-offset: 3px;
+}
+
+.lab-site .publication-page #search-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  min-width: 0;
+  margin-bottom: 0;
+  column-gap: 22px;
+}
+.lab-site .publication-page .publication-filter-field {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  max-width: 100%;
+}
+.lab-site .publication-page .publication-search-field { flex: 0 1 auto; }
+.lab-site .publication-page #search-filter h5 {
+  margin: 11px 15px 11px 0;
+  font-size: 16px;
+  font-weight: 400;
+}
+.lab-site .publication-page #publication-type-filter p,
+.lab-site .publication-page #search-filter p,
+.lab-site .publication-page .line-through-title p { margin: 0 0 11px; }
+.lab-site .publication-page #publication-search,
+.lab-site .publication-page #publication-year {
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #555;
+  background-color: #fff;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+.lab-site .publication-page #publication-search {
+  flex: 0 1 250px;
+  width: 250px;
+}
+.lab-site .publication-page #publication-year { width: 115px; }
+.lab-site .publication-page #publication-search:focus,
+.lab-site .publication-page #publication-year:focus {
+  border-color: var(--lab-accent);
+  box-shadow: 0 0 5px rgba(0, 63, 136, 0.3);
+}
+.lab-site .publication-page #publication-search::placeholder { color: #999; }
+
+.lab-site .publication-page mark {
+  padding: 0 2px;
+  border-radius: 2px;
+  background: rgba(74, 144, 226, 0.3);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}

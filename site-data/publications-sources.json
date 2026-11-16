@@ -1,0 +1,51 @@
+{
+  "scope": "2021 onward",
+  "google_scholar_profile": "https://scholar.google.com/citations?user=LJ9ClwoAAAAJ&hl=en",
+  "google_scholar_completeness_verified": false,
+  "original_personal_site_records_preserved": 28,
+  "additional_records": 25,
+  "total_records": 53,
+  "year_counts": {
+    "2026": 4,
+    "2025": 17,
+    "2024": 12,
+    "2023": 5,
+    "2022": 10,
+    "2021": 5
+  },
+  "retained_year_differences": [
+    {
+      "title": "Partial Domain Adaptation for Stable Neural Decoding in Disentangled Latent Subspaces",
+      "kept_year": 2025,
+      "source_year": 2026
+    },
+    {
+      "title": "Resource-efficient fully automatic spike sorter via scale-adaptive neuromorphic model",
+      "kept_year": 2025,
+      "source_year": 2026
+    },
+    {
+      "title": "State-Dependent Neural Decoding of Complex Handwriting via Mixture of Experts With Recurrent Routing",
+      "kept_year": 2025,
+      "source_year": 2026
+    },
+    {
+      "title": "A Human-Machine Joint Learning Framework to Boost Endogenous BCI Training",
+      "kept_year": 2024,
+      "source_year": 2023
+    },
+    {
+      "title": "MindGPT: Interpreting What You See with Non-invasive Brain Recordings",
+      "kept_year": 2025,
+      "source_year": 2023
+    }
+  ],
+  "notes": [
+    "Original thumbnail paths are retained in the data; the Yale-style page uses a text bibliography.",
+    "The 2025 Brain-in-the-loop preprint is represented by its 2026 Nature Communications publication; original metadata and preprint link remain attached.",
+    "Other original publication years are retained where early-online and DBLP issue dates differ.",
+    "Additional records are verified against DBLP and publisher sources; complete Scholar coverage remains unverified because the profile was inaccessible.",
+    "Exact normalized-title duplicates are represented by the existing record or the published version."
+  ],
+  "verified_on": "2026-11-09"
+}

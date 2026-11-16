@@ -1,0 +1,108 @@
+[
+  {
+    "name": "Xinzhu Xiong",
+    "role": "Ph.D. Student",
+    "photo": "assets/lab/students/xinzhu-xiong.jpg",
+     "interests": [
+      "Motor Cortex",
+      "Motor encoding",
+      "Handwriting"
+    ]
+  },
+  {
+    "name": "Xiaomeng Yang",
+    "role": "Ph.D. Student",
+    "photo": "assets/lab/students/xiaomeng-yang.jpg",
+     "interests": [
+      "Brain-Computer Interfaces",
+      "Neural Encoding and Decoding",
+      "Computational Neuroscience"
+    ]
+  },
+  {
+    "name": "Yao Jia",
+    "role": "Ph.D. Student",
+    "photo": "assets/lab/students/yao-jia.jpg",
+    "github": "https://github.com/Jurio0304",
+    "csdn": "https://jurio.blog.csdn.net",
+    "interests": [
+      "Neural-Language Decoding",
+      "Multimodal Representation Learning",
+      "Online Adaptive Learning"
+    ]
+  },
+  {
+    "name": "Lei Wang",
+    "role": "Ph.D. Student",
+    "photo": "assets/lab/students/lei-wang.jpg",
+    "github": "https://github.com/wanglei3407",
+    "interests": [
+      "Neural Decoding",
+      "Domain Adaptation"
+    ]
+  },
+  {
+    "name": "Jiajun Chen",
+    "role": "Ph.D. Student",
+    "photo": "assets/lab/students/jiajun-chen.jpg",
+    "email": "jiajunchen@zju.edu.cn",
+    "interests": [
+      "NeuroAI",
+      "Motor Sequencing",
+      "Handwriting"
+    ]
+  },
+  {
+    "name": "Yuan Wang",
+    "role": "Ph.D. Student",
+    "github": "https://github.com/Smullwy"
+  },
+  {
+    "name": "Jie Yu",
+    "role": "Ph.D. Student",
+    "photo": "assets/lab/students/jie-yu.jpg",
+    "github": "https://github.com/zeusyu0927",
+    "interests": [
+      "Skill-based Learning",
+      "Motor Planning and Generate"
+    ]
+  },
+  {
+    "name": "Zhengyi Wang",
+    "photo": "assets/lab/students/zhengyi-wang.jpg",
+    "role": "Ph.D. Student",
+    "interests": [
+      "Embodied Intelligence",
+      "Reinforcement Learning",
+      "Dexterous Hand Motor Control"
+    ]
+  },
+  {
+    "name": "Yunpeng Shang",
+    "role": "M.S. Student",
+    "photo": "assets/lab/students/yunpeng-shang.jpg",
+    "interests": [
+      "Dexterous Manipulation",
+      "Dexterous Hand Teleoperation"
+    ]
+  },
+  {
+    "name": "Xiaoke Yang",
+    "role": "Ph.D. Student",
+    "photo": "assets/lab/students/xiaoke-yang.jpg",
+    "github": "https://github.com/Ybekk",
+    "interests": [
+      "Dexterous Hand Motor Control",
+      "Neural Decoding"
+    ]
+  },
+  {
+    "name": "YuFang Bai",
+    "role": "Ph.D. Student"
+  },
+  {
+    "name": "Yizhi Geng",
+    "photo": "assets/lab/students/yizhi-geng.jpg",
+    "role": "Ph.D. Student"
+  }
+]

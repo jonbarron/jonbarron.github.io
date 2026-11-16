@@ -1,0 +1,705 @@
+[
+  {
+    "title": "Surrogate deep neural networks reveal hierarchical handwriting encoding in the human motor cortex",
+    "authors": "J Chen, T Xu, X Xiong, X Yang, Y Wang, Y Qi",
+    "conference": "Cell Reports 45 (1), 2026",
+    "links": {
+      "paper": "https://linkinghub.elsevier.com/retrieve/pii/S2211124725016092"
+    },
+    "year": 2026,
+    "thumbnail": "yuqi/images/publications/preview-00.png",
+    "type": "journal"
+  },
+  {
+    "title": "Quantifying Knowledge During Full-Layer ANN-to-SNN Knowledge Distillation",
+    "authors": "D Hong, Y Qi, Y Wang",
+    "conference": "Pattern Recognition, 113066, 2026",
+    "links": {
+      "paper": "https://linkinghub.elsevier.com/retrieve/pii/S0031320326000294"
+    },
+    "year": 2026,
+    "thumbnail": "yuqi/images/publications/preview-01.png",
+    "sources": [
+      "https://dblp.org/rec/journals/pr/HongQW26"
+    ],
+    "type": "journal"
+  },
+  {
+    "title": "Neuromorphic neural decoding model towards high-performance neuroprosthetics",
+    "authors": "Yuan Wang, Tao Fang, Yu Qi, Gang Pan",
+    "conference": "Neurocomputing",
+    "links": {
+      "DBLP": "https://dblp.org/rec/journals/ijon/WangFQP26"
+    },
+    "year": 2026,
+    "type": "journal",
+    "sources": [
+      "https://dblp.org/rec/journals/ijon/WangFQP26"
+    ]
+  },
+  {
+    "title": "Human-like cognitive generalization for large models via mental representation-guided supervision",
+    "authors": "Jiaxuan Chen, Yu Qi, Yueming Wang, Gang Pan",
+    "conference": "Nature Communications 17: 4709",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:a0OBvERweLwC",
+      "paper": "https://doi.org/10.1038/s41467-026-71267-5",
+      "code": "https://github.com/JxuanC/mental-representation-guided-learning",
+      "preprint": "https://arxiv.org/abs/2505.09085"
+    },
+    "year": 2026,
+    "thumbnail": "yuqi/images/publications/preview-14.png",
+    "type": "journal",
+    "versions": [
+      {
+        "title": "Human-like Cognitive Generalization for Large Models via Brain-in-the-loop Supervision",
+        "year": 2025,
+        "links": {
+          "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:a0OBvERweLwC"
+        }
+      }
+    ],
+    "sources": [
+      "https://www.nature.com/articles/s41467-026-71267-5",
+      "https://crossmark.crossref.org/dialog/?doi=10.1038%2Fs41467-026-71267-5",
+      "https://pubmed.ncbi.nlm.nih.gov/41922362/"
+    ]
+  },
+  {
+    "title": "Brain connectivity predict surgical outcomes of low-grade epilepsy-associated neuroepithelial tumors",
+    "authors": "W Ming, Y Zheng, Q Lian, C Shen, Y Zhang, Z Wang, S Wang, F Li, ...",
+    "conference": "Clinical Neurophysiology, 2111478, 2025",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:SP6oXDckpogC"
+    },
+    "year": 2025,
+    "thumbnail": "yuqi/images/publications/preview-02.png",
+    "type": "journal"
+  },
+  {
+    "title": "State-Dependent Neural Decoding of Complex Handwriting via Mixture of Experts with Recurrent Routing",
+    "authors": "L Wang, X Yang, X Xiong, Y Jia, Y Wang, Y Qi",
+    "conference": "IEEE Transactions on Cognitive and Developmental Systems, 2025",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:XiSMed-E-HIC"
+    },
+    "year": 2025,
+    "thumbnail": "yuqi/images/publications/preview-03.png",
+    "sources": [
+      "https://dblp.org/rec/journals/tamd/WangYXJWQ26"
+    ],
+    "type": "journal"
+  },
+  {
+    "title": "Learning discrete neural latent spaces for high-performance speech decoding",
+    "authors": "Y Jia, Q Lian, L Wang, Y Wang, Y Qi",
+    "conference": "Journal of Neural Engineering 22 (6), 066039, 2025",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:dshw04ExmUIC"
+    },
+    "year": 2025,
+    "thumbnail": "yuqi/images/publications/preview-04.png",
+    "type": "journal"
+  },
+  {
+    "title": "Resource-efficient fully automatic spike sorter via scale-adaptive neuromorphic model",
+    "authors": "H Yu, J Yu, Y Qi, G Pan",
+    "conference": "Neurocomputing, 132157, 2025",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:nb7KW1ujOQ8C"
+    },
+    "year": 2025,
+    "thumbnail": "yuqi/images/publications/preview-05.png",
+    "sources": [
+      "https://dblp.org/rec/journals/ijon/YuYQP26"
+    ],
+    "type": "journal"
+  },
+  {
+    "title": "Decoding multi-joint hand movements from brain signals by learning a synergy-based neural manifold",
+    "authors": "H Sun, Z Wang, Y Qi, Y Wang",
+    "conference": "Patterns 6 (11), 2025",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:1sJd4Hv_s6UC"
+    },
+    "year": 2025,
+    "thumbnail": "yuqi/images/publications/preview-06.png",
+    "sources": [
+      "https://dblp.org/rec/journals/patterns/SunWQW25"
+    ],
+    "type": "journal"
+  },
+  {
+    "title": "Flow matching for few-trial neural adaptation with stable latent dynamics",
+    "authors": "P Wang, Y Qi, Y Wang, G Pan",
+    "conference": "Forty-second International Conference on Machine Learning, 2025",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:bFI3QPDXJZMC"
+    },
+    "year": 2025,
+    "thumbnail": "yuqi/images/publications/preview-07.png",
+    "sources": [
+      "https://dblp.org/rec/conf/icml/WangQ0025"
+    ],
+    "type": "conference"
+  },
+  {
+    "title": "LASNN: Layer-wise ANN-to-SNN distillation for effective and efficient training in deep spiking neural networks",
+    "authors": "D Hong, Y Qi, Y Wang",
+    "conference": "Neurocomputing, 131351, 2025",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:bEWYMUwI8FkC"
+    },
+    "year": 2025,
+    "thumbnail": "yuqi/images/publications/preview-08.png",
+    "sources": [
+      "https://dblp.org/rec/journals/ijon/HongQW25"
+    ],
+    "type": "journal"
+  },
+  {
+    "title": "Partial Domain Adaptation for Stable Neural Decoding in Disentangled Latent Subspaces",
+    "authors": "P Wang, Y Qi, G Pan",
+    "conference": "IEEE Transactions on Biomedical Engineering, 2025",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:EUQCXRtRnyEC"
+    },
+    "year": 2025,
+    "thumbnail": "yuqi/images/publications/preview-09.png",
+    "sources": [
+      "https://dblp.org/rec/journals/tbe/WangQP26"
+    ],
+    "type": "journal"
+  },
+  {
+    "title": "Dynamic Instance-Level Graph Learning Network of Intracranial Electroencephalography Signals for Epileptic Seizure Prediction",
+    "authors": "Q Lian, Y Wang, Y Qi",
+    "conference": "IEEE Journal of Biomedical and Health Informatics, 2025",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:UxriW0iASnsC"
+    },
+    "year": 2025,
+    "thumbnail": "yuqi/images/publications/preview-10.png",
+    "sources": [
+      "https://dblp.org/rec/journals/titb/LianWQ25"
+    ],
+    "type": "journal"
+  },
+  {
+    "title": "MindGPT: Interpreting what you see with non-invasive brain recordings",
+    "authors": "J Chen, Y Qi, Y Wang, G Pan",
+    "conference": "IEEE Transactions on Image Processing, 2025",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:dhFuZR0502QC"
+    },
+    "year": 2025,
+    "thumbnail": "yuqi/images/publications/preview-11.png",
+    "sources": [
+      "https://dblp.org/rec/journals/tip/ChenQWP25",
+      "https://dblp.org/rec/journals/corr/abs-2309-15729"
+    ],
+    "type": "journal"
+  },
+  {
+    "title": "Neural encoding of handwriting in the human motor cortex",
+    "authors": "Y Qi",
+    "conference": "Nature Human Behaviour 9 (6), 1075-1076, 2025",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:u9iWguZQMMsC"
+    },
+    "year": 2025,
+    "thumbnail": "yuqi/images/publications/preview-12.png",
+    "type": "journal"
+  },
+  {
+    "title": "Human motor cortex encodes complex handwriting through a sequence of stable neural states",
+    "authors": "Y Qi, X Zhu, X Xiong, X Yang, N Ding, H Wu, K Xu, J Zhu, J Zhang, ...",
+    "conference": "Nature Human Behaviour 9 (6), 1260-1271, 2025",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:dfsIfKJdRG4C"
+    },
+    "year": 2025,
+    "thumbnail": "yuqi/images/publications/preview-13.png",
+    "type": "journal"
+  },
+  {
+    "title": "Cauchy diffusion: A heavy-tailed denoising diffusion probabilistic model for speech synthesis",
+    "authors": "Q Lian, Y Qi, Y Wang",
+    "conference": "Proceedings of the AAAI Conference on Artificial Intelligence 39 (23), 24549…, 2025",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:pyW8ca7W8N0C"
+    },
+    "year": 2025,
+    "thumbnail": "yuqi/images/publications/preview-15.png",
+    "sources": [
+      "https://dblp.org/rec/conf/aaai/LianQW25"
+    ],
+    "type": "conference"
+  },
+  {
+    "title": "DeCorrNet: Enhancing Neural Decoding Performance by Eliminating Correlations in Noise",
+    "authors": "X Tan, Y Qi, Y Wang",
+    "conference": "Proceedings of the AAAI Conference on Artificial Intelligence 39 (13), 14396…, 2025",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:cFHS6HbyZ2cC"
+    },
+    "year": 2025,
+    "thumbnail": "yuqi/images/publications/preview-16.png",
+    "sources": [
+      "https://dblp.org/rec/conf/aaai/TanQW25"
+    ],
+    "type": "conference"
+  },
+  {
+    "title": "Bridging the gap between brain and machine in interpreting visual semantics: Towards self-adaptive brain-to-text decoding",
+    "authors": "J Chen, Y Qi, Y Wang, G Pan",
+    "conference": "Proceedings of the IEEE/CVF International Conference on Computer Vision…, 2025",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:CHSYGLWDkRkC"
+    },
+    "year": 2025,
+    "thumbnail": "yuqi/images/publications/preview-17.png",
+    "sources": [
+      "https://dblp.org/rec/conf/iccv/ChenQWP25"
+    ],
+    "type": "conference"
+  },
+  {
+    "title": "A Habenula Neural Biomarker Simultaneously Tracks Weekly and Daily Symptom Variations During Deep Brain Stimulation Therapy for Depression",
+    "authors": "Shi Liu, Yu Qi, Shaohua Hu, Ning Wei, Jianmin Zhang, Junming Zhu, Hemmings Wu, Hailan Hu, Yuxiao Yang, Yueming Wang",
+    "conference": "IEEE J. Biomed. Health Informatics",
+    "links": {
+      "DBLP": "https://dblp.org/rec/journals/titb/LiuQHWZZWHYW25"
+    },
+    "year": 2025,
+    "type": "journal",
+    "sources": [
+      "https://dblp.org/rec/journals/titb/LiuQHWZZWHYW25"
+    ]
+  },
+  {
+    "title": "CRRL: Learning Channel-invariant Neural Representations for High-performance Cross-day Decoding",
+    "authors": "Xianhan Tan, Binli Luo, Yu Qi, Yueming Wang",
+    "conference": "NeurIPS",
+    "links": {
+      "DBLP": "https://dblp.org/rec/conf/nips/TanLQW25"
+    },
+    "year": 2025,
+    "type": "conference",
+    "sources": [
+      "https://dblp.org/rec/conf/nips/TanLQW25"
+    ]
+  },
+  {
+    "title": "Reconstructing multi-stroke characters from brain signals toward generalizable handwriting brain-computer interfaces",
+    "authors": "X Yang, X Xiong, X Li, Q Lian, J Zhu, J Zhang, Y Qi, Y Wang",
+    "conference": "IEEE Transactions on Neural Systems and Rehabilitation Engineering 32, 4230-4239, 2024",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&cstart=20&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:rO6llkc54NcC"
+    },
+    "year": 2024,
+    "thumbnail": "yuqi/images/publications/preview-18.png",
+    "type": "journal"
+  },
+  {
+    "title": "Neuromorphic model-based neural decoders for brain-computer interfaces: a comparative study",
+    "authors": "Y Weng, Y Qi, Y Wang, G Pan",
+    "conference": "2024 IEEE Biomedical Circuits and Systems Conference (BioCAS), 1-4, 2024",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&cstart=20&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:zA6iFVUQeVQC"
+    },
+    "year": 2024,
+    "thumbnail": "yuqi/images/publications/preview-19.png",
+    "sources": [
+      "https://dblp.org/rec/conf/biocas/WengQW024"
+    ],
+    "type": "conference"
+  },
+  {
+    "title": "Effective phoneme decoding with hyperbolic neural networks for high-performance speech BCIs",
+    "authors": "X Tan, Q Lian, J Zhu, J Zhang, Y Wang, Y Qi",
+    "conference": "IEEE Transactions on Neural Systems and Rehabilitation Engineering 32, 3432-3441, 2024",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&cstart=20&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:ZHo1McVdvXMC"
+    },
+    "year": 2024,
+    "thumbnail": "yuqi/images/publications/preview-20.png",
+    "type": "journal"
+  },
+  {
+    "title": "Revealing unexpected complex encoding but simple decoding mechanisms in motor cortex via separating behaviorally relevant neural signals",
+    "authors": "Y Li, X Zhu, Y Qi, Y Wang",
+    "conference": "eLife 12, RP87881, 2024",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&cstart=20&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:r0BpntZqJG4C"
+    },
+    "year": 2024,
+    "thumbnail": "yuqi/images/publications/preview-21.png",
+    "type": "journal"
+  },
+  {
+    "title": "Decoding Joint-Level Hand Movements With Intracortical Neural Signals in a Human Brain-Computer Interface",
+    "authors": "H Sun, Y Qi, X Wu, J Zhu, J Zhang, Y Wang",
+    "conference": "IEEE Transactions on Cognitive and Developmental Systems 16 (6), 2100-2109, 2024",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&cstart=20&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:g5m5HwL7SMYC"
+    },
+    "year": 2024,
+    "thumbnail": "yuqi/images/publications/preview-22.png",
+    "sources": [
+      "https://dblp.org/rec/journals/tamd/SunQWZZW24"
+    ],
+    "type": "journal"
+  },
+  {
+    "title": "State-sensitive convolutional sparse coding for potential biomarker identification in brain signals",
+    "authors": "P Wang, Y Qi, G Pan",
+    "conference": "Science China Information Sciences 67 (5), 152401, 2024",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&cstart=20&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:pqnbT2bcN3wC"
+    },
+    "year": 2024,
+    "thumbnail": "yuqi/images/publications/preview-23.png",
+    "type": "journal"
+  },
+  {
+    "title": "Bridging the semantic latent space between brain and machine: Similarity is all you need",
+    "authors": "J Chen, Y Qi, Y Wang, G Pan",
+    "conference": "Proceedings of the AAAI Conference on Artificial Intelligence 38 (10), 11302…, 2024",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&cstart=20&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:M3ejUd6NZC8C"
+    },
+    "year": 2024,
+    "thumbnail": "yuqi/images/publications/preview-24.png",
+    "sources": [
+      "https://dblp.org/rec/conf/aaai/0007QW024"
+    ],
+    "type": "conference"
+  },
+  {
+    "title": "How well do neural signatures of resting-state EEG detect consciousness? A large-scale clinical study",
+    "authors": "X Ma, Y Qi, C Xu, Y Weng, J Yu, X Sun, Y Yu, Y Wu, J Gao, J Li, Y Shu, ...",
+    "conference": "Human Brain Mapping 45 (4), e26586, 2024",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&cstart=20&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:4TOpqqG69KYC"
+    },
+    "year": 2024,
+    "thumbnail": "yuqi/images/publications/preview-25.png",
+    "type": "journal"
+  },
+  {
+    "title": "Human Motor Cortex Encodes Complex Handwriting Through a Sequence of Primitive Neural States",
+    "authors": "Y Qi, X Zhu, X Xiong, X Yang, N Ding, H Wu, K Xu, J Zhu, J Zhang, ...",
+    "conference": "bioRxiv, 2024.02.05.578548, 2024",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&cstart=20&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:_Qo2XoVZTnwC"
+    },
+    "year": 2024,
+    "thumbnail": "yuqi/images/publications/preview-26.png",
+    "type": "preprint"
+  },
+  {
+    "title": "Mind Artist: Creating artistic snapshots with human thought",
+    "authors": "J Chen, Y Qi, Y Wang, G Pan",
+    "conference": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2024",
+    "links": {
+      "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=LJ9ClwoAAAAJ&cstart=20&sortby=pubdate&citation_for_view=LJ9ClwoAAAAJ:HoB7MX3m0LUC"
+    },
+    "year": 2024,
+    "thumbnail": "yuqi/images/publications/preview-27.png",
+    "sources": [
+      "https://dblp.org/rec/conf/cvpr/0007QW024"
+    ],
+    "type": "conference"
+  },
+  {
+    "title": "A Human-Machine Joint Learning Framework to Boost Endogenous BCI Training",
+    "authors": "Hanwen Wang, Yu Qi, Lin Yao, Yueming Wang, Dario Farina, Gang Pan",
+    "conference": "IEEE Trans. Neural Networks Learn. Syst.",
+    "links": {
+      "DBLP": "https://dblp.org/rec/journals/tnn/WangQYWFP24"
+    },
+    "year": 2024,
+    "type": "journal",
+    "sources": [
+      "https://dblp.org/rec/journals/tnn/WangQYWFP24",
+      "https://dblp.org/rec/journals/corr/abs-2309-03209"
+    ]
+  },
+  {
+    "title": "Learning the Color Space for Effective Fabric Defect Detection",
+    "authors": "Chenkai Zhang, Yu Qi, Yueming Wang",
+    "conference": "IEEE Trans. Emerg. Top. Comput. Intell.",
+    "links": {
+      "DBLP": "https://dblp.org/rec/journals/tetci/ZhangQW24"
+    },
+    "year": 2024,
+    "type": "journal",
+    "sources": [
+      "https://dblp.org/rec/journals/tetci/ZhangQW24"
+    ]
+  },
+  {
+    "title": "Convolutional Multiple Instance Learning for Sleep Spindle Detection With Label Refinement",
+    "authors": "Xuyun Sun, Yu Qi, Yueming Wang, Gang Pan",
+    "conference": "IEEE Trans. Cogn. Dev. Syst.",
+    "links": {
+      "DBLP": "https://dblp.org/rec/journals/tamd/SunQWP23"
+    },
+    "year": 2023,
+    "type": "journal",
+    "sources": [
+      "https://dblp.org/rec/journals/tamd/SunQWP23"
+    ]
+  },
+  {
+    "title": "Extracting Semantic-Dynamic Features for Long-Term Stable Brain Computer Interface",
+    "authors": "Tao Fang, Qian Zheng, Yu Qi, Gang Pan",
+    "conference": "AAAI",
+    "links": {
+      "DBLP": "https://dblp.org/rec/conf/aaai/FangZQ023"
+    },
+    "year": 2023,
+    "type": "conference",
+    "sources": [
+      "https://dblp.org/rec/conf/aaai/FangZQ023"
+    ]
+  },
+  {
+    "title": "Rethinking Visual Reconstruction: Experience-Based Content Completion Guided by Visual Cues",
+    "authors": "Jiaxuan Chen, Yu Qi, Gang Pan",
+    "conference": "ICML",
+    "links": {
+      "DBLP": "https://dblp.org/rec/conf/icml/0007Q023"
+    },
+    "year": 2023,
+    "type": "conference",
+    "sources": [
+      "https://dblp.org/rec/conf/icml/0007Q023"
+    ]
+  },
+  {
+    "title": "NeuSort: An Automatic Adaptive Spike Sorting Approach with Neuromorphic Models",
+    "authors": "Hang Yu, Yu Qi, Gang Pan",
+    "conference": "CoRR abs/2304.10273",
+    "links": {
+      "paper": "https://arxiv.org/abs/2304.10273"
+    },
+    "year": 2023,
+    "type": "preprint",
+    "sources": [
+      "https://dblp.org/rec/journals/corr/abs-2304-10273"
+    ]
+  },
+  {
+    "title": "Consformer: Consciousness Detection Using Transformer Networks With Correntropy-Based Measures",
+    "authors": "Xuyun Sun, Yu Qi, Xiulin Ma, Chuan Xu, Benyan Luo, Gang Pan",
+    "conference": "IEEE Transactions on Neural Systems and Rehabilitation Engineering 31: 2933–2943",
+    "year": 2023,
+    "type": "journal",
+    "links": {
+      "paper": "https://doi.org/10.1109/TNSRE.2023.3250958"
+    },
+    "sources": [
+      "https://ieeexplore.ieee.org/abstract/document/10057051",
+      "https://ieeexplore.ieee.org/ielx7/7333/4359219/10057051.pdf",
+      "https://pubmed.ncbi.nlm.nih.gov/37028068/"
+    ]
+  },
+  {
+    "title": "A Brain-Controlled Mahjong Game with Artificial Intelligence Augmentation",
+    "authors": "Xiaodi Wu, Yu Qi, Xinyun Zhu, Kedi Xu, Junming Zhu, Jianmin Zhang, Yueming Wang",
+    "conference": "CICAI",
+    "links": {
+      "DBLP": "https://dblp.org/rec/conf/cicai/WuQZXZZW22"
+    },
+    "year": 2022,
+    "type": "conference",
+    "sources": [
+      "https://dblp.org/rec/conf/cicai/WuQZXZZW22"
+    ]
+  },
+  {
+    "title": "Delving into Temporal-Spectral Connections in Spike-LFP Decoding by Transformer Networks",
+    "authors": "Huaqin Sun, Yu Qi, Yueming Wang",
+    "conference": "HBAI@IJCAI",
+    "links": {
+      "DBLP": "https://dblp.org/rec/conf/ijcai/SunQW22"
+    },
+    "year": 2022,
+    "type": "conference",
+    "sources": [
+      "https://dblp.org/rec/conf/ijcai/SunQW22"
+    ]
+  },
+  {
+    "title": "Design a Novel BCI for Neurorehabilitation Using Concurrent LFP and EEG Features: A Case Study",
+    "authors": "Zhao Feng, Yi Sun, Linze Qian, Yu Qi, Yueming Wang, Cuntai Guan, Yu Sun",
+    "conference": "IEEE Trans. Biomed. Eng.",
+    "links": {
+      "DBLP": "https://dblp.org/rec/journals/tbe/FengSQQWGS22"
+    },
+    "year": 2022,
+    "type": "journal",
+    "sources": [
+      "https://dblp.org/rec/journals/tbe/FengSQQWGS22"
+    ]
+  },
+  {
+    "title": "Dynamic Ensemble Bayesian Filter for Robust Control of a Human Brain-Machine Interface",
+    "authors": "Yu Qi, Xinyun Zhu, Kedi Xu, Feixiao Ren, Hongjie Jiang, Junming Zhu, Jianmin Zhang, Gang Pan, Yueming Wang",
+    "conference": "IEEE Trans. Biomed. Eng.",
+    "links": {
+      "DBLP": "https://dblp.org/rec/journals/tbe/QiZXRJZZPW22"
+    },
+    "year": 2022,
+    "type": "journal",
+    "sources": [
+      "https://dblp.org/rec/journals/tbe/QiZXRJZZPW22",
+      "https://dblp.org/rec/journals/corr/abs-2204-11840"
+    ]
+  },
+  {
+    "title": "Learning Robust Features From Nonstationary Brain Signals by Multiscale Domain Adaptation Networks for Seizure Prediction",
+    "authors": "Yu Qi, Ling Ding, Yueming Wang, Gang Pan",
+    "conference": "IEEE Trans. Cogn. Dev. Syst.",
+    "links": {
+      "DBLP": "https://dblp.org/rec/journals/tamd/QiDWP22"
+    },
+    "year": 2022,
+    "type": "journal",
+    "sources": [
+      "https://dblp.org/rec/journals/tamd/QiDWP22"
+    ]
+  },
+  {
+    "title": "Online Neural Sequence Detection with Hierarchical Dirichlet Point Process",
+    "authors": "Weihan Li, Yu Qi, Gang Pan",
+    "conference": "NeurIPS",
+    "links": {
+      "DBLP": "https://dblp.org/rec/conf/nips/LiQ022"
+    },
+    "year": 2022,
+    "type": "conference",
+    "sources": [
+      "https://dblp.org/rec/conf/nips/LiQ022"
+    ]
+  },
+  {
+    "title": "RCIT: An RSVP-Based Concealed Information Test Framework Using EEG Signals",
+    "authors": "Hanwen Wang, Yu Qi, Hang Yu, Yueming Wang, Cong Liu, Guoping Hu, Gang Pan",
+    "conference": "IEEE Trans. Cogn. Dev. Syst.",
+    "links": {
+      "DBLP": "https://dblp.org/rec/journals/tamd/WangQYWLHP22"
+    },
+    "year": 2022,
+    "type": "journal",
+    "sources": [
+      "https://dblp.org/rec/journals/tamd/WangQYWLHP22"
+    ]
+  },
+  {
+    "title": "Subdomain contraction in deep networks for robust representation learning",
+    "authors": "Yu Qi, Zhentao Pan, Gang Pan, Yueming Wang",
+    "conference": "Neurocomputing",
+    "links": {
+      "DBLP": "https://dblp.org/rec/journals/ijon/QiPPW22"
+    },
+    "year": 2022,
+    "type": "journal",
+    "sources": [
+      "https://dblp.org/rec/journals/ijon/QiPPW22"
+    ]
+  },
+  {
+    "title": "Tracking Functional Changes in Nonstationary Signals with Evolutionary Ensemble Bayesian Model for Robust Neural Decoding",
+    "authors": "Xinyun Zhu, Yu Qi, Gang Pan, Yueming Wang",
+    "conference": "NeurIPS",
+    "links": {
+      "DBLP": "https://dblp.org/rec/conf/nips/ZhuQ0W22"
+    },
+    "year": 2022,
+    "type": "conference",
+    "sources": [
+      "https://dblp.org/rec/conf/nips/ZhuQ0W22"
+    ]
+  },
+  {
+    "title": "Short report: surgery for implantable brain-computer interface assisted by robotic navigation system",
+    "authors": "Hongjie Jiang, Rui Wang, Zhe Zheng, Junming Zhu, Yu Qi, Kedi Xu, Jianmin Zhang",
+    "conference": "Acta Neurochirurgica",
+    "year": 2022,
+    "type": "journal",
+    "links": {
+      "paper": "https://doi.org/10.1007/s00701-022-05235-5"
+    },
+    "sources": [
+      "https://pubmed.ncbi.nlm.nih.gov/35604492/"
+    ]
+  },
+  {
+    "title": "A Brain Biometric-based Identification Approach Using Local Field Potentials",
+    "authors": "Ming Li, Huan Gao, Yu Qi, Gang Pan",
+    "conference": "EMBC",
+    "links": {
+      "DBLP": "https://dblp.org/rec/conf/embc/LiGQP21"
+    },
+    "year": 2021,
+    "type": "conference",
+    "sources": [
+      "https://dblp.org/rec/conf/embc/LiGQP21"
+    ]
+  },
+  {
+    "title": "Efficient Point-Process Modeling of Spiking Neurons for Neuroprosthesis",
+    "authors": "Weihan Li, Cunle Qian, Yu Qi, Yiwen Wang, Yueming Wang, Gang Pan",
+    "conference": "EMBC",
+    "links": {
+      "DBLP": "https://dblp.org/rec/conf/embc/LiQQWWP21"
+    },
+    "year": 2021,
+    "type": "conference",
+    "sources": [
+      "https://dblp.org/rec/conf/embc/LiQQWWP21"
+    ]
+  },
+  {
+    "title": "Secure typing via BCI system with encrypted feedback",
+    "authors": "Hang Yu, Yu Qi, Hanwen Wang, Gang Pan",
+    "conference": "EMBC",
+    "links": {
+      "DBLP": "https://dblp.org/rec/conf/embc/YuQWP21"
+    },
+    "year": 2021,
+    "type": "conference",
+    "sources": [
+      "https://dblp.org/rec/conf/embc/YuQWP21"
+    ]
+  },
+  {
+    "title": "Reconstructing Perceptive Images from Brain Activity by Shape-Semantic GAN",
+    "authors": "Tao Fang, Yu Qi, Gang Pan",
+    "conference": "CoRR abs/2101.12083",
+    "links": {
+      "paper": "https://arxiv.org/abs/2101.12083"
+    },
+    "year": 2021,
+    "type": "preprint",
+    "sources": [
+      "https://dblp.org/rec/journals/corr/abs-2101-12083"
+    ]
+  },
+  {
+    "title": "Robust neural decoding by kernel regression with Siamese representation learning",
+    "authors": "Yangang Li, Yu Qi, Yiwen Wang, Yueming Wang, Kedi Xu, Gang Pan",
+    "conference": "Journal of Neural Engineering",
+    "year": 2021,
+    "type": "journal",
+    "links": {
+      "paper": "https://doi.org/10.1088/1741-2552/ac2c4e"
+    },
+    "sources": [
+      "https://pubmed.ncbi.nlm.nih.gov/34663771/"
+    ]
+  }
+]
