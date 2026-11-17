@@ -1,89 +1,182 @@
-/* latin-ext */
+/* ==========================================================================
+   Site-Wide Fonts & Design Policy (shared across homepage, papers, and demos)
+   --------------------------------------------------------------------------
+   Fonts (single source of truth — loaded lazily by unicode-range & usage):
+     --font-sans  Lato (400/700 normal & italic, v25 woff2)
+     --font-mono  Source Code Pro (400–700 variable, v32 woff2)
+
+   Colors:
+     --bg            #ffffff  Page, button, and popover background.
+     --bg-code       #f7f7f5  Code listing, inline code & control surface.
+     --border        #e4e4e0  Hairline dividers & borders (~black!15).
+     --text          #000000  All primary content & paper metadata (prose,
+                              headings, authors, affiliations, venues, emails,
+                              captions, tables, references, code body/keywords).
+     --text-muted    #555555  Chrome ONLY: nav/link separators (/), footers,
+                              sidebar TOC, eq numbers, hover # anchors, Copy
+                              buttons, and code comments. Never use for main
+                              content or paper metadata.
+     --accent        #1772d0  Clickable links & active navigation ONLY. Never
+                              use for non-clickable elements or code keywords.
+     --accent-hover  #f09228  Hover/focus state for links & interactive chrome.
+     --highlight-bg  #ffffd0  Highlighted paper rows & :target jump highlights.
+     (Homepage-only accents: award badges #d40000 / #c64848, Miscellanea boxes.)
+
+   Typography:
+     Homepage (index.html): 32px title, 22px h2, 14px body (normal ~1.2 leading),
+                            13px footer.
+     Papers (paper.css):    32px title, 22px h2, 18px h3/abstract, 15px regular
+                            text (prose, authors, emails, affiliations, venue,
+                            top nav, TOC, eq numbers; 14px on mobile <= 640px),
+                            13px ONLY for LaTeX-\small equivalents (fig/table
+                            captions, tables, bibliography, code, algorithms,
+                            footnotes) and small UI chrome (footer, popups,
+                            Copy buttons). KaTeX math scaled to 1.14em.
+   ========================================================================== */
+
+/* Lato — latin-ext italic 400 */
 @font-face {
   font-family: 'Lato';
   font-style: italic;
   font-weight: 400;
-  font-display: swap;
-  src: local('Lato Italic'), local('Lato-Italic'), url(https://fonts.gstatic.com/s/lato/v15/S6u8w4BMUTPHjxsAUi-qNiXg7eU0.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  font-display: block;
+  src: url(https://fonts.gstatic.com/s/lato/v25/S6u8w4BMUTPHjxsAUi-qNiXg7eU0.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-/* latin */
+/* Lato — latin italic 400 */
 @font-face {
   font-family: 'Lato';
   font-style: italic;
   font-weight: 400;
-  font-display: swap;
-  src: local('Lato Italic'), local('Lato-Italic'), url(https://fonts.gstatic.com/s/lato/v15/S6u8w4BMUTPHjxsAXC-qNiXg7Q.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  font-display: block;
+  src: url(https://fonts.gstatic.com/s/lato/v25/S6u8w4BMUTPHjxsAXC-qNiXg7Q.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* latin-ext */
+/* Lato — latin-ext italic 700 */
 @font-face {
   font-family: 'Lato';
   font-style: italic;
   font-weight: 700;
-  font-display: swap;
-  src: local('Lato Bold Italic'), local('Lato-BoldItalic'), url(https://fonts.gstatic.com/s/lato/v15/S6u_w4BMUTPHjxsI5wq_FQftx9897sxZ.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  font-display: block;
+  src: url(https://fonts.gstatic.com/s/lato/v25/S6u_w4BMUTPHjxsI5wq_FQftx9897sxZ.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-/* latin */
+/* Lato — latin italic 700 */
 @font-face {
   font-family: 'Lato';
   font-style: italic;
   font-weight: 700;
-  font-display: swap;
-  src: local('Lato Bold Italic'), local('Lato-BoldItalic'), url(https://fonts.gstatic.com/s/lato/v15/S6u_w4BMUTPHjxsI5wq_Gwftx9897g.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  font-display: block;
+  src: url(https://fonts.gstatic.com/s/lato/v25/S6u_w4BMUTPHjxsI5wq_Gwftx9897g.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* latin-ext */
+/* Lato — latin-ext normal 400 */
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
-  src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v15/S6uyw4BMUTPHjxAwXiWtFCfQ7A.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  font-display: block;
+  src: url(https://fonts.gstatic.com/s/lato/v25/S6uyw4BMUTPHjxAwXiWtFCfQ7A.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-/* latin */
+/* Lato — latin normal 400 */
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
-  src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v15/S6uyw4BMUTPHjx4wXiWtFCc.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  font-display: block;
+  src: url(https://fonts.gstatic.com/s/lato/v25/S6uyw4BMUTPHjx4wXiWtFCc.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* latin-ext */
+/* Lato — latin-ext normal 700 */
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 700;
-  font-display: swap;
-  src: local('Lato Bold'), local('Lato-Bold'), url(https://fonts.gstatic.com/s/lato/v15/S6u9w4BMUTPHh6UVSwaPGQ3q5d0N7w.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  font-display: block;
+  src: url(https://fonts.gstatic.com/s/lato/v25/S6u9w4BMUTPHh6UVSwaPGQ3q5d0N7w.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-/* latin */
+/* Lato — latin normal 700 */
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 700;
-  font-display: swap;
-  src: local('Lato Bold'), local('Lato-Bold'), url(https://fonts.gstatic.com/s/lato/v15/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  font-display: block;
+  src: url(https://fonts.gstatic.com/s/lato/v25/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Source Code Pro — greek 400–700 (variable) */
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: block;
+  src: url(https://fonts.gstatic.com/s/sourcecodepro/v32/HI_SiYsKILxRpg3hIP6sJ7fM7PqlPuvWnsUnxlC9.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* Source Code Pro — latin-ext 400–700 (variable) */
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: block;
+  src: url(https://fonts.gstatic.com/s/sourcecodepro/v32/HI_SiYsKILxRpg3hIP6sJ7fM7PqlM-vWnsUnxlC9.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Source Code Pro — latin 400–700 (variable) */
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: block;
+  src: url(https://fonts.gstatic.com/s/sourcecodepro/v32/HI_SiYsKILxRpg3hIP6sJ7fM7PqlPevWnsUnxg.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --bg: #ffffff;
+  --bg-code: #f7f7f5;
+  --border: #e4e4e0;
+  --text: #000000;
+  --text-muted: #555555;
+  --accent: #1772d0;
+  --accent-hover: #f09228;
+  --highlight-bg: #ffffd0;
+  --font-sans: 'Lato', Helvetica, Arial, sans-serif;
+  --font-mono: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
   font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
-  color: #1772d0;
+  color: var(--accent);
   text-decoration: none;
 }
 
 a:focus,
 a:hover {
-  color: #f09228;
+  color: var(--accent-hover);
   text-decoration: none;
 }
 
@@ -95,8 +188,9 @@ h2 {
 
 .page {
   width: 100%;
-  max-width: 800px;
+  max-width: 816px;
   margin: 0 auto;
+  padding: 8px;
 }
 
 .bio {
@@ -107,13 +201,11 @@ h2 {
 .bio-text {
   width: 63%;
   padding: 2.5%;
-  box-sizing: border-box;
 }
 
 .bio-photo {
   width: 37%;
   padding: 2.5%;
-  box-sizing: border-box;
 }
 
 .bio-photo img {
@@ -134,6 +226,7 @@ h2 {
 
 .bio-links {
   text-align: center;
+  color: var(--text-muted);
 }
 
 .section-header {
@@ -141,7 +234,7 @@ h2 {
 }
 
 .highlight {
-  background-color: #ffffd0;
+  background-color: var(--highlight-bg);
 }
 
 .papers {
@@ -159,7 +252,7 @@ h2 {
 }
 
 .paper.highlighted {
-  background-color: #ffffd0;
+  background-color: var(--highlight-bg);
 }
 
 .paper-media,
@@ -177,8 +270,12 @@ h2 {
 }
 
 .papertitle {
-  font-size: 14px;
+  font-size: inherit;
   font-weight: 700;
+}
+
+.paper-links {
+  color: var(--text-muted);
 }
 
 .paper-authors {
@@ -192,11 +289,11 @@ h2 {
 }
 
 .award {
-  color: red;
+  color: #d40000;
 }
 
 .award-highlight {
-  color: #ff8080;
+  color: #c64848;
 }
 
 .paper-desc {
@@ -236,14 +333,20 @@ h2 {
   display: block;
 }
 
-.paper:hover > .paper-media > .one > .two,
+@media (hover: hover) {
+  .paper:hover > .paper-media > .one > .two {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
 .paper.hover-active > .paper-media > .one > .two {
   opacity: 1;
   pointer-events: auto;
 }
 
 .colored-box {
-  color: #000;
+  color: var(--text);
   padding: 20px;
   display: inline-block;
   border-radius: 10px;
@@ -251,13 +354,14 @@ h2 {
 
 .site-footer {
   text-align: right;
-  font-size: small;
+  font-size: 13px;
+  color: var(--text-muted);
   margin-top: 18px;
 }
 
-@media (max-width: 600px) {
-  body {
-    margin: 0;
+@media (max-width: 640px) {
+  .page {
+    padding: 0;
   }
 
   .bio {
@@ -313,11 +417,14 @@ h2 {
 
   .colored-box {
     padding: 12px 8px;
-    box-sizing: border-box;
     width: 104px;
   }
 
   .colored-box h2 {
     font-size: 15px;
+  }
+
+  .site-footer {
+    padding: 0 16px;
   }
 }

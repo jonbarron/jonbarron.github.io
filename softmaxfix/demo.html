@@ -18,22 +18,22 @@
   <meta name="twitter:title" content="A Fix for Softmax and Cross-Entropy — Interactive Demo" />
   <meta name="twitter:description" content="Interactive 2D AdamW optimization demo comparing standard vs. fixed cross-entropy across bf16, fp32, and fp64 precision cliffs." />
   <meta name="twitter:image" content="https://jonbarron.info/softmaxfix/img/social_preview.png" />
-  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAJ0UlEQVR42p2XeXRV1RXGf+fcc997GV4SgiEGCDGRBGUUxQlBxLEsxy6NRXGptYN22YrL6qp1VdSqrYptsWqtE3WgDsQJi4piFZxBUDCEIZgQQAUSMr75vXvP7h83GFCrtnutt+665759vr332fvs/Sm+RRaCUw+iwO5Zu6GsrHCoMaXG9U3ay+WSfqjrml27EnvrybRphuXLfQXCd4j6pkUBRT1aNeADrKwaOrEy5J6Z7zjHhKHOh2KUaET5BvpSIlty8HHa2qXv9yTfOrejI96/j6MI9vjeBgjoPR43HjjsuOFu+Np8rU4OOY5Cq0BFJPgBKAVaB5qeT8L3tvf69tGPu5P3ntbRsVNAE0RRvtOAPeBzy8sLLizOu7PUOJcZxwk++r5HKqlsNqe11v2gYK1FW99ijJBfoHFdjQgpz9vZ6dk5lZvbHlTAHNA3IcINKG5CQMk+BuwBf7umYsSEUOTZqOtOQsRirUisz1H5BTB2PBw2CWpHQVkZaAe6u6BtC6z+ED5ahe3pFh0t8jHGIEJPznvscN/5+aetWzLK+l8Lg9obfMnQoZVTisLLCoypAXKSTrsK4Kyz4YKLYMw4MM5/P9DNzfDE4/DkAqznic7L89HadKdTrw9q3nZ67awPQnmjjqxgY2N74xPju6lf6Kg9CXfV+8NDNxSat4td9zBEecRjhgOq4eY/wpRjvw6WzYExgelflVUr4Te/Rra0IvkRX2vXufDoP695fv8JpZFc73DR4S6z+/NTd90/baWS+npHNTT4O+qq5u0fDs1GyJGIu4weC/MfhyHlAxu/+w78+zXYuB5icQiFoKICJh0BJ5wMlZWQ88A10N6Ovfh8aFrDT89caB8rq9N0rsT3koAWp33bib5RcaWAFVVVEw8pMKtcrYV0WjNsuGLhCzBkSAC8pRV+fz0sXwbWDzwXBqrBWigthZmz4Mqrwbj4jsZpbeKpP7zBeUNPhV2vWZxCTLhUa9HJbK6rl0yyXQF0jap+clDInYlvPTJpw4Kn4ajJAfiHK+DSS6CrE6JFEI8HpZeXF3xPpYJnJAK9vTB5CnLfw9hBpaSsYtpDCT5a+yIFRZVEC2sJh8ptIrdT7/7i1WY+23CSWlpTMWJqKNIUDoUK6e4Szj1fcee8wLMtrXDOGQGoMcHaaWfCSadA1QED/1m6BF55CVEKG09gjzoG96kFvLwpj7MeamZISTGRSDnJ1G56+taRSu+0uBFLvOd5U2vc08PGFOL7lkie5oKLgo19C3OuC8oskgeDSuEv98ARR+6bcAcdDDNORWbOQl1zJY6XxnnvTVbPe5Dbyy4jWliHMTHady0jkdwOSqGVsdaEDX661USVcwJaC/G4MGYsjBkbhPitZfDOWxCNBkAPPgKjxwwAt3wKCFIzEqUU6oij6Jn7V964/g7mD5nESxv2Y6TXwrghEZaveQ/CIYiUgBVLKGLo3bGW7q1zTUgxGoWy2YzWEyaC6wYAixcFhsT64PLZAbi10NaKf901yPp1iNK41TXYa69nU3Ext69q59G6iyHicl7TK9x1oqL4nLN5d9PxvDHvYTbsSFoKosrEu1Y83ZGYod+5r9tYoQxAi0D1gQOJ1dQYlJPScPKM4FgyGfyrfomsXIEqLcUk+kivX8/aJa+z7eijGaGSHFZquHzzq/x41XwYA/zoPKaPrmC63gwfLBJKB2vivZ1Pt3V2+/X1jglplY8VcBwYPDgwIBaDRDwALSkOal0paFqHNH4CZWV4jqH5hB+w8ZQzEM+jqC/OqUfWclVRPiUX34oN5aM6Ovr7hSAFg8AJo0yYrkhJGexWNChrfOlvl0oFmQ6B12qv/tXf+SSdQgA3m2Xn6INZP34K+7/wKuPee4mieXfDoROhsxMrGg1fNixHKxD75b1hxNr+ZqS0JxJDKaznQ29PABiNQkE06BSxGOzeDSKog0ejh5STS6cY2rKBSTfdSmT+YrZlB7OzsgrfCnR3ovt6EKX2vUX7erH9Bnlie4PpBqUdJdtRCo0IW9v6L5VwUF6+D8kkvPt2EJHB++HMvQtdVY3E41SYbsyYSmK/m01LTzeNbW3sfu5f2HgK5QATJiIikEjC1ja06woiRLT+AoBl07RO+XyIiOCGhI9WB6AQXDa+DwUF8MjD0Lk7WJ9yLM7ipagFzxBa8BTVi/+BOrgatyCfzCfraL27gaZUGR3RSvypx6KUgs2bkK1tEI6AWPqsbdwTGN0j/hJ8X5Gfr2lcCxs3Bmd1/IkwbgLkstDRDpf+BL74PNAqjKKPmoxMnkpR5QgqakeR29iKe8v9GM8nncjRctIZNCYS7OjpwVv0HCqdAEc71rd0ZngPgOXLxTnczfu8Nuye77puCbGYkM0oTpkR3Ae1o+DZBgi5AfjiFyGVhHAYrEXF4siWVopeXkTsxnvJdsbR6TRMGIXMvoCcErreWUnvbfOx4XwbNValrPfpHS1b56wAq4JRDT6rO2DOsHDoJqz1SCYNDz0Gx58QePvyYrh6NqRTQQhTqaARFRWBUkhfHyqVJBEqZsMXGjWmFu/mK2BwCVjBXHMHsqYZLy/iDTNi+nTPb8dubb7tTaaZ6Sz3lIB6fujQ0hlF4fUR192PTAaKijX/bIC6usCI9U1w+63w/ruQyexTmmiFCKi8MNunns62WefiFhcgroue9xi6YQlSVGgjVujz/e5nE7GD/hRv7uwfx0TtGZ1bRo6YVRMJLwBykkq6qnx/uOcBmHjoQCl9/FFQEc2boLMDrEBJCdQdhEw/EXvIIazb3Eyyu5vQAwvhmaVQmIeykotq47bk+n42o73poYXUO+fSMDCuSz0OwK66qr/LuDqRsbVZO7JSZMxIkQfuE0mm5LvE9j/7mppkxdQfyuqisbJq2BGyquLwbOuwyfJa+fgFAdmpd75pKN1DRKSz7oCFpWH3bAQfz1PE45rxE4Jp59jjYPgIcPS+LTmRDEpt8YuoRc/w+WcZtunBNiKeLdau+cxLP/+LXR/PvJF6v54GuzdHUPuwof6FnXXVd5WHnF8Fb8ojmdCSzWpVVgYj66C6BvLzg+7Y0Q6tLcFonoiLLSi02hjZ0ldskr5Lh5/62/Rda69QwYShvkpQ1NcoWX9ybKqpmjks7NxSYJwD+9WEbNYnk8F6ntL9SWgdjXZDQjisMMYJklPoSakNb/SG55zd0fiMIAoU38SOvokbKunnhXeVlhads1/0kqh2Li7QaoI2zkCj2ttsEbBC1vO8LLIy5smjN8bbFjywg2R/klu+DzX7SjT2JpbO6prKiWWOOjpf6/FhpYZkhGKN5PK07u22dnvOsqY1m1kxfeuOjQPs+ivZ/r+KgJJp04z6P3TkW5zbW/4DXWCpFy9floQAAAAASUVORK5CYII=" />
-  <link rel="stylesheet" type="text/css" href="../stylesheet.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="icon" href="img/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="64x64" href="img/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="../stylesheet.css" onerror="var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Source+Code+Pro:wght@400..700&display=swap';document.head.appendChild(l)" />
   <style>
     :root {
-      --background: #ffffff;
-      --foreground: #000000;
-      --card: #ffffff;
-      --card-foreground: #000000;
-      --muted: #f7f7f5;
-      --muted-foreground: #555555;
-      --border: #e2e2dc;
+      --background: var(--bg, #ffffff);
+      --foreground: var(--text, #000000);
+      --card: var(--bg, #ffffff);
+      --card-foreground: var(--text, #000000);
+      --muted: var(--bg-code, #f7f7f5);
+      --muted-foreground: var(--text-muted, #555555);
+      --border: #e4e4e0;
     }
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
     }
     body {
@@ -41,10 +41,22 @@
       padding: 20px 16px 40px;
       background-color: var(--background);
       color: var(--foreground);
-      font-family: 'Lato', Verdana, Helvetica, sans-serif;
+      font-family: var(--font-sans, 'Lato', Helvetica, Arial, sans-serif);
       font-size: 14px;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       user-select: none;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
     canvas {
       display: block;
@@ -55,16 +67,22 @@
     }
     .demo-back {
       margin-bottom: 12px;
-      font-size: 14px;
+      font-size: 15px;
+      line-height: 1.35;
     }
     .demo-back a {
-      font-size: 14px;
-      color: #1772d0;
+      font-size: inherit;
+      color: var(--accent, #1772d0);
       text-decoration: none;
+    }
+    @media (max-width: 640px) {
+      .demo-back {
+        font-size: 14px;
+      }
     }
     .demo-back a:hover,
     .demo-back a:focus {
-      color: #f09228;
+      color: var(--accent-hover, #f09228);
       text-decoration: none;
     }
     html.dark .demo-back a {
@@ -72,7 +90,7 @@
     }
     html.dark .demo-back a:hover,
     html.dark .demo-back a:focus {
-      color: #f09228;
+      color: var(--accent-hover, #f09228);
     }
     .controls-bar {
       display: flex;
@@ -100,16 +118,17 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
     .ctrl-group {
       display: inline-flex;
+      flex-wrap: wrap;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
     .ctrl-group.sep {
       border-left: 1px solid var(--border);
-      padding-left: 10px;
+      padding-left: 8px;
     }
     .ctrl-label {
       font-weight: 700;
@@ -124,6 +143,7 @@
       border-radius: 4px;
       background: var(--card);
       border: 1px solid var(--border);
+      max-width: 100%;
     }
     .seg-btn {
       appearance: none;
@@ -131,20 +151,20 @@
       border: 1px solid transparent;
       border-radius: 3px;
       padding: 3px 9px;
-      font-family: 'Lato', Verdana, Helvetica, sans-serif;
-      font-size: 12.5px;
+      font-family: var(--font-sans, 'Lato', Helvetica, Arial, sans-serif);
+      font-size: 13px;
       line-height: 1.3;
       color: var(--muted-foreground);
       cursor: pointer;
       transition: color 0.12s, background 0.12s, border-color 0.12s;
     }
     .seg-btn.mono {
-      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-      font-size: 12px;
+      font-family: var(--font-mono, 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+      font-size: 13px;
       padding: 3px 7px;
     }
     .seg-btn:hover {
-      color: #f09228;
+      color: var(--accent-hover, #f09228);
     }
     .seg-btn.is-active-amber {
       background: rgba(245, 158, 11, 0.16);
@@ -159,7 +179,7 @@
     }
     .seg-btn.is-active-blue {
       background: rgba(23, 114, 208, 0.13);
-      border-color: #1772d0;
+      border-color: var(--accent, #1772d0);
       color: #0d47a1;
       font-weight: 700;
     }
@@ -169,13 +189,13 @@
       color: #dbeafe;
     }
     input[type="range"] {
-      width: 68px;
+      width: 58px;
       cursor: pointer;
       accent-color: #d97706;
     }
     .val-readout {
-      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-      font-size: 12px;
+      font-family: var(--font-mono, 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+      font-size: 13px;
       font-weight: 600;
       color: var(--foreground);
       display: inline-block;
@@ -186,11 +206,11 @@
     .frozen-betas {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       border-left: 1px solid var(--border);
-      padding-left: 10px;
-      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-      font-size: 12px;
+      padding-left: 8px;
+      font-family: var(--font-mono, 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+      font-size: 13px;
       color: var(--muted-foreground);
     }
     .frozen-betas span + span {
@@ -212,6 +232,11 @@
         padding-left: 0;
       }
     }
+    @media (max-width: 440px) {
+      .seg-group {
+        flex-wrap: wrap;
+      }
+    }
     .panel-box {
       border-radius: 4px;
       border: 1px solid var(--border);
@@ -225,6 +250,7 @@
     }
     #mapCanvas {
       cursor: crosshair;
+      touch-action: manipulation;
     }
     .footer-bar {
       display: flex;
@@ -246,23 +272,24 @@
       border: 1px solid var(--border);
       background: var(--card);
       color: var(--foreground);
-      font-family: 'Lato', Verdana, Helvetica, sans-serif;
-      font-size: 12.5px;
+      font-family: var(--font-sans, 'Lato', Helvetica, Arial, sans-serif);
+      font-size: 13px;
       font-weight: 700;
       cursor: pointer;
       transition: border-color 0.12s, color 0.12s;
     }
     .theme-btn:hover {
-      border-color: #f09228;
-      color: #f09228;
+      border-color: var(--accent-hover, #f09228);
+      color: var(--accent-hover, #f09228);
     }
   </style>
 </head>
 <body>
-  <div class="demo-shell">
-    <div class="demo-back">
+  <main class="demo-shell">
+    <h1 class="sr-only">A Fix for Softmax and Cross-Entropy — Interactive Demo</h1>
+    <nav class="demo-back">
       <a href="./">&larr; A Fix for Softmax and Cross-Entropy</a>
-    </div>
+    </nav>
 
     <!-- Top Controls Bar -->
     <div class="controls-bar">
@@ -289,22 +316,22 @@
       <div class="controls-row with-divider">
         <div class="sliders-wrap">
           <div class="ctrl-group" title="Cross-entropy loss magnitude on a non-linear log10 scale (0, then 0.1 to 10)">
-            <span class="ctrl-label">CE Mult:</span>
+            <label for="ceSlider" class="ctrl-label">CE Mult:</label>
             <input id="ceSlider" type="range" min="-1.1" max="1.0" step="0.05" value="0.0" />
             <span id="ceLabel" class="val-readout val-w-sm"></span>
           </div>
           <div class="ctrl-group sep" title="Decoupled weight decay λ on a non-linear log10 scale (0, then 0.1 to 10)">
-            <span class="ctrl-label">Weight decay:</span>
+            <label for="wdSlider" class="ctrl-label">Weight decay:</label>
             <input id="wdSlider" type="range" min="-1.1" max="1.0" step="0.05" value="0.0" />
             <span id="wdLabel" class="val-readout val-w-sm"></span>
           </div>
           <div class="ctrl-group sep" title="Adam denominator epsilon ε = 10^-d">
-            <span class="ctrl-label">Adam ε:</span>
+            <label for="epsSlider" class="ctrl-label">Adam ε:</label>
             <input id="epsSlider" type="range" min="-30" max="-1" step="1" value="-16" />
             <span id="epsLabel" class="val-readout val-w-md"></span>
           </div>
           <div class="ctrl-group sep" title="Label noise probability on a log10 scale (0, then 0.0001 to 0.1)">
-            <span class="ctrl-label">Label Noise:</span>
+            <label for="outlierSlider" class="ctrl-label">Label Noise:</label>
             <input id="outlierSlider" type="range" min="-4.1" max="-1.0" step="0.05" value="-4.1" />
             <span id="outlierLabel" class="val-readout val-w-lg"></span>
           </div>
@@ -347,7 +374,7 @@
         <button id="themeToggleBtn" type="button" class="theme-btn"></button>
       </div>
     </div>
-  </div>
+  </main>
 
   <script>
     // =====================================================================
@@ -400,7 +427,7 @@
         '--card-foreground': '#000000',
         '--muted': '#f7f7f5',
         '--muted-foreground': '#555555',
-        '--border': '#e2e2dc'
+        '--border': '#e4e4e0'
       };
       Object.entries(vars).forEach(([k, v]) => document.documentElement.style.setProperty(k, v));
       document.body.style.backgroundColor = vars['--background'];
@@ -424,6 +451,8 @@
       document.body.style.overflow = 'hidden';
     }
 
+    const FONT_SANS = 'Lato, Helvetica, Arial, sans-serif';
+    const FONT_MONO = '"Source Code Pro", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
     const COL_FIX = '#3B82F6';  // Blue: Our Fixed Cross-Entropy
     const COL_STD = '#EF4444';  // Red: Standard Cross-Entropy
     const COL_DEAD = '#FACC15'; // Yellow: dead zone & slingshot
@@ -1105,7 +1134,7 @@
 
     function drawContourPill(ctx, text, x, y, isHighlight, dark) {
       ctx.save();
-      ctx.font = (isHighlight ? '700 ' : '600 ') + '10px "JetBrains Mono", ui-monospace, SFMono-Regular, monospace';
+      ctx.font = (isHighlight ? '700 ' : '600 ') + '10px ' + FONT_MONO;
       const tw = ctx.measureText(text).width;
       const pw = tw + 8;
       const ph = 14;
@@ -1157,7 +1186,7 @@
         { label: 'Float Cutoff', kind: 'dead' }
       ];
       ctx.save();
-      ctx.font = '700 11.5px Lato, Verdana, Helvetica, sans-serif';
+      ctx.font = '700 11.5px ' + FONT_SANS;
       const rowH = 17;
       const boxW = 35 + Math.max(...items.map(it => ctx.measureText(it.label).width));
       const boxH = items.length * rowH + 10;
@@ -1259,7 +1288,7 @@
         ctx.fillStyle = LABEL_TEXT_COLOR;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.font = '700 12px "JetBrains Mono", ui-monospace, SFMono-Regular, monospace';
+        ctx.font = '700 12px ' + FONT_MONO;
         ctx.fillText('Weight', wx, wy - 6.5);
         ctx.fillText('Decay', wx, wy + 7.5);
         ctx.restore();
@@ -1306,7 +1335,7 @@
       ctx.fillStyle = LABEL_TEXT_COLOR;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.font = '700 12px "JetBrains Mono", ui-monospace, SFMono-Regular, monospace';
+      ctx.font = '700 12px ' + FONT_MONO;
       ctx.fillText('Cross', ox, oy + 16.0);
       ctx.fillText('Entropy', ox, oy + 29.0);
       ctx.restore();
@@ -1335,7 +1364,7 @@
 
       if (SHOW_MAP_TITLE) {
         const mapTitle = 'Loss Landscape';
-        ctx.font = '700 11.5px Lato, Verdana, Helvetica, sans-serif';
+        ctx.font = '700 11.5px ' + FONT_SANS;
         const titleW = ctx.measureText(mapTitle).width + 12;
         ctx.fillStyle = dark ? 'rgba(15, 23, 42, 0.78)' : 'rgba(248, 250, 252, 0.85)';
         ctx.fillRect(8, 8, titleW, 18);
@@ -1443,7 +1472,7 @@
           return floorY - norm * (trackH - 22);
         };
 
-        ctx.font = '10px "JetBrains Mono", ui-monospace, SFMono-Regular, monospace';
+        ctx.font = '10px ' + FONT_MONO;
         ctx.textAlign = 'right';
         ctx.textBaseline = 'middle';
         tr.ticks.forEach(tk => {
@@ -1519,7 +1548,7 @@
           }
         }
 
-        ctx.font = '700 11.5px Lato, Verdana, Helvetica, sans-serif';
+        ctx.font = '700 11.5px ' + FONT_SANS;
         const titleW = ctx.measureText(tr.title).width + 10;
         ctx.fillStyle = dark ? 'rgba(15, 23, 42, 0.78)' : 'rgba(248, 250, 252, 0.85)';
         ctx.fillRect(padL + 4, top + 2, titleW, 14);
@@ -1591,6 +1620,12 @@
     }
     drawMap();
     drawStrip();
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => {
+        drawMap();
+        drawStrip();
+      });
+    }
     requestAnimationFrame(tick);
   </script>
 </body>

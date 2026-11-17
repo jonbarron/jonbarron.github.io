@@ -76,11 +76,17 @@ social-preview cards:
         ["Inst A", "Inst B"], "email": "...", "equal": true}]` explicitly in
         `paper.json`.
 *   **Emails (`"emails"`):**
-    *   `"per_author"` *(default)* — renders each author's email in monospace
-        directly under their name.
+    *   `"per_author"` *(default)* — renders each author's email directly under
+        their name.
     *   `"grouped"` — collapses shared domains onto one line (e.g.
         `{barron, nanabyte, tschannen}@google.com`).
     *   `"hidden"` — omits email addresses.
+*   **Favicon (`"favicon"` / `"favicon_emoji"`):** Place `favicon.png` (and
+    optionally `favicon.ico` + `apple-touch-icon.png`) in the paper's `img/`
+    folder — or set `"favicon": "img/favicon.png"` in `paper.json` — and
+    `tex_to_html` links all available sizes automatically (and inlines a base64
+    PNG in `--standalone` mode). Falls back to `"favicon_emoji"` when no custom
+    image is present.
 *   **Venue / Award (`"venue"`):** Defaults to `arXiv:<arxiv_id>` when
     `"arxiv_id"` is set. Override with e.g.
     `"venue": "CVPR 2026 (Oral Presentation)"`, or `""` to hide.
@@ -92,3 +98,43 @@ social-preview cards:
     `algorithmic` / `algorithm2e` pseudocode floats, theorems/proofs,
     click-to-zoom lightbox, sticky scroll-spy table of contents, and hover
     previews on figure/table/equation/algorithm/citation links.
+
+## Design Policy (Fonts, Colors & Typography)
+
+`../stylesheet.css` is the single source of truth for site-wide `@font-face`
+declarations (`Lato` + `Source Code Pro`), CSS color/font tokens, and base
+typography rendering. `paper.css` inherits those tokens (with standalone
+fallbacks):
+
+*   **Colors:**
+    *   `#000000` (`--text`) — all primary content and paper metadata (prose,
+        headings, authors, affiliations, venues, emails, captions, tables,
+        references, and code body/bold keywords).
+    *   `#555555` (`--text-muted`) — **chrome only** (nav `/` separators,
+        footers, sidebar TOC, equation numbers, hover `#` anchors, `Copy`
+        buttons, and code/algorithm comments). Never use muted gray for primary
+        content or paper metadata.
+    *   `#1772d0` (`--accent`) — **clickable links and active navigation only**.
+        Never use link blue for non-clickable elements or code syntax
+        highlighting.
+    *   `#f09228` (`--accent-hover`) — hover/focus state for links and
+        interactive chrome.
+    *   `#ffffd0` (`--highlight-bg`) — highlighted paper rows on the homepage
+        and `:target` jump highlights in papers.
+    *   `#ffffff` (`--bg`), `#f7f7f5` (`--bg-code`), `#e4e4e0` (`--border`) —
+        page surface, code-block fill, and hairline borders.
+*   **Fonts:** **Lato** (`400`/`700`, including author emails) for everything
+    except inline `code` and `.code-listing`, which use **Source Code Pro**
+    (`400`/`700`, monochrome bold keywords + muted `#555555` comments).
+*   **Desktop Font Scale:**
+    *   **Homepage (`stylesheet.css`):** `32px` (page title `h1`), `22px`
+        (section `h2`), `14px` (body text, `normal` ~`1.2` leading), `13px`
+        (footer).
+    *   **Papers (`paper.css`):** `32px` (page title `h1`), `22px` (section
+        `h2`), `18px` (paper abstract title & subsection `h3`), `15px` (all
+        `\normalsize` text: prose, authors, emails, affiliations, venue, top
+        nav, TOC sidebar, and margin equation numbers; `14px` on mobile), `13px`
+        **only** for things that are `\small`/`\footnotesize` in LaTeX (figure &
+        table captions/subcaptions, tables, bibliography, code, algorithms,
+        footnotes) plus small web chrome (footer, hover popovers, `Copy`
+        buttons). KaTeX math uses `1.14em` to match Lato's x-height optically.

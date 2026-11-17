@@ -6,6 +6,7 @@
     <meta name="author" content="Jon Barron">
     <meta name="description" content="Jon Barron — Principal Research Scientist at Google DeepMind working on computer vision, radiance fields, deep learning, and generative AI.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
     <meta property="og:title" content="Jon Barron">
     <meta property="og:description" content="Principal Research Scientist at Google DeepMind working on computer vision, radiance fields, deep learning, and generative AI.">
     <meta property="og:type" content="website">
@@ -16,7 +17,11 @@
     <meta name="twitter:title" content="Jon Barron">
     <meta name="twitter:description" content="Principal Research Scientist at Google DeepMind working on computer vision, radiance fields, deep learning, and generative AI.">
     <meta name="twitter:image" content="https://jonbarron.info/images/JonBarron.jpg">
-    <link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
   </head>
 
@@ -28,8 +33,7 @@
           <p>
             I'm a principal research scientist at <a href="https://deepmind.google/">Google DeepMind</a> in San Francisco, where I lead a small team working on <a href="https://en.wikipedia.org/wiki/Neural_radiance_field">radiance fields</a> and models like Omni, Genie, and Gemini.
             At Google I've worked on <a href="https://www.google.com/glass/start/">Glass</a>, <a href="https://ai.googleblog.com/2014/04/lens-blur-in-new-google-camera-app.html">Lens Blur</a>, <a href="https://ai.googleblog.com/2014/10/hdr-low-light-and-high-dynamic-range.html">HDR+</a>, <a href="https://blog.google/products/google-ar-vr/introducing-next-generation-jump/">VR</a>, <a href="https://ai.googleblog.com/2017/10/portrait-mode-on-pixel-2-and-pixel-2-xl.html">Portrait Mode</a>, <a href="https://ai.googleblog.com/2020/12/portrait-light-enhancing-portrait.html">Portrait Light</a>, <a href="https://blog.google/products/maps/three-maps-updates-io-2022/">Maps</a>, and <a href="https://research.google/blog/bringing-3d-shoppable-products-online-with-generative-ai/">Shopping</a>.
-            I did my PhD at <a href="https://eecs.berkeley.edu/">UC Berkeley</a>, where I was advised by <a href="https://people.eecs.berkeley.edu/~malik/">Jitendra Malik</a>.
-            I've received the <a href="https://www.thecvf.com/?page_id=413#YRA">PAMI Young Researcher Award</a>.
+            I did my PhD at <a href="https://eecs.berkeley.edu/">UC Berkeley</a> with <a href="https://people.eecs.berkeley.edu/~malik/">Jitendra Malik</a>, and I've received the <a href="https://www.thecvf.com/?page_id=413#YRA">PAMI Young Researcher Award</a>.
           </p>
           <p class="bio-links">
             <a href="mailto:jonbarron@gmail.com">Email</a> &nbsp;/&nbsp;
@@ -37,7 +41,7 @@
             <a href="data/JonBarron-bio.txt">Bio</a> &nbsp;/&nbsp;
             <a href="https://scholar.google.com/citations?hl=en&amp;user=jktWnL8AAAAJ">Scholar</a> &nbsp;/&nbsp;
             <a href="https://x.com/jon_barron">Twitter</a> &nbsp;/&nbsp;
-            <a href="https://github.com/jonbarron/">Github</a>
+            <a href="https://github.com/jonbarron/">GitHub</a>
           </p>
         </div>
         <div class="bio-photo">
@@ -48,7 +52,7 @@
       <section class="section-header">
         <h2>Research</h2>
         <p>
-          I'm interested in computer vision, deep learning, generative AI, and image processing. Most of my research is about inferring the physical world (shape, motion, color, light, etc) from images, usually with radiance fields. Some papers are <span class="highlight">highlighted</span>.
+          I'm interested in computer vision, deep learning, generative AI, and image processing. Much of my research is about reconstructing and generating the world from images. Some papers are <span class="highlight">highlighted</span>.
         </p>
       </section>
 
@@ -1823,7 +1827,7 @@
         <div class="paper-media">
           <div class="one">
             <div class="two">
-              <a href="images/Estee.png"><img src="images/Estee_160.png" alt="" width="160" height="160" loading="lazy"></a>
+              <a href="images/Estee.png" aria-label="Full-resolution SIRFS output"><img src="images/Estee_160.png" alt="" width="160" height="160" loading="lazy"></a>
             </div>
             <a href="images/Estee.png"><img src="images/Estee_160_prodB2.png" alt="Shape, Illumination, and Reflectance from Shading" width="160" height="160" loading="lazy"></a>
           </div>
@@ -1853,7 +1857,7 @@
         <div class="paper-media">
           <div class="one">
             <div class="two">
-              <a href="images/BarronICCV2013.mp4"><video muted loop playsinline preload="none">
+              <a href="images/BarronICCV2013.mp4" aria-label="Volumetric Semantic Segmentation video"><video muted loop playsinline preload="none">
                 <source src="images/BarronICCV2013_160.mp4" type="video/mp4">
               </video></a>
             </div>
@@ -1915,7 +1919,7 @@
         <div class="paper-media">
           <div class="one">
             <div class="two">
-              <a href="https://drive.google.com/file/d/1brxb58CfRPe7KEER4Q_fYS9B_J-hiS0t/view?usp=sharing"><video muted loop playsinline preload="none">
+              <a href="https://drive.google.com/file/d/1brxb58CfRPe7KEER4Q_fYS9B_J-hiS0t/view?usp=sharing" aria-label="Color Constancy, Intrinsic Images, and Shape Estimation video"><video muted loop playsinline preload="none">
                 <source src="images/ECCV2012_small.mp4" type="video/mp4">
               </video></a>
             </div>
@@ -2096,15 +2100,15 @@
         var thumb = card.querySelector('.one');
         if (!thumb) return;
         var video = thumb.querySelector('.two video');
-        if (video) {
-          card.addEventListener('mouseenter', function() {
-            video.play().catch(function() {});
-          });
-          card.addEventListener('mouseleave', function() {
-            video.pause();
-          });
+        if (video && window.matchMedia('(hover: hover)').matches) {
+          card.addEventListener('mouseenter', function() { video.play().catch(function() {}); });
+          card.addEventListener('mouseleave', function() { video.pause(); });
         }
-        thumb.addEventListener('touchstart', function() {
+        var moved = false;
+        thumb.addEventListener('touchstart', function() { moved = false; }, {passive: true});
+        thumb.addEventListener('touchmove', function() { moved = true; }, {passive: true});
+        thumb.addEventListener('touchend', function() {
+          if (moved) return;
           var active = !card.classList.contains('hover-active');
           document.querySelectorAll('.paper.hover-active').forEach(function(other) {
             other.classList.remove('hover-active');

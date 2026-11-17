@@ -392,16 +392,50 @@ def parse_bbl(bbl_path: str) -> tuple[dict[str, dict], list[str]]:
 
 
 def highlight_python_line(line: str) -> str:
-  """Applies lightweight keyword and comment highlighting to a Python line."""
+  """Applies monochrome keyword bolding and muted comment styling to Python."""
   comment_part = ""
   code_part = line
-  if "#" in line:
-    idx = line.index("#")
-    code_part = line[:idx]
-    comment_part = line[idx:]
-  esc_code = html.escape(code_part)
-  kw_pat = r"\b(import|def|return|lambda|from|as|in|for|if|else)\b"
-  esc_code = re.sub(kw_pat, r'<span class="tok-kw">\1</span>', esc_code)
+  # Split trailing comment outside string literals.
+  in_quote = None
+  escaped = False
+  for i, ch in enumerate(line):
+    if escaped:
+      escaped = False
+    elif in_quote is not None:
+      if ch == "\\":
+        escaped = True
+      elif ch == in_quote:
+        in_quote = None
+    elif ch in ("'", '"'):
+      in_quote = ch
+    elif ch == "#":
+      code_part = line[:i]
+      comment_part = line[i:]
+      break
+
+  tok_pat = re.compile(
+      r"""(?P<str>'(?:\\.|[^'\\])*'|"(?:\\.|[^"\\])*")"""
+      r"""|\b(?P<kw>import|from|as|def|class|return|yield|lambda|if|elif|else"""
+      r"""|for|while|in|with|and|or|not|is|try|except|finally|raise|pass"""
+      r"""|break|continue|assert)\b"""
+  )
+
+  def _repl(m: re.Match[str]) -> str:
+    if m.group("str") is not None:
+      return html.escape(m.group("str"))
+    return f'<span class="tok-kw">{m.group("kw")}</span>'
+
+  parts = []
+  last = 0
+  for m in tok_pat.finditer(code_part):
+    if m.start() > last:
+      parts.append(html.escape(code_part[last : m.start()]))
+    parts.append(_repl(m))
+    last = m.end()
+  if last < len(code_part):
+    parts.append(html.escape(code_part[last:]))
+  esc_code = "".join(parts)
+
   esc_comment = (
       f'<span class="tok-comment">{html.escape(comment_part)}</span>'
       if comment_part
@@ -2073,6 +2107,101 @@ class LaTeXMLPaperCompiler:
     header_body = "\n        ".join([authors_block] + extra_rows)
     return header_body, author_names_plain
 
+  def _build_favicon_html(self, is_site_mode: bool) -> str:
+    """Builds favicon <link> tag(s) from a custom image or fallback emoji."""
+    img_dir = (self.external_img_dir or "img").strip("/")
+    fav_rel = str(self.meta.get("favicon", "")).strip()
+    fav_abs = ""
+    if fav_rel:
+      for base in (self.out_html_dir, self.tex_dir):
+        if base:
+          cand = os.path.join(base, fav_rel)
+          if os.path.isfile(cand):
+            fav_abs = cand
+            break
+      if not fav_abs and os.path.isfile(fav_rel):
+        fav_abs = fav_rel
+    else:
+      # Auto-detect img/favicon.png (or sibling site folder in standalone mode).
+      candidates = []
+      if self.out_html_dir:
+        candidates.append((
+            f"{img_dir}/favicon.png",
+            os.path.join(self.out_html_dir, img_dir, "favicon.png"),
+        ))
+      slug = str(self.meta.get("slug", "")).strip()
+      if slug:
+        site_root = os.path.dirname(self.script_dir)
+        candidates.append((
+            f"{img_dir}/favicon.png",
+            os.path.join(site_root, slug, img_dir, "favicon.png"),
+        ))
+      for rel_p, abs_p in candidates:
+        if os.path.isfile(abs_p):
+          fav_rel, fav_abs = rel_p, abs_p
+          break
+
+    if fav_abs:
+      if is_site_mode and self.out_html_dir:
+        # Ensure explicit tex-dir favicon is accessible relative to out_html_dir.
+        out_fav = os.path.join(self.out_html_dir, fav_rel)
+        if not os.path.isfile(out_fav):
+          os.makedirs(os.path.dirname(out_fav), exist_ok=True)
+          shutil.copyfile(fav_abs, out_fav)
+          fav_abs = out_fav
+        fav_dir_abs = os.path.dirname(fav_abs)
+        fav_dir_rel = os.path.dirname(fav_rel).rstrip("/")
+        prefix = f"{fav_dir_rel}/" if fav_dir_rel else ""
+        tags = []
+        if os.path.isfile(os.path.join(fav_dir_abs, "favicon.ico")):
+          tags.append(
+              f'<link rel="icon" href="{html.escape(prefix + "favicon.ico")}"'
+              ' sizes="any">'
+          )
+        ext = os.path.splitext(fav_abs)[1].lower()
+        if ext == ".svg":
+          tags.append(
+              '<link rel="icon" type="image/svg+xml"'
+              f' href="{html.escape(fav_rel)}">'
+          )
+        elif ext != ".ico":
+          raw = open(fav_abs, "rb").read()
+          w, h = read_image_dims_stdlib(raw)
+          mime = "image/png" if ext == ".png" else "image/jpeg"
+          sz_attr = f' sizes="{w}x{h}"' if (w and h) else ""
+          tags.append(
+              f'<link rel="icon" type="{mime}"{sz_attr}'
+              f' href="{html.escape(fav_rel)}">'
+          )
+        if os.path.isfile(os.path.join(fav_dir_abs, "apple-touch-icon.png")):
+          tags.append(
+              '<link rel="apple-touch-icon" sizes="180x180"'
+              f' href="{html.escape(prefix + "apple-touch-icon.png")}">'
+          )
+        if tags:
+          return "\n  ".join(tags)
+      else:
+        raw = open(fav_abs, "rb").read()
+        ext = os.path.splitext(fav_abs)[1].lower()
+        if ext == ".png":
+          b64 = base64.b64encode(raw).decode("ascii")
+          return (
+              '<link rel="icon" type="image/png"'
+              f' href="data:image/png;base64,{b64}">'
+          )
+        if HAS_PIL and pil_image is not None:
+          im = pil_image.open(io.BytesIO(raw)).convert("RGBA")
+          im = im.resize((64, 64), pil_image.Resampling.LANCZOS)
+          buf = io.BytesIO()
+          im.save(buf, format="PNG", optimize=True)
+          b64 = base64.b64encode(buf.getvalue()).decode("ascii")
+          return (
+              '<link rel="icon" type="image/png"'
+              f' href="data:image/png;base64,{b64}">'
+          )
+
+    return favicon_link(self.meta.get("favicon_emoji", ""))
+
   def _find_shared_asset(self, filename: str) -> str | None:
     """Locates shared `paper.css`, `paper.js`, or `stylesheet.css` nearby."""
     candidates = []
@@ -2262,8 +2391,6 @@ class LaTeXMLPaperCompiler:
             f' content="{html.escape(soc_img_url)}">'
         )
 
-    fav_html = favicon_link(self.meta.get("favicon_emoji", ""))
-
     # Site mode (shared ../stylesheet.css + ../tex_to_html/paper.{css,js}) vs
     # Standalone mode (self-contained single HTML file).
     parent_dir = os.path.dirname(self.out_html_dir) if self.out_html_dir else ""
@@ -2275,6 +2402,7 @@ class LaTeXMLPaperCompiler:
     elif parent_dir and os.path.isfile(os.path.join(parent_dir, "paper.css")):
       shared_prefix = ".."
     is_site_mode = bool(self.external_img_dir and shared_prefix)
+    fav_html = self._build_favicon_html(is_site_mode)
     if is_site_mode:
       style_links = []
       if os.path.isfile(os.path.join(parent_dir, "stylesheet.css")):
@@ -2328,17 +2456,29 @@ class LaTeXMLPaperCompiler:
           f' <a href="{template_url}">tex_to_html</a>.</footer>'
       )
 
-    has_lato_css = (
+    has_site_fonts_css = (
         is_site_mode
         and os.path.isfile(os.path.join(parent_dir, "stylesheet.css"))
     ) or (not is_site_mode and bool(self._find_shared_asset("stylesheet.css")))
-    lato_query = (
-        "" if has_lato_css else "family=Lato:ital,wght@0,400;0,700;1,400;1,700&"
-    )
-    mono_font_url = (
-        "https://fonts.googleapis.com/css2?"
-        f"{lato_query}family=JetBrains+Mono:wght@400;500&display=swap"
-    )
+    if has_site_fonts_css:
+      # stylesheet.css declares both Lato and Source Code Pro @font-face rules
+      # pointing directly at fonts.gstatic.com.
+      font_assets = (
+          '  <link rel="preconnect" href="https://fonts.gstatic.com"'
+          " crossorigin>\n"
+      )
+    else:
+      fallback_font_url = (
+          "https://fonts.googleapis.com/css2?"
+          "family=Lato:ital,wght@0,400;0,700;1,400;1,700&"
+          "family=Source+Code+Pro:wght@400;700&display=swap"
+      )
+      font_assets = (
+          '  <link rel="preconnect" href="https://fonts.googleapis.com">\n'
+          '  <link rel="preconnect" href="https://fonts.gstatic.com"'
+          " crossorigin>\n"
+          f'  <link href="{fallback_font_url}" rel="stylesheet">\n'
+      )
     back_href = html.escape(back_cfg["href"])
     back_lbl = html.escape(back_cfg["label"])
 
@@ -2350,14 +2490,12 @@ class LaTeXMLPaperCompiler:
         '  <meta charset="utf-8">\n'
         '  <meta name="viewport"'
         ' content="width=device-width, initial-scale=1">\n'
+        '  <meta name="color-scheme" content="light">\n'
         f"  <title>{html.escape(title_plain)}</title>\n"
         f"{chr(10).join(meta_tags)}\n"
         f"  {fav_html}\n"
+        f"{font_assets}"
         f"{style_assets}\n"
-        '  <link rel="preconnect" href="https://fonts.googleapis.com">\n'
-        '  <link rel="preconnect" href="https://fonts.gstatic.com"'
-        " crossorigin>\n"
-        f'  <link href="{mono_font_url}" rel="stylesheet">\n'
         f'  <link rel="stylesheet" href="{katex_css_url}"'
         f' crossorigin="anonymous">{katex_client_fallback}\n'
         "</head>\n"
@@ -2389,8 +2527,7 @@ class LaTeXMLPaperCompiler:
         '    <div class="layout-spacer" aria-hidden="true"></div>\n'
         "  </div>\n\n"
         '  <div id="hover-popover"></div>\n'
-        '  <div id="lightbox-overlay"'
-        " onclick=\"this.style.display='none'\">\n"
+        '  <div id="lightbox-overlay">\n'
         '    <img id="lightbox-img" src="" alt="Expanded figure">\n'
         "  </div>\n\n"
         f"{script_assets}\n"

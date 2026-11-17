@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
   <title>A Fix for Softmax and Cross-Entropy</title>
   <meta name="author" content="Jonathan T. Barron, Dan Gnanapragasam, Michael Tschannen">
   <meta name="description" content="The &quot;slingshot&quot; phenomenon in grokking is caused by a numerical bug in every implementation of cross-entropy and softmax. We fix it, along with a second bug that affects distillation.">
@@ -20,12 +21,12 @@
   <meta name="twitter:site" content="@jon_barron">
   <meta name="twitter:creator" content="@jon_barron">
   <meta name="twitter:image" content="https://jonbarron.info/softmaxfix/img/social_preview.png">
-  <link rel="icon" type="image/png" href="data:image/png;base64,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">
+  <link rel="icon" href="img/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="64x64" href="img/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" type="text/css" href="../stylesheet.css">
   <link rel="stylesheet" type="text/css" href="../tex_to_html/paper.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/katex.min.css" crossorigin="anonymous">
 </head>
 <body>
@@ -692,7 +693,7 @@ We thank <a href="#bib-maaz2026property" class="cite-link" data-bib="maaz2026pro
   </div>
 
   <div id="hover-popover"></div>
-  <div id="lightbox-overlay" onclick="this.style.display='none'">
+  <div id="lightbox-overlay">
     <img id="lightbox-img" src="" alt="Expanded figure">
   </div>
 

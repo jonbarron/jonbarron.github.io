@@ -71,3 +71,46 @@ paper's `.tex` source using `tex_to_html.py`.
     `<section class="papers">` with `width="160"` media, `<span class="author">`
     around any unlinked co-author names (never insert `<br>` in
     `.paper-authors`), and UTF-8 accents.
+
+## Site-Wide Design & Typography Conventions
+
+`../stylesheet.css` is the single source of truth for `@font-face` declarations
+(`Lato` + `Source Code Pro`, `font-display: block`), color variables, and
+font-smoothing (`-webkit-font-smoothing: antialiased`). Do not add duplicate
+Google Fonts `<link>` tags to individual pages when `stylesheet.css` is loaded.
+
+### Colors
+*   `#000000` (`--text`): All primary content and paper metadata (prose,
+    headings, authors, emails, affiliations, venues, captions, tables,
+    references, code body, and bold Python keywords).
+*   `#555555` (`--text-muted`): **Chrome only** — `/` nav/link separators,
+    footers, sidebar TOC links, margin equation numbers, hover `#` anchors,
+    `Copy` buttons, and code/algorithm comments. Never use muted gray for
+    primary content or author/venue metadata.
+*   `#1772d0` (`--accent`) / `#f09228` (`--accent-hover`): **Clickable links and
+    active navigation only**. Never use link blue for non-clickable elements or
+    code syntax highlighting.
+*   `#ffffd0` (`--highlight-bg`): Highlighted homepage paper rows and `:target`
+    jump highlights in papers.
+
+### Typography & Font Sizes
+*   **Homepage (`stylesheet.css`)**: Keep the classic dense `14px` body size
+    with Lato's default `normal` (`~1.20`) line-height so paper entries stay
+    compact next to `160×160` thumbnails (`32px` `h1`, `22px` `h2`, `13px`
+    footer).
+*   **Papers (`paper.css`)**:
+    *   `32px` title (`h1`), `22px` sections (`h2`), `18px` abstract title &
+        subsections (`h3`).
+    *   `15px` (`14px` on mobile `<= 640px`, `line-height: 1.55`) for **all
+        LaTeX `\normalsize` equivalents**: body prose, abstract, author names,
+        emails, affiliations, venue, top nav links, sidebar TOC, and margin
+        equation numbers `(1)`.
+    *   `13px` **only** for things that would be `\small` / `\footnotesize` in
+        LaTeX (figure & table captions/subcaptions, booktabs tables,
+        bibliography/references, `Source Code Pro` code listings & inline
+        `code`, algorithm floats, and `\thanks` footnotes), plus small web UI
+        chrome (footer, hover preview popovers, `Copy` buttons/tooltips, and
+        interactive demo controls).
+    *   **KaTeX math (`1.14em`)**: Computer Modern (`KaTeX_Main`, x-height
+        `0.431em`) is scaled to `1.14em` (`1.02em` for display math on mobile)
+        to optically match Lato (`x-height 0.507em`).

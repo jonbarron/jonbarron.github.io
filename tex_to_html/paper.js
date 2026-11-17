@@ -5,18 +5,58 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /**
+ * Copies text to the clipboard with an execCommand fallback for non-HTTPS /
+ * local file:// standalone HTML pages.
+ * @param {string} text
+ * @return {!Promise<void>}
+ */
+function copyText(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    return navigator.clipboard.writeText(text).catch(() => copyTextFallback(text));
+  }
+  return copyTextFallback(text);
+}
+
+/**
+ * Fallback clipboard copy via a temporary off-screen textarea.
+ * @param {string} text
+ * @return {!Promise<void>}
+ */
+function copyTextFallback(text) {
+  return new Promise((resolve, reject) => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    ta.style.pointerEvents = 'none';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      const ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      if (ok) resolve();
+      else reject(new Error('execCommand copy failed'));
+    } catch (err) {
+      document.body.removeChild(ta);
+      reject(err);
+    }
+  });
+}
+
+/**
  * Copies a code listing's source text to the clipboard.
  * @param {!Element} btn
  */
 function copyCodeBlock(btn) {
-  const code = btn.getAttribute('data-code');
-  navigator.clipboard.writeText(code).then(() => {
+  const code = btn.getAttribute('data-code') || '';
+  copyText(code).then(() => {
     const orig = btn.textContent;
     btn.textContent = 'Copied!';
     setTimeout(() => {
       btn.textContent = orig;
     }, 1400);
-  });
+  }).catch(() => {});
 }
 
 let bibtexTimer = null;
@@ -26,14 +66,14 @@ let bibtexTimer = null;
  * @param {!Element} el
  */
 function copyBibtex(el) {
-  const bib = el.getAttribute('data-bibtex');
-  navigator.clipboard.writeText(bib).then(() => {
+  const bib = el.getAttribute('data-bibtex') || '';
+  copyText(bib).then(() => {
     el.classList.add('is-copied');
     clearTimeout(bibtexTimer);
     bibtexTimer = setTimeout(() => {
       el.classList.remove('is-copied');
     }, 1200);
-  });
+  }).catch(() => {});
 }
 
 /** Initializes click-to-zoom lightbox behavior on paper figures. */
@@ -41,19 +81,30 @@ function initLightbox() {
   const overlay = document.getElementById('lightbox-overlay');
   const lbImg = document.getElementById('lightbox-img');
   if (!overlay || !lbImg) return;
+  function closeLightbox() {
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+  }
   document.querySelectorAll('img.zoomable').forEach(img => {
     img.addEventListener('click', () => {
       lbImg.src = img.src;
+      lbImg.alt = img.alt || 'Expanded figure';
       overlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
     });
   });
+  overlay.addEventListener('click', closeLightbox);
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') overlay.style.display = 'none';
+    if (e.key === 'Escape' && overlay.style.display === 'flex') closeLightbox();
   });
 }
 
 /** Initializes hover popovers for bibliography citations and cross-refs. */
 function initHoverPreviews() {
+  if (window.matchMedia &&
+      !window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    return;
+  }
   const pop = document.getElementById('hover-popover');
   if (!pop) return;
   function showPop(e, contentHtml) {
